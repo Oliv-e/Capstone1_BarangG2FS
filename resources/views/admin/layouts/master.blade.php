@@ -9,7 +9,7 @@
 <body>
   @include('admin.components.sidenav')
   @yield('body')
-  @include('admin.components.footer')
+  @include('admin.components.settings')
 
   @include('admin.layouts.scripts')
 </body>
