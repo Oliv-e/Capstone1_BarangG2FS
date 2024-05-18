@@ -14,4 +14,8 @@ class detail_transaksi extends Model
         'resi',
         'status',
     ];
+    public function transaksi()
+    {
+        return $this->belongsTo(transaksi::class, 'id', 'id_transaksi');
+    }
 }

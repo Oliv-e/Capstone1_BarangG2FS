@@ -15,4 +15,12 @@ class ulasan extends Model
         'rate',
         'komentar',
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id','id_user');
+    }
+    public function barang()
+    {
+        return $this->belongsTo(Barang::class,'id','id_barang');
+    }
 }

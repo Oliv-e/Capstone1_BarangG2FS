@@ -15,4 +15,8 @@ class promo extends Model
         'deskripsi',
         'pengurangan_harga'
     ];
+    public function barang()
+    {
+        return $this->belongsTo(Barang::class, 'id','id_barang');
+    }
 }
