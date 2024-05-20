@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('id_barang');
             $table->integer('jumlah');
             $table->timestamps();
+            $table->enum('diarsipkan', [false,true])->default(false);
         });
     }
 

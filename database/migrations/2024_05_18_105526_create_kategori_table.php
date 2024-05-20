@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('id_kategori');
             $table->string('nama');
             $table->timestamps();
+            $table->enum('diarsipkan', [false,true])->default(false);
         });
     }
 

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('resi');
             $table->enum('status',['Pending','Proses','Dikirim','Selesai','Batal']);
             $table->timestamps();
+            $table->enum('diarsipkan', [false,true])->default(false);
         });
     }
 

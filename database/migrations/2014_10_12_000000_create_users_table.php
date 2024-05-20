@@ -17,10 +17,12 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('alamat');
             $table->string('nomor_hp');
+            $table->enum('role', ['guest','admin','super-admin'])->default('guest');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->enum('diarsipkan', [false,true])->default(false);
         });
     }
 

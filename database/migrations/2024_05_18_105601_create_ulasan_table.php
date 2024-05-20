@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('rate');
             $table->string('komentar');
             $table->timestamps();
+            $table->enum('diarsipkan', [false,true])->default(false);
         });
     }
 

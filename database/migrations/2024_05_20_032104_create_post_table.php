@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('id_promo');
             $table->integer('id_ulasan');
             $table->timestamps();
+            $table->enum('diarsipkan', [false,true])->default(false);
         });
     }
 

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('deskripsi');
             $table->integer('pengurangan_harga');
             $table->timestamps();
+            $table->enum('diarsipkan', [false,true])->default(false);
         });
     }
 
