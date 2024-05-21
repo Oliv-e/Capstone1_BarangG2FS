@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('deskripsi');
             $table->integer('harga');
             $table->timestamps();
-            $table->enum('diarsipkan', [false,true])->default(false);
+            $table->enum('diarsipkan', ['false','true'])->default('false');
         });
     }
 

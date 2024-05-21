@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->enum('diarsipkan', [false,true])->default(false);
+            $table->enum('diarsipkan', ['false','true'])->default('false');
         });
     }
 
