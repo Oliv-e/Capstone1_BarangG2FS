@@ -1,0 +1,568 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.navbar {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 1rem;
+    color: #243B3B;
+    width: 100%; /* Menyamakan lebar navbar dengan lebar layar */
+    z-index: 1000; /* Pastikan z-index lebih tinggi dari konten lainnya */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Efek shadow untuk tampilan yang lebih menarik */
+}
+
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    margin-left: 0.3rem;
+}
+
+.logo-image {
+    width: 70px;
+    height: auto;
+    margin-right: 1rem;
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar .nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    padding: 0 2rem;
+    margin-right: 2rem;
+}
+
+.navbar .nav-links li {
+    margin-left: 1rem;
+}
+
+.nav-links li a {
+    color: #243B3B; /* Warna default */
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+    font-weight: bold;
+    color: #B17330;
+}
+
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    margin-right: 3.5rem;
+}
+
+.cart-icon {
+    margin-right: 1rem;
+    color: #243B3B;
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+.login-btn {
+    padding: 0.5rem 1rem;
+    background-color: #7C8046;
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.login-btn i {
+    margin-right: 0.5rem;
+}
+
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem;
+    background: #E6C7AB;
+}
+
+.hero-text {
+    flex: 1;
+}
+
+.hero-text h1 {
+    font-size: 3rem;
+    color: #B17330;
+    margin-bottom: 1rem;
+}
+
+.hero-text p {
+    margin: 1rem 0;
+    font-size: 18px;
+    margin-bottom: 2rem;
+}
+
+.shop-now-btn {
+    padding: 0.75rem 1.5rem;
+    background-color: #7C8046;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.hero-image img {
+    width: 700px;
+    height: auto;
+    flex: 1;
+}
+
+.promo-section, .katalog-section, .tentang-section, .kontak-section {
+    padding: 2rem;
+    background: #fff;
+}
+
+.promo-section h2, .katalog-section h2, .tentang-section h2, .kontak-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.promo-products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.promo-products .product-card {
+    flex: 0 1 calc(25% - 1rem);
+    margin: 0.5rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.promo-products, .product-category {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.product-card {
+    flex: 0 1 300px;
+    margin: 0.5rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.product-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+.product-card h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.product-category .product-card p {
+    font-size: 1rem;
+    color: #7C8046;
+}
+
+.product-category .product-card {
+    flex: 0 1 270px;
+    margin: 0.5rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.normal-price {
+    text-decoration: line-through;
+    color: red;
+    font-size: 0.7rem;
+}
+
+.promo-price {
+    color: #7C8046;
+    font-size: 1rem;
+}
+
+.promo-products .product-card .add-to-cart-btn {
+    padding: 0.5rem 0.75rem;
+    background-color: orange;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-right: 1rem;
+}
+
+.add-to-cart-btn {
+    padding: 0.5rem 0.75rem;
+    background-color: orange;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-right: 0.6rem;
+}
+
+.promo-products .product-card .add-to-cart-btn .bi-cart {
+    font-size: 1.2rem;
+}
+
+.add-to-cart-btn .bi-cart {
+    font-size: 1rem;
+}
+
+.buy-btn {
+    padding: 0.5rem 0.75rem;
+    background-color: green;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.promo-products .product-card .buy-btn .bi-bag {
+    font-size: 1.2rem;
+}
+
+.buy-btn .bi-bag {
+    font-size: 1rem;
+}
+
+.category {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.category-links {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.category-link {
+    margin: 0 1rem;
+    color: #243B3B;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.category-link:hover,
+.category-link.active {
+    background-color: #7C8046;
+    color: white;
+}
+
+.tentang-section {
+    background: #E6C7AB;
+    padding: 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tentang-content {
+    display: flex;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.tentang-content img {
+    max-width: 50%;
+    height: auto;
+    margin-right: 2rem;
+}
+
+.tentang-description {
+    flex: 1;
+}
+
+.tentang-description h3 {
+    font-size: 29px;
+    color: #B17330;
+    margin-bottom: 0.2rem;
+}
+
+.tentang-description p {
+    font-size: 19px;
+    text-align: justify;
+}
+
+.tentang-description ul {
+    list-style: none;
+    padding: 0;
+    font-size: 19px;
+    text-align: justify;
+}
+
+.tentang-description ul li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.tentang-description ul li i {
+    margin-right: 0.5rem;
+    color: #7C8046;
+}
+
+.lihat-produk-btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: #7C8046;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.kontak-section {
+    background: #e7e7ea;
+    padding: 2rem;
+    text-align: center;
+}
+
+.maps-container {
+    width: 70%; /* Ukuran iframe menjadi 60% dari lebar container */
+    margin: 0 auto; /* Posisikan container ke tengah */
+    background-color: #8B4513; /* Warna coklat untuk background */
+    border-radius: 10px; /* Sudut yang melengkung */
+    overflow: hidden; /* Agar overflow content di dalam container tersembunyi */
+}
+
+.maps-container iframe {
+    width: 100%; /* Agar iframe mengisi seluruh lebar container */
+    height: 450px; /* Atur tinggi iframe sesuai kebutuhan */
+    border: none; /* Hilangkan border iframe */
+}
+
+
+
+.kontak-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin-left: 20rem;
+    gap: 2rem;
+}
+
+
+.kontak-item {
+    flex: 1;
+    margin: 0 1rem;
+    text-align: left;
+}
+
+.kontak-item h3 {
+    font-size: 1.5rem;
+    color: #B17330;
+    margin-bottom: 0.5rem;
+}
+
+.kontak-item h3 i {
+    margin-right: 0.2rem;
+    color: #000;
+}
+
+.kontak-item p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.kontak-item p i {
+    margin-right: 0.5rem;
+}
+
+.kontak-item p .bi-envelope {
+    color: #fc0054;
+ }
+
+
+.kontak-item p .bi-instagram {
+   color: #E1306C;
+}
+
+.kontak-item p .bi-facebook {
+    color: #1877F2;
+ }
+
+ .kontak-item p .bi-tiktok {
+    color: #000000;
+ }
+
+footer {
+    background-color: #B17330;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .logo-text {
+        display: none;
+    }
+
+    .navbar-toggler {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .navbar-toggler-icon {
+        width: 30px;
+        height: 3px;
+        background-color: #243B3B;
+        position: relative;
+    }
+
+    .navbar-toggler-icon::before,
+    .navbar-toggler-icon::after {
+        content: '';
+        width: 100%;
+        height: 100%;
+        background-color: #243B3B;
+        position: absolute;
+        left: 0;
+        transition: transform 0.3s ease;
+    }
+
+    .navbar-toggler-icon::before {
+        top: -10px;
+    }
+
+    .navbar-toggler-icon::after {
+        bottom: -10px;
+    }
+
+    .navbar-toggler.active .navbar-toggler-icon::before {
+        transform: translateY(10px) rotate(45deg);
+    }
+
+    .navbar-toggler.active .navbar-toggler-icon::after {
+        transform: translateY(-10px) rotate(-45deg);
+    }
+
+    .navbar-toggler.active .navbar-toggler-icon {
+        background-color: transparent;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: #B17330;
+        width: 100%;
+        text-align: right;
+        padding: 1rem 0;
+    }
+
+    .nav-links.active {
+        display: block;
+    }
+
+    .nav-links li {
+        margin: 0.5rem 0;
+    }
+
+    .nav-links a {
+        color: #fff;
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        display: block;
+    }
+
+    .navbar-right {
+        display: flex;
+        align-items: center;
+    }
+
+    .cart-icon {
+        margin-right: 1rem;
+        color: #243B3B;
+        text-decoration: none;
+        font-size: 1.5rem;
+    }
+
+    .login-btn {
+        padding: 0.5rem 1rem;
+        background-color: #444;
+        color: white;
+        border: none;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .login-btn i {
+        margin-right: 0.5rem;
+    }
+
+    .promo-products .product-card {
+        flex: 0 1 calc(50% - 1rem);
+    }
+
+    .tentang-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .tentang-content img {
+        max-width: 100%;
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+
+    .tentang-description ul {
+        padding-left: 0;
+    }
+
+    .kontak-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .kontak-item {
+        margin: 1rem 0;
+        text-align: center;
+    }
+
+    .kontak-item p {
+        justify-content: center;
+    }
+}
