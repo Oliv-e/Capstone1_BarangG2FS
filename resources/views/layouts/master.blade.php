@@ -7,7 +7,8 @@
         @yield('title', 'Furniture Max')
     </title>
     <link rel="stylesheet" href="{{ asset('assets/css/components/master.css') }}">
-    <script src="{{ asset('assets/js/page/main.js') }}"></script>
+    <script src="{{ asset('assets/js/page/navbar-page.js') }}"></script>
+    <script src="{{ asset('assets/js/page/kategori-page.js') }}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
     @hasSection ('css-style')
         @yield('css-style')

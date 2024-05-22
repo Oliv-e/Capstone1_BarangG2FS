@@ -1,40 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
-    var toggler = document.querySelector('.navbar-toggler');
-    var navLinks = document.querySelector('.nav-links');
-
-    toggler.addEventListener('click', function () {
-        toggler.classList.toggle('active');
-        navLinks.classList.toggle('active');
-    });
-});
-
-function showCategory(category, element) {
-    // Sembunyikan semua kategori
-    const categories = document.querySelectorAll('.category');
-    categories.forEach(cat => cat.style.display = 'none');
-
-    // Tampilkan kategori yang dipilih
-    const activeCategory = document.getElementById(category);
-    if (activeCategory) {
-        activeCategory.style.display = 'block';
-    }
-
-    // Hapus kelas 'active' dari semua tombol kategori
-    const categoryLinks = document.querySelectorAll('.category-link');
-    categoryLinks.forEach(link => link.classList.remove('active'));
-
-    // Tambahkan kelas 'active' ke tombol yang diklik
-    if (element) {
-        element.classList.add('active');
-    }
-}
-
-// Tampilkan kategori pertama secara default saat halaman dimuat
-document.addEventListener('DOMContentLoaded', function() {
-    showCategory('ruang-tamu', document.querySelector('.category-link'));
-});
-
-
+//Highlight active navbar link
 function highlightNavbarLink() {
     const navbarLinks = document.querySelectorAll('.nav-links li a');
     const fromTop = window.scrollY + window.innerHeight / 4; // Mengurangi perhitungan scroll agar tidak melewati judul section
@@ -53,7 +17,7 @@ function highlightNavbarLink() {
             link.classList.remove('active');
         }
     });
-
+sdas
     // Jika tidak ada tautan aktif ditemukan, periksa apakah kita berada di bagian bawah halaman
     if (!activeLinkFound && (window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
         navbarLinks.forEach(link => {
@@ -67,7 +31,16 @@ function highlightNavbarLink() {
     }
 }
 
+//Toogle navbar
 document.addEventListener('DOMContentLoaded', highlightNavbarLink);
 window.addEventListener('scroll', highlightNavbarLink);
 
+document.addEventListener('DOMContentLoaded', function () {
+    var toggler = document.querySelector('.navbar-toggler');
+    var navLinks = document.querySelector('.nav-links');
 
+    toggler.addEventListener('click', function () {
+        toggler.classList.toggle('active');
+        navLinks.classList.toggle('active');
+    });
+});
