@@ -15,12 +15,12 @@
     @endif
 </head>
 <body>
-    @include('components.navbar')
+    @include('components.page.navbar')
     @yield('content')
 
-    @include('components.tentang')
+    @include('components.page.tentang')
 
-    @include('components.footer')
+    @include('components.page.footer')
 
     @hasSection ('js-scripts')
         @yield('js-scripts')
