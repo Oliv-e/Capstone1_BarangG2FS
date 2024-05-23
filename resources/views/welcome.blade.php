@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.page.master')
 
 @section('title', 'Welcome to Furniture Max')
 
