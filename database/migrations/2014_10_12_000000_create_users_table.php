@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->string('email')->unique();
-            $table->string('alamat');
-            $table->string('nomor_hp');
+            $table->string('alamat')->nullable();
+            $table->string('nomor_hp')->nullable();
             $table->enum('role', ['guest','admin','super-admin'])->default('guest');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
