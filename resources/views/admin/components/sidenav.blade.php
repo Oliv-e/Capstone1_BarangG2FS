@@ -59,30 +59,14 @@
                 </a>
             </li>
             <li class="nav-item mt-3">
-                <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Manajemen Akun</h6>
+                <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Super Admin Area</h6>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white " href="#">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">person</i>
                     </div>
-                    <span class="nav-link-text ms-1">Profile</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white " href="#">
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">login</i>
-                    </div>
-                <span class="nav-link-text ms-1">Sign In</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white " href="#">
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">assignment</i>
-                    </div>
-                <span class="nav-link-text ms-1">Sign Up</span>
+                    <span class="nav-link-text ms-1">Data Akun terdaftar</span>
                 </a>
             </li>
         </ul>
@@ -90,7 +74,10 @@
     <div class="sidenav-footer position-absolute w-100 bottom-0 ">
         <div class="mx-3">
             <a class="btn btn-outline-primary mt-4 w-100" href="https://www.creative-tim.com/learning-lab/bootstrap/overview/material-dashboard?ref=sidebarfree" type="button">Dokumentasi Template</a>
-            <a class="btn bg-gradient-primary w-100" href="" type="button">Apalah</a>
+            <a href="" class="btn bg-gradient-primary w-100">
+                <i class="material-icons opacity-10">logout</i>
+                <span>Log Out</span>
+            </a>
         </div>
     </div>
 </aside>
