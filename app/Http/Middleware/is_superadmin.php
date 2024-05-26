@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
 
-class is_admin
+class is_superadmin
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,7 @@ class is_admin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check() && (Auth::user()->role == 'admin' || Auth::user()->role == 'super-admin')) {
+        if (Auth::check() && (Auth::user()->role == 'super-admin')) {
             return $next($request);
         } else {
             return redirect(RouteServiceProvider::HOME);

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\BarangController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,11 +36,16 @@ Route::middleware('is_admin')->group(function () {
     Route::post('/dashboard/barang/create', [BarangController::class, 'store'])->name('barang.store');
     Route::get('/dashboard/barang/edit/{id}', [BarangController::class, 'edit'])->name('barang.edit');
     Route::post('/dashboard/barang/edit/{id}', [BarangController::class, 'update'])->name('barang.update');
-    Route::get('/dashboard/delete/{id}', [BarangController::class, 'destroy'])->name('barang.destroy');
+    Route::get('/dashboard/barang/delete/{id}', [BarangController::class, 'destroy'])->name('barang.destroy');
+});
 
-    Route::get('/dashboard/kategori', function () {
-        return view('welcome');
-    })->name('kategori.index');
+Route::middleware('is_superadmin')->group(function () {
+    Route::get('/dashboard/kategori', [KategoriController::class, 'index'])->name('kategori.index');
+    Route::get('/dashboard/kategori/create', [KategoriController::class, 'create'])->name('kategori.create');
+    Route::post('/dashboard/kategori/create', [KategoriController::class, 'store'])->name('kategori.store');
+    Route::get('/dashboard/kategori/edit/{id}', [KategoriController::class, 'edit'])->name('kategori.edit');
+    Route::post('/dashboard/kategori/edit/{id}', [KategoriController::class, 'update'])->name('kategori.update');
+    Route::get('/dashboard/kategori/delete/{id}', [KategoriController::class, 'destroy'])->name('kategori.destroy');
 });
 
 require __DIR__.'/auth.php';
