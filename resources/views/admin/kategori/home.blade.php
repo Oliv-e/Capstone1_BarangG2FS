@@ -9,6 +9,15 @@
         {{-- Start Here --}}
         <h2>Ini adalah halaman kategori untuk super-admin</h2>
         <a href="{{route('kategori.create')}}" class="btn bg-gradient-info">tambah</a>
+        @if (session('success'))
+            <div class="alert alert-success text-white">
+                {{ session('success') }}
+            </div>
+        @elseif (session('error'))
+            <div class="alert alert-danger text-white">
+                {{ session('error') }}
+            </div>
+        @endif
         {{-- <a href="" class="btn bg-gradient-warning">Edit</a>
         <a href="" class="btn bg-gradient-danger">Hapus</a> --}}
 
