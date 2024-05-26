@@ -61,7 +61,7 @@
         $('#list-responsive').click(function (e) { 
             e.preventDefault();
             $(this).toggleClass('bi-list bi-x');
-            $('#mobile-menu').toggle('block');
+            $('#mobile-menu').toggle();
         });
         $('#userDropdown').click(function (e) {
             e.preventDefault();
