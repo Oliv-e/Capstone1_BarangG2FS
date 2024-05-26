@@ -49,7 +49,15 @@
                         </div>
                         </td>
                         <td>
-                        <p class="text-xs font-weight-normal mb-0">{{$item->harga}}</p>
+                            <?php
+                                $harga = (string)$item->harga;
+                                $harga = strrev($harga);
+                                $arr = str_split($harga, "3");
+
+                                $ganti_format_harga = implode(".", $arr);
+                                $ganti_format_harga = strrev($ganti_format_harga);
+                            ?>
+                        <p class="text-xs font-weight-normal mb-0">Rp {{$ganti_format_harga}}</p>
                         </td>
                         <td class="align-middle">
                             {!!$item->deskripsi!!}
