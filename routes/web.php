@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ViewController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\BarangController;
 use Illuminate\Support\Facades\Route;
@@ -16,13 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/', [ViewController::class, 'index'])->name('home');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -31,6 +27,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('is_admin')->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
     Route::get('/dashboard/barang', [BarangController::class, 'index'])->name('barang.index');
     Route::get('/dashboard/barang/create', [BarangController::class, 'create'])->name('barang.create');
     Route::post('/dashboard/barang/create', [BarangController::class, 'store'])->name('barang.store');

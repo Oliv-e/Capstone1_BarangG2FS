@@ -27,6 +27,8 @@
                 <thead>
                   <tr>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Kategori</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Dibuat</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Terakhir Diedit</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -35,7 +37,17 @@
                     <tr>
                         <td class="align-middle text-center">
                             <div class="d-flex align-items-center">
-                                <span class="me-2 text-xs">{{$item->nama}}</span>
+                                <span class="mx-3 text-xs">{{$item->nama}}</span>
+                            </div>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="d-flex align-items-center">
+                                <span class="me-2 text-xs">{{$item->created_at}}</span>
+                            </div>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="d-flex align-items-center">
+                                <span class="me-2 text-xs">{{$item->updated_at}}</span>
                             </div>
                         </td>
                         <td class="d-flex gap-1 justify-content-center">

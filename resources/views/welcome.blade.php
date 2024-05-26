@@ -66,7 +66,26 @@
         <div id="ruang-tamu" class="category">
             <h3>Produk Ruang Tamu</h3>
             <div class="product-category">
+                @foreach ($barang as $item)
                 <div class="product-card">
+                    <img src="{{ asset('storage/gambar/barang/'.$item->gambar) }}" alt="Living Room Sofa" class="product-image">
+                    <h3>{{$item->nama}}</h3>
+                    {{-- format harga dari xxxxxxx to x.xxx.xxx --}}
+                    <?php
+                        $harga = (string)$item->harga;
+                        $harga = strrev($harga);
+                        $arr = str_split($harga, "3");
+
+                        $ganti_format_harga = implode(".", $arr);
+                        $ganti_format_harga = strrev($ganti_format_harga);
+                    ?>
+                    <p class="price">Rp {{$ganti_format_harga}}</p>
+                    <span>{{$item->kategori->nama}}</span> <br>
+                    <button class="add-to-cart-btn"><i class="bi bi-cart"></i></button>
+                    <button class="buy-btn"><i class="bi bi-bag"></i></button>
+                </div>
+                @endforeach
+                {{-- <div class="product-card">
                     <img src="{{ asset('assets/img/produk/sofa ruang tamu.png') }}" alt="Living Room Sofa" class="product-image">
                     <h3>Sofa Ruang Tamu</h3>
                     <p class="price">Rp 1.200.000</p>
@@ -86,7 +105,7 @@
                     <p class="price">Rp 800.000</p>
                     <button class="add-to-cart-btn"><i class="bi bi-cart"></i></button>
                 <button class="buy-btn"><i class="bi bi-bag"></i></button>
-                </div>
+                </div> --}}
             </div>
         </div>
         <div id="kamar-mandi" class="category" style="display: none;">

@@ -30,6 +30,8 @@
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Harga</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Deskripsi</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Kategori</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Dibuat</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Terakhir Diedit</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -56,6 +58,16 @@
                         <div class="d-flex align-items-center">
                             <span class="me-2 text-xs">{{$item->kategori->nama}}</span>
                         </div>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="d-flex align-items-center">
+                                <span class="me-2 text-xs">{{$item->created_at}}</span>
+                            </div>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="d-flex align-items-center">
+                                <span class="me-2 text-xs">{{$item->updated_at}}</span>
+                            </div>
                         </td>
                         <td class="d-flex gap-1 justify-content-center">
                             <form action="{{route('barang.edit',$item->id)}}">

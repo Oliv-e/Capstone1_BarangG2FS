@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Barang;
 use App\Models\Kategori;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -62,6 +63,7 @@ class KategoriController extends Controller
             $barang = Barang::where('id_kategori', $id);
             $barang->update([
                 'id_kategori' => $available_kategori->id,
+                'updated_at' => Carbon::now(),
             ]);
             $selected_kategori->delete();
             return redirect(route('kategori.index'))->with('success','Kategori Berhasil di Hapus!!!');
