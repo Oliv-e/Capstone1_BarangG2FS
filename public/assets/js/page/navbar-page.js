@@ -17,7 +17,6 @@ function highlightNavbarLink() {
             link.classList.remove('active');
         }
     });
-sdas
     // Jika tidak ada tautan aktif ditemukan, periksa apakah kita berada di bagian bawah halaman
     if (!activeLinkFound && (window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
         navbarLinks.forEach(link => {

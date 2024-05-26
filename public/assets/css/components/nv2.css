@@ -1,0 +1,15 @@
+#list-responsive {
+    display: none;
+}
+.active {
+    font-weight: bold;
+    color: #243B3B;
+}
+@media screen and (max-width: 768px) {
+    #list-responsive {
+        display: block;
+    }
+    #desktop-menu {
+        display: none;
+    }
+}
