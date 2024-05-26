@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('kategori', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_kategori');
             $table->string('nama');
             $table->timestamps();
             $table->enum('diarsipkan', ['false','true'])->default('false');

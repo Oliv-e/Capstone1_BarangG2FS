@@ -11,7 +11,7 @@
         {{-- SIDENAV --}}
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link text-white " href="#">
+                <a class="nav-link text-white " href="{{route('dashboard')}}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">dashboard</i>
                     </div>
@@ -19,7 +19,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white " href="#">
+                <a class="nav-link text-white " href="{{route('barang.index')}}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">table_view</i>
                     </div>
@@ -27,7 +27,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white " href="#">
+                <a class="nav-link text-white " href="{{route('kategori.index')}}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">category</i>
                     </div>
@@ -74,10 +74,11 @@
     <div class="sidenav-footer position-absolute w-100 bottom-0 ">
         <div class="mx-3">
             <a class="btn btn-outline-primary mt-4 w-100" href="https://www.creative-tim.com/learning-lab/bootstrap/overview/material-dashboard?ref=sidebarfree" type="button">Dokumentasi Template</a>
-            <a href="" class="btn bg-gradient-primary w-100">
-                <i class="material-icons opacity-10">logout</i>
-                <span>Log Out</span>
-            </a>
+            <form action="{{route('logout')}}" method="POST">
+                @csrf
+                <button type="submit" class="btn bg-gradient-primary w-100">
+                    <i class="material-icons opacity-10">logout</i> Logout</button>
+            </form>
         </div>
     </div>
 </aside>
