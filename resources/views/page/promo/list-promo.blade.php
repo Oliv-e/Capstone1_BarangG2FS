@@ -9,3 +9,4 @@
 @section('content')
 
 @endsection
+@section('footer', true)

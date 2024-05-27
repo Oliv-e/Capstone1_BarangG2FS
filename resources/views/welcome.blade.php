@@ -162,3 +162,5 @@
         </div>
     </section>
 @endsection
+@section('about-us', true)
+@section('footer', true)

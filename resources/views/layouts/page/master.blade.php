@@ -21,9 +21,13 @@
     @include('components.page.navbar')
     @yield('content')
 
-    @include('components.page.tentang')
+    @hasSection ('about-us')
+        @include('components.page.tentang')
+    @endif
 
-    @include('components.page.footer')
+    @hasSection('footer')
+        @include('components.page.footer')
+    @endif
 
     @hasSection ('js-scripts')
         @yield('js-scripts')
