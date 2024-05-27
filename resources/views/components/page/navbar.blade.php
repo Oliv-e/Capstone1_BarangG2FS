@@ -12,7 +12,8 @@
         <li><a href="#katalog">Produk</a></li>
         <li><a href="#tentang">Tentang</a></li>
         <li><a href="#kontak">Kontak</a></li>
-    </ul>  
+    </ul>
+    {{-- BUG NAVBAR TIDAK DISPLAY KALAU DARI MOBILE KE DESKTOP --}}
     <div class="flex items-center" id="desktop-menu">
         @if(Auth::check())
             <button class="bg-[#7C8046] py-2 px-4 text-white rounded-md" id="userDropdown">
