@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ViewController;
-use App\Http\Controllers\KategoriController;
-use App\Http\Controllers\BarangController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ViewController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PromoController;
+use App\Http\Controllers\BarangController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\KategoriController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,10 @@ Route::middleware('is_admin')->group(function () {
     Route::get('/dashboard/barang/edit/{id}', [BarangController::class, 'edit'])->name('barang.edit');
     Route::post('/dashboard/barang/edit/{id}', [BarangController::class, 'update'])->name('barang.update');
     Route::get('/dashboard/barang/delete/{id}', [BarangController::class, 'destroy'])->name('barang.destroy');
+
+    Route::get('/dashboard/promo', [PromoController::class, 'index'])->name('promo.index');
+    Route::get('/dashboard/promo/create', [PromoController::class, 'create'])->name('promo.create');
+    Route::post('/dashboard/promo/create', [PromoController::class, 'store'])->name('promo.store');
 });
 
 Route::middleware('is_superadmin')->group(function () {
@@ -45,4 +50,4 @@ Route::middleware('is_superadmin')->group(function () {
     Route::get('/dashboard/kategori/delete/{id}', [KategoriController::class, 'destroy'])->name('kategori.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
