@@ -18,7 +18,7 @@
     @endif
 </head>
 <body>
-    @include('components.page.nv2')
+    @include('components.page.navbar')
     @yield('content')
 
     @include('components.page.tentang')

@@ -1,190 +1,40 @@
-.navbar {
+#list-responsive {
+    display: none;
+}
+.active {
+    font-weight: bold;
+    color: #243B3B;
+}
+@media screen and (max-width: 768px) {
+    #list-responsive {
+        display: block;
+    }
+    #desktop-menu {
+        display: none;
+    }
+}
+
+#navbar {
     position: fixed;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #ffffff;
-    padding: 1rem;
-    color: #243B3B;
-    width: 100%; /* Menyamakan lebar navbar dengan lebar layar */
-    z-index: 1000; /* Pastikan z-index lebih tinggi dari konten lainnya */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Efek shadow untuk tampilan yang lebih menarik */
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* pastikan navbar di atas elemen lain */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* opsional: tambahkan bayangan */
 }
 
-
-.navbar-left {
-    display: flex;
-    align-items: center;
-    margin-left: 0.3rem;
+#mobile-menu {
+    position: fixed;
+    top: 70px; /* Sesuaikan dengan tinggi navbar */
+    width: 100%;
+    background-color: #E6C7AB; /* Atau warna lain yang diinginkan */
+    z-index: 999; /* Pastikan menu di bawah navbar tapi di atas konten lain */
 }
 
-.logo-image {
-    width: 70px;
-    height: auto;
-    margin-right: 1rem;
+body {
+    padding-top: 70px; /* sesuaikan dengan tinggi navbar */
 }
 
-.logo-text {
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
-.navbar .nav-links {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    flex-grow: 1;
-    padding: 0 2rem;
-    margin-right: 2rem;
-}
-
-.navbar .nav-links li {
-    margin-left: 1rem;
-}
-
-.nav-links li a {
-    color: #243B3B; /* Warna default */
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-}
-
-.nav-links li a:hover,
-.nav-links li a.active {
-    font-weight: bold;
-    color: #B17330;
-}
-
-
-.navbar-right {
-    display: flex;
-    align-items: center;
-    margin-right: 3.5rem;
-}
-
-.cart-icon {
-    margin-right: 1rem;
-    color: #243B3B;
-    text-decoration: none;
-    font-size: 1.5rem;
-}
-
-.login-btn {
-    padding: 0.5rem 1rem;
-    background-color: #7C8046;
-    color: white;
-    border: none;
-    display: flex;
-    align-items: center;
+#list-responsive {
     cursor: pointer;
-}
-
-.login-btn i {
-    margin-right: 0.5rem;
-}
-
-@media (max-width: 768px) {
-    .navbar {
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-    .logo-text {
-        display: none;
-    }
-
-    .navbar-toggler {
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-    }
-
-    .navbar-toggler-icon {
-        width: 30px;
-        height: 3px;
-        background-color: #243B3B;
-        position: relative;
-    }
-
-    .navbar-toggler-icon::before,
-    .navbar-toggler-icon::after {
-        content: '';
-        width: 100%;
-        height: 100%;
-        background-color: #243B3B;
-        position: absolute;
-        left: 0;
-        transition: transform 0.3s ease;
-    }
-
-    .navbar-toggler-icon::before {
-        top: -10px;
-    }
-
-    .navbar-toggler-icon::after {
-        bottom: -10px;
-    }
-
-    .navbar-toggler.active .navbar-toggler-icon::before {
-        transform: translateY(10px) rotate(45deg);
-    }
-
-    .navbar-toggler.active .navbar-toggler-icon::after {
-        transform: translateY(-10px) rotate(-45deg);
-    }
-
-    .navbar-toggler.active .navbar-toggler-icon {
-        background-color: transparent;
-    }
-
-    .nav-links {
-        display: none;
-        position: absolute;
-        top: 100%;
-        right: 0;
-        background-color: #B17330;
-        width: 100%;
-        text-align: right;
-        padding: 1rem 0;
-    }
-
-    .nav-links.active {
-        display: block;
-    }
-
-    .nav-links li {
-        margin: 0.5rem 0;
-    }
-
-    .nav-links a {
-        color: #fff;
-        text-decoration: none;
-        padding: 0.5rem 1rem;
-        display: block;
-    }
-
-    .navbar-right {
-        display: flex;
-        align-items: center;
-    }
-
-    .cart-icon {
-        margin-right: 1rem;
-        color: #243B3B;
-        text-decoration: none;
-        font-size: 1.5rem;
-    }
-
-    .login-btn {
-        padding: 0.5rem 1rem;
-        background-color: #444;
-        color: white;
-        border: none;
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-    }
-
-    .login-btn i {
-        margin-right: 0.5rem;
-    }
+    z-index: 1001; /* Pastikan toggle icon di atas elemen lain */
 }
