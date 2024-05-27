@@ -12,7 +12,7 @@
                 <li><i class="bi bi-check-circle"></i> Desain modern</li>
                 <li><i class="bi bi-check-circle"></i> Layanan pelanggan terbaik</li>
             </ul>
-            <button class="lihat-produk-btn" onclick="window.location.href='#katalog'">Lihat Produk</button>
+            <button class="lihat-produk-btn" onclick="window.location.href='/list-produk'">Lihat Produk</button>
         </div>
     </div>
 </section>
