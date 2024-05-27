@@ -23,39 +23,43 @@
         </div>
         <h1 class="fw-bold fs-2 mt-4"><i class="bi bi-box2-fill" style="color: #7C8046;"></i> BARANG YANG TERSEDIA</h1>
         <div class="row gap-y-4 mt-4">
-            <div class="card border-none mb-3">
-                <div class="row g-0">
-                    <div class="col-md-2">
-                        <img src="https://i.pinimg.com/originals/21/d8/dc/21d8dca3012288eb0d02a672a72fcce9.png" class="img-fluid rounded-start" width="200px">
-                    </div>
-                    <div class="col-md-10">
-                        <div class="card-body">
-                            <h2 class="card-title fs-2 fw-bold">Card title</h2>
-                            <p class="card-text">Deskripsi Barang yang dapat promo.</p>
-                            <p class="card-text"><small class="text-body-secondary">Rp. xx.xxx.xxx</small></p>
-                            <div>
-                                <a href="#" class="btn btn-primary mt-1"><i class="bi bi-eye"></i></a>
-                                <a href="#" class="btn btn-warning mt-1"><i class="bi bi-cart"></i></a>
-                                <a href="#" class="btn btn-success mt-1"><i class="bi bi-bag"></i></a>
+            <div class="col-sm-12 col-md-6">
+                <div class="card text-sm-center text-md-start border-none border-bottom border-5 rounded-none mb-3" style="border-color: #7C8046!important">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="https://i.pinimg.com/originals/21/d8/dc/21d8dca3012288eb0d02a672a72fcce9.png" class="mx-auto img-fluid rounded-start" width="200px">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h2 class="card-title fs-2 fw-bold">Card title</h2>
+                                <p class="card-text">Deskripsi Barang yang dapat promo.</p>
+                                <p class="card-text"><small class="text-body-secondary">Rp. xx.xxx.xxx</small></p>
+                                <div>
+                                    <a href="#" class="btn btn-primary mt-1"><i class="bi bi-eye"></i></a>
+                                    <a href="#" class="btn btn-warning mt-1"><i class="bi bi-cart"></i></a>
+                                    <a href="#" class="btn btn-success mt-1"><i class="bi bi-bag"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="card border-none mb-3">
-                <div class="row g-0">
-                    <div class="col-md-2">
-                        <img src="https://i.pinimg.com/originals/21/d8/dc/21d8dca3012288eb0d02a672a72fcce9.png" class="img-fluid rounded-start" width="200px">
-                    </div>
-                    <div class="col-md-10">
-                        <div class="card-body">
-                            <h2 class="card-title fs-2 fw-bold">Card title</h2>
-                            <p class="card-text">Deskripsi Barang yang dapat promo.</p>
-                            <p class="card-text"><small class="text-body-secondary">Rp. xx.xxx.xxx</small></p>
-                            <div>
-                                <a href="#" class="btn btn-primary mt-1"><i class="bi bi-eye"></i></a>
-                                <a href="#" class="btn btn-warning mt-1"><i class="bi bi-cart"></i></a>
-                                <a href="#" class="btn btn-success mt-1"><i class="bi bi-bag"></i></a>
+            <div class="col-sm-12 col-md-6">
+                <div class="card text-sm-center text-md-start border-none border-bottom border-5 rounded-none mb-3" style="border-color: #7C8046!important">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="https://i.pinimg.com/originals/21/d8/dc/21d8dca3012288eb0d02a672a72fcce9.png" class="mx-auto img-fluid rounded-start" width="200px">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h2 class="card-title fs-2 fw-bold">Card title</h2>
+                                <p class="card-text">Deskripsi Barang yang dapat promo.</p>
+                                <p class="card-text"><small class="text-body-secondary">Rp. xx.xxx.xxx</small></p>
+                                <div>
+                                    <a href="#" class="btn btn-primary mt-1"><i class="bi bi-eye"></i></a>
+                                    <a href="#" class="btn btn-warning mt-1"><i class="bi bi-cart"></i></a>
+                                    <a href="#" class="btn btn-success mt-1"><i class="bi bi-bag"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
