@@ -38,3 +38,7 @@
         .review-text {
             font-size: 1rem;
         }
+
+        .card-text .bold {
+            font-weight: bold;
+        }

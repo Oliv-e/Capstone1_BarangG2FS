@@ -23,8 +23,8 @@
                 <div class="col-md-8">
                     <div class="card-body">
                         <h2 class="card-title fw-bold fs-2">Sofa Ruang Tamu</h2>
-                        <p class="kategori"><span class="bold">Kategori:</span> Ruang Tamu</p>
-                        <p class="card-text my-2">Sofa secara umum dapat diartikan sebagai kursi panjang yang memiliki lengan dan sandaran, 
+                        <p class="kategori"><span class="bold">Kategori:</span></br> Ruang Tamu</p>
+                        <p class="card-text my-2"><span class="bold">Deskripsi:</span></br> Sofa secara umum dapat diartikan sebagai kursi panjang yang memiliki lengan dan sandaran, 
                             berlapis busa dan upholstery (kain dan kulit pelapis). Istilah sofa berasal dari kata sopha yang memiliki arti sebagai tempat duduk seperti dipan (tempat tidur).</p>
 
                             <p class="card-text my-2 price"><strong>Harga: Rp. 500.000</strong></p>
