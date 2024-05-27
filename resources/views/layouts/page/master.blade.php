@@ -25,10 +25,12 @@
         @include('components.page.tentang')
     @endif
 
+    @hasSection ('kontak')
+        @include('components.page.kontak')
+    @endif
     @hasSection('footer')
         @include('components.page.footer')
     @endif
-
     @hasSection ('js-scripts')
         @yield('js-scripts')
     @endif

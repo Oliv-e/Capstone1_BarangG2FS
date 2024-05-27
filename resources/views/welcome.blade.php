@@ -163,4 +163,5 @@
     </section>
 @endsection
 @section('about-us', true)
+@section('kontak', true)
 @section('footer', true)
