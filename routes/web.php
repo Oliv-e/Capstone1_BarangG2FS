@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [ViewController::class, 'index'])->name('home');
+Route::get('/promo', [ViewController::class, 'promo'])->name('list-promo');
 
 Route::middleware('is_admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
