@@ -3,4 +3,4 @@
 - php artisan key:generate
 - php artisan migrate
 - npm install
-- npm run dev && php artisan serve
+- npm run dev / npm run build && php artisan serve
