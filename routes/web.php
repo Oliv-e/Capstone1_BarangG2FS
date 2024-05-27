@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PromoController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\KategoriController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,4 +30,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/kategori', [KategoriController::class, 'index'])->name('admin.kategori');
+    Route::post('/kategori', [KategoriController::class, 'store'])->name('admin.kategori.store');
+    Route::post('/kategori/{id}', [KategoriController::class, 'update'])->name('admin.kategori.update');
+    Route::delete('/kategori/{id}', [KategoriController::class, 'destroy'])->name('admin.kategori.destroy');
+});
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/promo', [PromoController::class, 'index'])->name('admin.promo');
+});
+
+require __DIR__ . '/auth.php';
