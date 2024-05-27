@@ -13,4 +13,11 @@ class ViewController extends Controller
         $barang = Barang::all();
         return view('welcome', compact('barang'));
     }
+
+    public function promo() {
+        return view('page.promo.list-promo');
+    }
+    public function detailPromo() {
+        return view('page.promo.detail-promo');
+    }
 }
