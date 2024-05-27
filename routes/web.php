@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [ViewController::class, 'index'])->name('home');
+Route::get('/detail-promo', [ViewController::class, 'detailPromo'])->name('detail-promo');
 Route::get('/promo', [ViewController::class, 'promo'])->name('list-promo');
 
 Route::middleware('is_admin')->group(function () {

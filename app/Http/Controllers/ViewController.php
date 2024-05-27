@@ -17,4 +17,7 @@ class ViewController extends Controller
     public function promo() {
         return view('page.promo.list-promo');
     }
+    public function detailPromo() {
+        return view('page.promo.detail-promo');
+    }
 }
