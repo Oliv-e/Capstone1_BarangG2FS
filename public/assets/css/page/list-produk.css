@@ -4,8 +4,8 @@
     align-items: center;
 }
 .product-image img {
-    width: 100%;
-    height: 330px; /* Atur tinggi gambar sesuai kebutuhan */
+    width: 40%;
+    height: 200px; /* Atur tinggi gambar sesuai kebutuhan */
     object-fit: cover;
 }
 .card-body .price {
