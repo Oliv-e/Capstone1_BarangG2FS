@@ -25,6 +25,7 @@ Route::get('/promo', [ViewController::class, 'promo'])->name('list-promo');
 Route::get('/detail-produk', [ViewController::class, 'detailProduk'])->name('detail-produk');
 Route::get('/list-produk', [ViewController::class, 'listProduk'])->name('list-produk');
 route::get('/order-complete', [ViewController::class, 'orderComplete'])->name('order-complete');
+route::get('/faq', [ViewController::class, 'faq'])->name('faq');
 
 
 Route::middleware('is_admin')->group(function () {

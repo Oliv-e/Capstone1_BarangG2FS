@@ -47,4 +47,7 @@ class ViewController extends Controller
     public function orderComplete(){
         return view('page.order.order-complete');
     }
+    public function faq(){
+        return view('page.faq.faq');
+    }
 }
