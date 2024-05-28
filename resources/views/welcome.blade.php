@@ -9,7 +9,7 @@
 @section('content')
     <section id="home" class="hero-section">
         <div class="hero-text">
-            <h1>Furniture Max</h1>
+            <h1 class="font-romman">Furniture Max</h1>
             <p>Deskripsi singkat tentang website Furniture Max yang menawarkan berbagai macam furniture berkualitas tinggi dengan harga terjangkau.</p>
             <button class="shop-now-btn">Belanja Sekarang</button>
         </div>
@@ -19,7 +19,7 @@
     </section>
 
     <section id="promo" class="promo-section">
-        <h2>Promo</h2>
+        <h2 class="font-romman">Promo</h2>
         <div class="promo-products">
             <div class="product-card">
                 <img src="{{ asset('assets/img/produk/kursi sofa.png') }}" alt="Sofa" class="product-image">
@@ -57,7 +57,7 @@
     </section>
 
     <section id="katalog" class="katalog-section">
-        <h2>Katalog Produk</h2>
+        <h2 class="font-romman pb-8">Katalog Produk</h2>
         <div class="category-links">
             <a href="#katalog" class="category-link" onclick="showCategory('ruang-tamu', this)">Ruang Tamu</a>
             <a href="#katalog" class="category-link" onclick="showCategory('kamar-mandi', this)">Kamar Mandi</a>

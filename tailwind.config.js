@@ -13,7 +13,11 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                romman: ["Romman"],
             },
+            colors: {
+                'sage': '#93D459'
+            }
         },
     },
 

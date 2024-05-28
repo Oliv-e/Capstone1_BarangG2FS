@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="{{asset('assets/css/components/about-us.css')}}">
 <section id="tentang" class="tentang-section">
-    <h2>Tentang Kami</h2>
+    <h2 class="font-romman">Tentang Kami</h2>
     <div class="tentang-content">
         <img src="{{ asset('assets/img/produk/Tentang Kami.png') }}" alt="Tentang Kami">
         <div class="tentang-description">
