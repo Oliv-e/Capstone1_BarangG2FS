@@ -38,6 +38,9 @@ Route::middleware('is_admin')->group(function () {
     Route::get('/dashboard/promo', [PromoController::class, 'index'])->name('promo.index');
     Route::get('/dashboard/promo/create', [PromoController::class, 'create'])->name('promo.create');
     Route::post('/dashboard/promo/create', [PromoController::class, 'store'])->name('promo.store');
+    Route::get('/dashboard/promo/{id}/edit', [PromoController::class, 'edit'])->name('promo.edit');
+    Route::put('/dashboard/promo/{id}/update', [PromoController::class, 'update'])->name('promo.update');
+    Route::get('/dashboard/promo/{id}/destroy', [PromoController::class, 'destroy'])->name('promo.destroy');
 });
 
 Route::middleware('is_superadmin')->group(function () {

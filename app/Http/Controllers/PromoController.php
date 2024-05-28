@@ -39,13 +39,40 @@ class PromoController extends Controller
 
         return redirect(route('promo.index'))->with('success', 'Promo Berhasil Dibuat.');
     }
-    public function edit(String $id)
+    public function edit($id)
     {
+        $promo = Promo::findOrFail($id);
+        $barang = Barang::all();
+        return view('admin.promo.edit', compact('promo', 'barang'));
     }
-    public function update(Request $request, String $id)
+
+    public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'nama' => 'required',
+            'deskripsi' => 'required',
+            'pengurangan_harga' => 'required|numeric',
+            'id_barang' => 'required|exists:barang,id',
+        ], [
+            'id_barang.required' => 'Barang harus dipilih.',
+            'id_barang.exists' => 'Barang yang dipilih tidak valid.',
+        ]);
+
+        $promo = Promo::findOrFail($id);
+        $promo->nama = $request->nama;
+        $promo->deskripsi = $request->deskripsi;
+        $promo->pengurangan_harga = $request->pengurangan_harga;
+        $promo->id_barang = $request->id_barang;
+        $promo->save();
+
+        return redirect(route('promo.index'))->with('success', 'Promo Berhasil Diperbarui.');
     }
-    public function destroy(String $id)
+
+    public function destroy($id)
     {
+        $promo = Promo::findOrFail($id);
+        $promo->delete();
+
+        return redirect(route('promo.index'))->with('success', 'Promo Berhasil Dihapus.');
     }
 }

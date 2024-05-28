@@ -8,14 +8,53 @@
             <p> >> CAPSTONE#1_FS2 / Dashboard / Promo / Edit </p>
             {{-- Start Here --}}
             <h2>Ini adalah halaman edit promo untuk admin</h2>
-            <a href="" class="btn bg-gradient-info">Kembali</a>
-            <form action="" method="POST" enctype="multipart/form-data">
+            <a href="{{ route('promo.index') }}" class="btn bg-gradient-info">Kembali</a>
+            <form action="{{ route('promo.update', $promo->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 <div class="input-group input-group-dynamic mb-4">
-                    <input type="text" class="form-control @error('nama') is-invalid @enderror" value=""
-                        placeholder="Nama Kategori" name="nama">
+                    <input type="text" class="form-control @error('nama') is-invalid @enderror"
+                        value="{{ $promo->nama }}" placeholder="Nama Promo" name="nama">
                 </div>
                 @error('nama')
+                    <div class="alert alert-danger text-white mt-2">
+                        {{ $message }}
+                    </div>
+                @enderror
+
+                <div class="input-group-static  mb-4">
+                    <label class="form-label">Barang</label>
+                    <select name="id_barang" class="form-control @error('id_barang') is-invalid @enderror">
+                        <option disabled selected>-= Pilih Barang =-</option>
+                        @foreach ($barang as $item)
+                            <option value="{{ $item->id }}" @if ($item->id == $promo->id_barang) selected @endif>
+                                {{ $item->nama }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                @error('id_barang')
+                    <div class="alert alert-danger text-white mt-2">
+                        {{ $message }}
+                    </div>
+                @enderror
+
+                <div class="input-group input-group-outline mb-4">
+                    <label class="form-label">Pengurangan Harga</label>
+                    <input type="number" class="form-control @error('pengurangan_harga') is-invalid @enderror"
+                        name="pengurangan_harga" value="{{ $promo->pengurangan_harga }}">
+                </div>
+                @error('pengurangan_harga')
+                    <div class="alert alert-danger text-white mt-2">
+                        {{ $message }}
+                    </div>
+                @enderror
+
+                <div class="input-group input-group-outline mb-4">
+                    <label class="form-label">Deskripsi</label>
+                    <input type="text" class="form-control @error('deskripsi') is-invalid @enderror" name="deskripsi"
+                        value="{{ $promo->deskripsi }}"></input>
+                </div>
+                @error('deskripsi')
                     <div class="alert alert-danger text-white mt-2">
                         {{ $message }}
                     </div>

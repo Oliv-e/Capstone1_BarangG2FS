@@ -60,11 +60,11 @@
                                         </div>
                                     </td>
                                     <td class="d-flex gap-1 justify-content-center">
-                                        <form action="">
-                                            <button class="btn bg-gradient-warning">Edit</button>
+                                        <form action="{{ route('promo.edit', $item->id) }}" method="GET">
+                                            <button type="submit" class="btn bg-gradient-warning">Edit</button>
                                         </form>
-                                        <a onclick="confirmDelete(this)" data-url="" class="btn bg-gradient-danger"
-                                            role="button">Hapus</a>
+                                        <a onclick="confirmDelete(this)" data-url="{{ route('promo.destroy', $item->id) }}"
+                                            class="btn bg-gradient-danger" role="button">Hapus</a>
                                     </td>
                                 </tr>
                             @endforeach
