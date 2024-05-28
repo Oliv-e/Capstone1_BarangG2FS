@@ -44,5 +44,7 @@ class ViewController extends Controller
 
         return view('page.produk.list-produk', compact('categories', 'selectedCategory', 'products', 'search'));
     }
-
+    public function orderComplete(){
+        return view('page.order.order-complete');
+    }
 }
