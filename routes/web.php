@@ -5,7 +5,6 @@ use App\Http\Controllers\ViewController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PromoController;
 use App\Http\Controllers\BarangController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\KategoriController;
 
 /*
