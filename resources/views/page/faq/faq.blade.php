@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-<div class="container-fluid flex justify-center bg-danger p-4 text-white" style="margin-top: 13px">
+<div class="container-fluid flex justify-center bg-sage p-4 text-white">
     <h1 class="fs-1 fw-bold"><i class="bi bi-question-square-fill"></i> Frequently Asked Questions <i class="bi bi-chat-square-text-fill"></i></h1>
 </div>
 <div class="container-fluid" style="min-height: 65.5vh">
@@ -49,7 +49,7 @@
                     <textarea name="keterangan" class="form-control" cols="30" rows="10" placeholder="Pertanyaan Kamu?"></textarea>
                 </div>
                 <div class="my-4">
-                    <input type="submit" value="Kirim" class="btn btn-success w-[100px]">
+                    <input type="submit" value="Kirim" class="btn bg-sage text-white w-[100px]">
                 </div>
             </form>
         </div>

@@ -7,24 +7,24 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid p-5" style="margin-top: 13px; background-color: #e6c7ab">
+    <div class="container-fluid p-5" style="background-color: #e6c7ab">
         <div class="container">
-            <h1 class="fw-bold px-4 fs-2"><i class="bi bi-megaphone-fill" style="color: #7C8046;"></i> DETAIL PROMO</h1>
+            <h1 class="fw-bold px-4 fs-2"><i class="bi bi-megaphone-fill text-sage"></i> DETAIL PROMO</h1>
         </div>
     </div>
     <div class="container p-4" style="min-height:83.3vh">
         <a href="/promo" class="btn btn-primary">Kembali</a>
-        <div class="card mt-4 border-none border-5 border-start rounded-none" style="border-color: #7C8046!important">
+        <div class="card mt-4 border-none border-5 border-start rounded-none" style="border-color: #93D459!important">
             <div class="card-body">
                 <h3 class="card-title fw-bold fs-3">{{$promo->nama}}</h3>
                 <p class="card-text my-2">{{$promo->deskripsi}}</p>
                 <p class="card-text my-2">Potongan (Rp) : {{$promo->pengurangan_harga}}</p>
             </div>
         </div>
-        <h1 class="fw-bold fs-2 mt-4"><i class="bi bi-box2-fill" style="color: #7C8046;"></i> BARANG YANG TERSEDIA</h1>
+        <h1 class="fw-bold fs-2 mt-4"><i class="bi bi-box2-fill text-sage"></i> BARANG YANG TERSEDIA</h1>
         <div class="row gap-y-4 mt-4">
             <div class="col-sm-12 col-md-6">
-                <div class="card text-sm-center text-md-start border-none border-bottom border-5 rounded-none mb-3" style="border-color: #7C8046!important">
+                <div class="card text-sm-center text-md-start border-none border-bottom border-5 rounded-none mb-3" style="border-color: #93D459!important">
                     <div class="row g-0">
                         <div class="col-md-4">
                             <img src="https://i.pinimg.com/originals/21/d8/dc/21d8dca3012288eb0d02a672a72fcce9.png" class="mx-auto img-fluid rounded-start" width="200px">
