@@ -186,3 +186,20 @@
         flex: 0 1 calc(50% - 1rem);
     }
 }
+
+.more-products {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.more-products-btn {
+    background-color: #7C8046;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.more-products-btn:hover {
+    background-color: #6b703d;
+}

@@ -84,6 +84,7 @@
                     <button class="add-to-cart-btn"><i class="bi bi-cart"></i></button>
                     <button class="buy-btn"><i class="bi bi-bag"></i></button>
                 </div>
+               
                 @endforeach
                 {{-- <div class="product-card">
                     <img src="{{ asset('assets/img/produk/sofa ruang tamu.png') }}" alt="Living Room Sofa" class="product-image">
@@ -160,7 +161,11 @@
                 </div>
             </div>
         </div>
+        <div class="more-products">
+                <a href="/list-produk" class="more-products-btn">Lihat Produk Selengkapnya</a>
+            </div>
     </section>
+
 @endsection
 @section('about-us', true)
 @section('kontak', true)

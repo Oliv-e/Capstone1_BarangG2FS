@@ -11,7 +11,7 @@ class ViewController extends Controller
     public function index() {
         // limiter display
         // $barang = Barang::all()->take(1);
-        $barang = Barang::all();
+        $barang = Barang::limit(10)->get();
         return view('welcome', compact('barang'));
     }
 
