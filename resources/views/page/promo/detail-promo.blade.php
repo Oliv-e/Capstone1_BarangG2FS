@@ -16,9 +16,9 @@
         <a href="/promo" class="btn btn-primary">Kembali</a>
         <div class="card mt-4 border-none border-5 border-start rounded-none" style="border-color: #7C8046!important">
             <div class="card-body">
-                <h3 class="card-title fw-bold fs-3">Promo 06 06 2024</h3>
-                <p class="card-text my-2">Promo voucher potongan ongkir sebesar 50.000.</p>
-                <p class="card-text my-2">- Rp. 50.000</p>
+                <h3 class="card-title fw-bold fs-3">{{$promo->nama}}</h3>
+                <p class="card-text my-2">{{$promo->deskripsi}}</p>
+                <p class="card-text my-2">Potongan (Rp) : {{$promo->pengurangan_harga}}</p>
             </div>
         </div>
         <h1 class="fw-bold fs-2 mt-4"><i class="bi bi-box2-fill" style="color: #7C8046;"></i> BARANG YANG TERSEDIA</h1>
@@ -31,9 +31,9 @@
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <h2 class="card-title fs-2 fw-bold">Card title</h2>
-                                <p class="card-text">Deskripsi Barang yang dapat promo.</p>
-                                <p class="card-text"><small class="text-body-secondary">Rp. xx.xxx.xxx</small></p>
+                                <h2 class="card-title fs-2 fw-bold">{{$promo->barang->nama}}</h2>
+                                <p class="card-text">{!!$promo->barang->deskripsi!!}</p>
+                                <p class="card-text"><small class="text-body-secondary">Rp. {{$promo->barang->harga}}</small></p>
                                 <div>
                                     <a href="#" class="btn btn-primary mt-1"><i class="bi bi-eye"></i></a>
                                     <a href="#" class="btn btn-warning mt-1"><i class="bi bi-cart"></i></a>
@@ -44,7 +44,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-12 col-md-6">
+            {{-- <div class="col-sm-12 col-md-6">
                 <div class="card text-sm-center text-md-start border-none border-bottom border-5 rounded-none mb-3" style="border-color: #7C8046!important">
                     <div class="row g-0">
                         <div class="col-md-4">
@@ -64,7 +64,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 @endsection

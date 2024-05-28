@@ -15,36 +15,18 @@
     <div class="container p-4" style="min-height:83.3vh">
         <a href="/" class="btn btn-primary">Kembali</a>
         <div class="row gap-y-4 mt-4">
+            @foreach($promo as $item)
             <div class="col-sm-12 col-md-6">
                 <div class="card border-none border-5 border-start border-bottom rounded-none" style="border-color: #7C8046!important">
                     <div class="card-body">
-                      <h3 class="card-title fw-bold fs-3">Promo 06 06 2024</h3>
-                      <p class="card-text my-2">Promo voucher potongan ongkir sebesar 50.000.</p>
-                      <p class="card-text my-2">- Rp. 50.000</p>
-                      <a href="/detail-promo" class="btn btn-success"><i class="bi bi-eye"></i></a>
+                      <h3 class="card-title fw-bold fs-3">{{$item->nama}}</h3>
+                      <p class="card-text my-2">{{$item->deskripsi}}</p>
+                      <p class="card-text my-2">Potongan (Rp) : {{$item->pengurangan_harga}}</p>
+                      <a href="{{ route('detail-promo',$item->id)}}" class="btn btn-success"><i class="bi bi-eye"></i></a>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-12 col-md-6">
-                <div class="card border-none border-5 border-start border-bottom rounded-none" style="border-color: #7C8046!important">
-                    <div class="card-body">
-                      <h3 class="card-title fw-bold fs-3">Nama</h3>
-                      <p class="card-text my-2">Deskripsi.</p>
-                      <p class="card-text my-2">Pengurangan harga.</p>
-                      <a href="/detail-promo" class="btn btn-success"><i class="bi bi-eye"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-6">
-                <div class="card border-none border-5 border-start border-bottom rounded-none" style="border-color: #7C8046!important">
-                    <div class="card-body">
-                      <h3 class="card-title fw-bold fs-3">Nama</h3>
-                      <p class="card-text my-2">Deskripsi.</p>
-                      <p class="card-text my-2">Pengurangan harga.</p>
-                      <a href="/detail-promo" class="btn btn-success"><i class="bi bi-eye"></i></a>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 @endsection

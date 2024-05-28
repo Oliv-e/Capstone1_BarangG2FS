@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Promo;
 use App\Models\Barang;
 use Illuminate\Http\Request;
 
@@ -15,10 +16,12 @@ class ViewController extends Controller
     }
 
     public function promo() {
-        return view('page.promo.list-promo');
+        $promo = Promo::all();
+        return view('page.promo.list-promo', compact('promo'));
     }
-    public function detailPromo() {
-        return view('page.promo.detail-promo');
+    public function detailPromo(String $id) {
+        $promo = Promo::findOrFail($id);
+        return view('page.promo.detail-promo', compact('promo'));
     }
 
     public function detailProduk() {

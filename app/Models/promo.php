@@ -17,6 +17,6 @@ class promo extends Model
     ];
     public function barang()
     {
-        return $this->belongsTo(Barang::class, 'id', 'id_barang');
+        return $this->belongsTo(Barang::class, 'id');
     }
 }
