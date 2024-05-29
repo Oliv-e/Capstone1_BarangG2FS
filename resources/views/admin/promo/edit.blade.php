@@ -22,13 +22,14 @@
                     </div>
                 @enderror
 
-                <div class="input-group-static  mb-4">
+                <div class="input-group-static mb-4">
                     <label class="form-label">Barang</label>
-                    <select name="id_barang" class="form-control @error('id_barang') is-invalid @enderror">
-                        <option disabled selected>-= Pilih Barang =-</option>
+                    <select name="id_barang[]" class="form-control @error('id_barang') is-invalid @enderror" multiple>
+                        <option disabled>-= Pilih Barang =-</option>
                         @foreach ($barang as $item)
-                            <option value="{{ $item->id }}" @if ($item->id == $promo->id_barang) selected @endif>
-                                {{ $item->nama }}</option>
+                            <option value="{{ $item->id }}" @if (in_array($item->id, old('id_barang', $promo->promoBarang->pluck('id')->toArray()))) selected @endif>
+                                {{ $item->nama }}
+                            </option>
                         @endforeach
                     </select>
                 </div>

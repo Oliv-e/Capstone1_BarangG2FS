@@ -10,7 +10,6 @@ class promo extends Model
     use HasFactory;
     protected $table = "promo";
     protected $fillable = [
-        'id_barang',
         'nama',
         'deskripsi',
         'pengurangan_harga'
@@ -18,5 +17,11 @@ class promo extends Model
     public function barang()
     {
         return $this->belongsTo(Barang::class, 'id');
+    }
+
+    public function promoBarang()
+    {
+        return $this->belongsToMany(Barang::class, 'promo_barang', 'id_promo', 'id_barang')
+            ->withTimestamps();
     }
 }

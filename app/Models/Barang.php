@@ -21,4 +21,10 @@ class Barang extends Model
     {
         return $this->belongsTo(Kategori::class, 'id_kategori');
     }
+
+    public function promo()
+    {
+        return $this->belongsToMany(Promo::class, 'promo_barang', 'id_barang', 'id_promo')
+            ->withTimestamps();
+    }
 }

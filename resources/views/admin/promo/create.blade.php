@@ -21,10 +21,10 @@
                     </div>
                 @enderror
 
-                <div class="input-group-static  mb-4">
+                <div class="input-group-static mb-4">
                     <label class="form-label">Barang</label>
-                    <select name="id_barang" class="form-control @error('id_barang') is-invalid @enderror">
-                        <option disabled selected>-= Pilih Barang =-</option>
+                    <select name="id_barang[]" class="form-control @error('id_barang') is-invalid @enderror" multiple>
+                        <option disabled>-= Pilih Barang =-</option>
                         @foreach ($barang as $item)
                             <option value="{{ $item->id }}">{{ $item->nama }}</option>
                         @endforeach
@@ -35,6 +35,16 @@
                         {{ $message }}
                     </div>
                 @enderror
+                @if ($errors->has('id_barang.*'))
+                    @foreach ($errors->get('id_barang.*') as $messages)
+                        @foreach ($messages as $message)
+                            <div class="alert alert-danger text-white mt-2">
+                                {{ $message }}
+                            </div>
+                        @endforeach
+                    @endforeach
+                @endif
+
 
                 <div class="input-group input-group-outline mb-4">
                     <label class="form-label">Pengurangan Harga</label>
