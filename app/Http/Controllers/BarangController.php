@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
-use App\Models\kategori;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -16,7 +16,7 @@ class BarangController extends Controller
     }
     public function create()
     {
-        $kategori = kategori::all();
+        $kategori = Kategori::all();
         return view('admin.barang.create', compact('kategori'));
     }
     public function store(Request $request)
@@ -47,7 +47,7 @@ class BarangController extends Controller
     {
         $selected_barang = Barang::findOrFail($id);
         // dd($selected_barang);
-        $kategori = kategori::all();
+        $kategori = Kategori::all();
         return view('admin.barang.edit', compact(['kategori','selected_barang']));
     }
     public function update(Request $request, String $id)
