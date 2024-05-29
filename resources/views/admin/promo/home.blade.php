@@ -46,7 +46,8 @@
                                     </td>
                                     <td class="align-middle text-center">
                                         <div class="d-flex align-items-center">
-                                            <span class="mx-3 text-xs">{{ $item->id_barang }}</span>
+                                            <span
+                                                class="mx-3 text-xs">{{ $item->promoBarang->pluck('nama')->implode(' | ') }}</span>
                                         </div>
                                     </td>
                                     <td class="align-middle text-center">
