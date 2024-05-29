@@ -3,7 +3,7 @@
 <div class="flex justify-between items-center px-4 bg-white border-b-4 border-sage" id="navbar">
     <div class="flex items-center gap-2">
         <a href="{{route('dashboard')}}">
-            <img src="{{ asset('assets/img/logoFM2.png')}}" alt="logo" class="py-2" width="200px">
+            <img src="{{ asset('assets/img/LOGOFM2.png')}}" alt="logo" class="py-2" width="200px">
         </a>
     </div>
     <i class="bi bi-list text-sage" style="font-size: 50px" id="list-responsive"></i>
