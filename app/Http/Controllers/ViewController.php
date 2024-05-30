@@ -50,4 +50,7 @@ class ViewController extends Controller
     public function faq(){
         return view('page.faq.faq');
     }
+    public function cart() {
+        return view('page.order.order-cart');
+    }
 }
