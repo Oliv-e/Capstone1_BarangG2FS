@@ -16,7 +16,7 @@
             <h3 class="py-4 fs-3 fw-bolder">General Information</h3>
             <div class="flex flex-col my-4 gap-y-2">
                 <h5 class="fs-5 fw-bold">Jika barang sesuai, apakah bisa melakukan retur dan refund?</h5>
-                <p style="text-align: justify" class="text-muted">Tentu bisa, karena kami selalu mengutamakan pembeli sesuai dengan visi misi kami, namun biaya operasional ditanggung pembeli dengan biaya minimal seharga dengan pulau yang dijual oleh megawati.</p>
+                <p style="text-align: justify" class="text-muted">Tentu bisa, karena kami selalu mengutamakan pembeli sesuai dengan visi misi kami, namun biaya operasional ditanggung pembeli.</p>
             </div>
             <div class="flex flex-col my-4 gap-y-2">
                 <h5 class="fs-5 fw-bold">Lorem Ipsum Dolor Sit Amet?</h5>

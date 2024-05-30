@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class stok extends Model
+class Stok extends Model
 {
     use HasFactory;
     protected $table = "stok";
