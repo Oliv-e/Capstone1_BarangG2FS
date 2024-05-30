@@ -44,8 +44,9 @@
                                             <span class="mx-3 text-xs">{{ $item->nama }}</span>
                                         </div>
                                     </td>
-                                    <td class="align-middle text-center">
-                                        <div class="d-flex align-items-center">
+                                    <td class="align-middle text-start">
+                                        <div class="d-flex align-items-center"
+                                            style="word-break: break-word; white-space: normal;">
                                             <span
                                                 class="mx-3 text-xs">{{ $item->promoBarang->pluck('nama')->implode(' | ') }}</span>
                                         </div>

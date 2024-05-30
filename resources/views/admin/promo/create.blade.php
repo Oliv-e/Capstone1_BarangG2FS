@@ -23,27 +23,35 @@
 
                 <div class="input-group-static mb-4">
                     <label class="form-label">Barang</label>
-                    <select name="id_barang[]" class="form-control @error('id_barang') is-invalid @enderror" multiple>
-                        <option disabled>-= Pilih Barang =-</option>
+                    <div class="row">
                         @foreach ($barang as $item)
-                            <option value="{{ $item->id }}">{{ $item->nama }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                @error('id_barang')
-                    <div class="alert alert-danger text-white mt-2">
-                        {{ $message }}
-                    </div>
-                @enderror
-                @if ($errors->has('id_barang.*'))
-                    @foreach ($errors->get('id_barang.*') as $messages)
-                        @foreach ($messages as $message)
-                            <div class="alert alert-danger text-white mt-2">
-                                {{ $message }}
+                            <div class="col-6 col-md-4 mb-2">
+                                <div class="form-check">
+                                    <input type="checkbox" name="id_barang[]" value="{{ $item->id }}"
+                                        class="form-check-input @error('id_barang') is-invalid @enderror">
+                                    <label class="form-check-label">
+                                        {{ $item->nama }}
+                                    </label>
+                                </div>
                             </div>
                         @endforeach
-                    @endforeach
-                @endif
+                    </div>
+                    @error('id_barang')
+                        <div class="alert alert-danger text-white mt-2">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                    @if ($errors->has('id_barang.*'))
+                        @foreach ($errors->get('id_barang.*') as $messages)
+                            @foreach ($messages as $message)
+                                <div class="alert alert-danger text-white mt-2">
+                                    {{ $message }}
+                                </div>
+                            @endforeach
+                        @endforeach
+                    @endif
+                </div>
+
 
 
                 <div class="input-group input-group-outline mb-4">
