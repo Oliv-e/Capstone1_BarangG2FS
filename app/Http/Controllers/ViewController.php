@@ -53,4 +53,8 @@ class ViewController extends Controller
     public function cart() {
         return view('page.order.order-cart');
     }
+
+    public function order() {
+        return view('page.order.order-form');
+    }
 }

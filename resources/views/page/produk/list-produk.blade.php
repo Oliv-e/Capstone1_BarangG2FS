@@ -121,8 +121,8 @@
                             <span>(4.5/5 dari 2 ulasan)</span>
                         </div>
                                 <a href="/detail-produk" class="btn btn-primary">Detail Produk</a>
-                                <button class="btn btn-buy">
-                                        <i class="bi bi-bag"></i>
+                                <button class="btn btn-buy" onclick="window.location.href='/order-form';">
+    <i class="bi bi-bag"></i>
                             </div>
                         </div>
                     </div>
