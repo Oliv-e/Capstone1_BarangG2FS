@@ -57,4 +57,12 @@ class ViewController extends Controller
     public function order() {
         return view('page.order.order-form');
     }
+
+    public function orderStatus() {
+        return view('page.order.order-status');
+    }
+
+    public function orderDetail() {
+        return view('page.order.order-detail');
+    }
 }

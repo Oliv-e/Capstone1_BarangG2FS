@@ -17,7 +17,7 @@
     <a href="/list-produk" class="btn btn-primary mb-4">Kembali</a>
     <div class="card transaction-card">
         <div class="card-header transaction-header">
-            <h3 class="card-title fw-bold fs-3">Detail Pembelian</h3>
+            <h3 class="card-title fw-bold fs-3">Form Pembelian</h3>
         </div>
         <div class="card-body transaction-body">
             <div class="row mb-3">

@@ -28,6 +28,8 @@ route::get('/order-complete', [ViewController::class, 'orderComplete'])->name('o
 route::get('/faq', [ViewController::class, 'faq'])->name('faq');
 route::get('/cart', [ViewController::class, 'cart'])->name('cart');
 route::get('/order-form', [ViewController::class, 'order'])->name('order-form');
+route::get('/order-status', [ViewController::class, 'orderStatus'])->name('order-status');
+route::get('/order-detail', [ViewController::class, 'orderDetail'])->name('order-detail');
 
 
 Route::middleware('is_admin')->group(function () {

@@ -12,7 +12,8 @@
             <i class="bi bi-check-circle text-sage" style="font-size: 75px"></i>
             <h2 class="fs-2 fw-bold text-sage">PEMBELIAN BERHASIL</h2>
             <p class="mt-2 mb-4 text-center" style="max-width: 500px">Terima kasih telah membeli! orderan kamu akan di proses dalam waktu 4-6 jam. Kamu juga akan menerima notifikasi melalui email saat orderan kamu selesai.</p>
-            <a href="#" class="btn bg-sage text-white">Lanjut Belanja</a>
+            <a href="{{ route('order-status') }}" class="btn bg-blue text-white">Cek Status</a>
+            <a href="{{ route('list-produk') }}" class="btn bg-sage text-white">Lanjut Belanja</a>
         </div>
     </div>
 @endsection

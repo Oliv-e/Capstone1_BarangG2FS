@@ -26,3 +26,4 @@
     }
 
     quantityInput.addEventListener('input', updateTotalPrice);
+
