@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PromoController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,13 @@ Route::middleware('is_admin')->group(function () {
     Route::get('/dashboard/promo/{id}/edit', [PromoController::class, 'edit'])->name('promo.edit');
     Route::put('/dashboard/promo/{id}/update', [PromoController::class, 'update'])->name('promo.update');
     Route::get('/dashboard/promo/{id}/destroy', [PromoController::class, 'destroy'])->name('promo.destroy');
+    Route::get('/dashboard/transaksi', [OrderController::class, 'index'])->name('transaksi.index');
+    Route::get('/dashboard/transaksi/{id}/detail', [OrderController::class, 'show'])->name('transaksi.detail');
+
+
+
+    
+
 });
 
 Route::middleware('is_superadmin')->group(function () {
