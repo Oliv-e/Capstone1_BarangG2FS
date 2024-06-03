@@ -24,6 +24,7 @@ Route::get('/detail-promo/{id}', [ViewController::class, 'detailPromo'])->name('
 Route::get('/promo', [ViewController::class, 'promo'])->name('list-promo');
 Route::get('/detail-produk/{id}', [ViewController::class, 'detailProduk'])->name('detail-produk');
 Route::get('/list-produk', [ViewController::class, 'listProduk'])->name('list-produk');
+Route::get('/products-by-category', [BarangController::class, 'getProductsByCategory']);
 route::get('/order-complete', [ViewController::class, 'orderComplete'])->name('order-complete');
 route::get('/faq', [ViewController::class, 'faq'])->name('faq');
 route::get('/cart', [ViewController::class, 'cart'])->name('cart');

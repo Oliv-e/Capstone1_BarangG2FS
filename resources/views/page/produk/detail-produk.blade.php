@@ -25,8 +25,7 @@
                         <h2 class="card-title fw-bold fs-2">{{$produk->nama}}</h2>
                         <p class="kategori"><span class="bold">Kategori:</span></br>{{$produk->kategori->nama}}</p>
                         <p class="card-text my-2"><span class="bold">Deskripsi:</span></br> {!!$produk->deskripsi!!}</p>
-
-                            <p class="card-text my-2 price"><strong>Harga: Rp. {{$produk->harga}}</strong></p>
+                            <p class="card-text my-2 price"><strong>Harga: Rp. {{number_format ($produk->harga, 0, ',', '.')}}</strong></p>
                         <div class="rating my-2">
                             <strong class="me-2">Rating:</strong>
                             <div class="stars">
