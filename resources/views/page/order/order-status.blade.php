@@ -56,7 +56,7 @@
                   </div>
                   <p class="card-text my-2">Total Harga: Rp. 2.600.000</p>
                   <button class="btn btn-success" disabled>Selesai</button>
-                  <a href="{{ route('order-detail') }}" class="btn btn-info ms-2">Detail Order</a>
+                  <a href="{{ route('order-detail') }}" class="btn bg-blue text-white ms-2">Detail Order</a>
                   <div class="mt-3 rating-stars">
                       <i class="bi bi-star-fill" data-index="0"></i>
                       <i class="bi bi-star-fill" data-index="1"></i>
@@ -79,7 +79,7 @@
                   </div>
                   <p class="card-text my-2">Total Harga: Rp. 1.000.000</p>
                   <button class="btn btn-warning" disabled>Pending</button>
-                  <a href="{{ route('order-detail') }}" class="btn btn-info ms-2">Detail Order</a>
+                  <a href="{{ route('order-detail') }}" class="btn bg-blue text-white ms-2">Detail Order</a>
                 </div>
             </div>
         </div>
