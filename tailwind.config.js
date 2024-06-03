@@ -16,7 +16,9 @@ export default {
                 romman: ["Romman"],
             },
             colors: {
-                'sage': '#93D459'
+                'blue': '#50C1EF',
+                'sage': '#93D459',
+                'red': '#FF0000',
             }
         },
     },

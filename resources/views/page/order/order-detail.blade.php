@@ -103,7 +103,7 @@
             <div class="row mb-3">
                 <div class="col-md-6 text-end offset-md-6">
                 <button class="btn btn-success" disabled>Selesai</button>
-                    <button class="btn btn-danger" onclick="window.location.href='#';">Batalkan Pesanan</button>
+                <button class="btn bg-red text-white" onclick="window.location.href='#';">Batalkan Pesanan</button>
                 </div>
             </div>
         </div>
