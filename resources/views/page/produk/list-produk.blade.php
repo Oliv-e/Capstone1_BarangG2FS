@@ -22,9 +22,9 @@
                     <div class="col-md-3">
                         <strong>Pilih Kategori Produk</strong> <!-- Tambahkan tulisan bold -->
                         <select class="form-select" id="category" name="category" onchange="filterProducts()">
-                            <option value="1">Ruang Tamu</option>
-                            <option value="2">Kamar Mandi</option>
-                            <option value="3">Kamar Tidur</option>
+                            @foreach ($categories as $item)
+                              <option value="{{$item->id}}">{{$item->nama}}</option>  
+                            @endforeach
                         </select>
                     </div>
                     <div class="col-md-6 search-container">

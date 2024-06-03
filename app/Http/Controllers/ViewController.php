@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Promo;
+use App\Models\Kategori;
 use App\Models\Barang;
 use Illuminate\Http\Request;
 
@@ -29,11 +30,22 @@ class ViewController extends Controller
     }
 
     public function listProduk(Request $request) {
-        $categories = [
-            1 => 'Ruang Tamu',
-            2 => 'Kamar Mandi',
-            3 => 'Kamar Tidur'
-        ];
+        $kategori = Kategori::all();
+        
+        $categories = array();
+
+        foreach($kategori as $key) {
+            $categories[] = $key;
+        }
+
+        // dd($categories);
+
+        // $categories = [
+        //     1 => 'Ruang Tamu',
+        //     2 => 'Kamar Mandi',
+        //     3 => 'Kamar Tidur'
+        // ];
+
         $selectedCategory = $request->get('category', 1);
         $search = $request->get('search', '');
 
