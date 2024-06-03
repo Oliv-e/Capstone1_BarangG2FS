@@ -25,8 +25,9 @@ class ViewController extends Controller
         return view('page.promo.detail-promo', compact('promo'));
     }
 
-    public function detailProduk() {
-        return view('page.produk.detail-produk');
+    public function detailProduk(String $id) {
+        $produk = Barang::findOrFail($id);
+        return view('page.produk.detail-produk', compact('produk'));
     }
 
     public function listProduk(Request $request) {

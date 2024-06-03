@@ -22,7 +22,7 @@ use App\Http\Controllers\OrderController;
 Route::get('/', [ViewController::class, 'index'])->name('home');
 Route::get('/detail-promo/{id}', [ViewController::class, 'detailPromo'])->name('detail-promo');
 Route::get('/promo', [ViewController::class, 'promo'])->name('list-promo');
-Route::get('/detail-produk', [ViewController::class, 'detailProduk'])->name('detail-produk');
+Route::get('/detail-produk/{id}', [ViewController::class, 'detailProduk'])->name('detail-produk');
 Route::get('/list-produk', [ViewController::class, 'listProduk'])->name('list-produk');
 route::get('/order-complete', [ViewController::class, 'orderComplete'])->name('order-complete');
 route::get('/faq', [ViewController::class, 'faq'])->name('faq');

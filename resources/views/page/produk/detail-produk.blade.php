@@ -18,16 +18,15 @@
         <div class="card mt-4 border-none border-5 border-start rounded-none" style="border-color: #7C8046!important;">
             <div class="row g-0">
                 <div class="col-md-4 product-image">
-                    <img src="{{ asset('assets/img/produk/sofa ruang tamu.png') }}" class="img-fluid rounded-start" alt="Gambar Produk">
+                    <img src="{{ asset('assets/img/produk/',$produk->gambar) }}" class="img-fluid rounded-start" alt="Gambar Produk">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h2 class="card-title fw-bold fs-2">Sofa Ruang Tamu</h2>
-                        <p class="kategori"><span class="bold">Kategori:</span></br> Ruang Tamu</p>
-                        <p class="card-text my-2"><span class="bold">Deskripsi:</span></br> Sofa secara umum dapat diartikan sebagai kursi panjang yang memiliki lengan dan sandaran, 
-                            berlapis busa dan upholstery (kain dan kulit pelapis). Istilah sofa berasal dari kata sopha yang memiliki arti sebagai tempat duduk seperti dipan (tempat tidur).</p>
+                        <h2 class="card-title fw-bold fs-2">{{$produk->nama}}</h2>
+                        <p class="kategori"><span class="bold">Kategori:</span></br>{{$produk->kategori->nama}}</p>
+                        <p class="card-text my-2"><span class="bold">Deskripsi:</span></br> {!!$produk->deskripsi!!}</p>
 
-                            <p class="card-text my-2 price"><strong>Harga: Rp. 500.000</strong></p>
+                            <p class="card-text my-2 price"><strong>Harga: Rp. {{$produk->harga}}</strong></p>
                         <div class="rating my-2">
                             <strong class="me-2">Rating:</strong>
                             <div class="stars">
