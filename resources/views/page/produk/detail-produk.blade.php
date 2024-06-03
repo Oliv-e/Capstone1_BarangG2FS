@@ -42,6 +42,33 @@
             </div>
         </div>
         <h3 class="fw-bold fs-3 mt-4"><i class="bi bi-star-fill" style="color: #7C8046;"></i> ULASAN PRODUK</h3>
+        <h4 class="fw-bold fs-4 mt-4">Tambahkan Komentar Anda</h4>
+        @auth
+        <div class="row mt-3">
+            <div class="col-12">
+                <form action="" method="POST">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="rating" class="form-label">Rating</label>
+                        <select class="form-control" id="rating" name="rating" required>
+                            <option value="1">1 - Sangat Buruk</option>
+                            <option value="2">2 - Buruk</option>
+                            <option value="3">3 - Biasa</option>
+                            <option value="4">4 - Baik</option>
+                            <option value="5">5 - Sangat Baik</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="komentar" class="form-label">Komentar</label>
+                        <textarea class="form-control" id="komentar" name="komentar" rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Kirim Komentar</button>
+                </form>
+            </div>
+        </div>
+        @else
+            <p>Anda harus <a href="{{ route('login') }}">login</a> untuk menambahkan komentar.</p>
+        @endauth
         <div class="row gap-y-4 mt-4">
             <div class="col-12">
                 <div class="card mb-3">
