@@ -11,9 +11,13 @@ class BarangController extends Controller
 {
     public function index()
     {
+        $barang = Barang::all();
+        return view('admin.barang.home', compact('barang'));
+
         $categories = Kategori::all();
         $products = Barang::with('kategori')->paginate(9);
         return view('list-produk', compact('categories', 'products'));
+        
     }
 
     public function getProductsByCategory(Request $request)
