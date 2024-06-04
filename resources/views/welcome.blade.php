@@ -10,7 +10,8 @@
     <section id="home" class="hero-section">
         <div class="hero-text">
             <h1 class="font-romman">Furniture Max</h1>
-            <p>Deskripsi singkat tentang website Furniture Max yang menawarkan berbagai macam furniture berkualitas tinggi dengan harga terjangkau.</p>
+            <p>Deskripsi singkat tentang website Furniture Max yang menawarkan berbagai macam furniture berkualitas tinggi
+                dengan harga terjangkau.</p>
             <button class="shop-now-btn">Belanja Sekarang</button>
         </div>
         <div class="hero-image">
@@ -21,40 +22,30 @@
     <section id="promo" class="promo-section">
         <h2 class="font-romman">Promo</h2>
         <div class="promo-products">
-            <div class="product-card">
-                <img src="{{ asset('assets/img/produk/kursi sofa.png') }}" alt="Sofa" class="product-image">
-                <h3>Kursi Sofa</h3>
-                <p class="normal-price">Rp 1.000.000</p>
-                <p class="promo-price">Rp 800.000</p>
-                <button class="add-to-cart-btn"><i class="bi bi-cart"></i></button>
-                <button class="buy-btn"><i class="bi bi-bag"></i></button>
-            </div>
-            <div class="product-card">
-                <img src="{{ asset('assets/img/produk/meja kecil.png') }}" alt="Table" class="product-image">
-                <h3>Meja Kecil</h3>
-                <p class="normal-price">Rp 500.000</p>
-                <p class="promo-price">Rp 400.000</p>
-                <button class="add-to-cart-btn"><i class="bi bi-cart"></i></button>
-                <button class="buy-btn"><i class="bi bi-bag"></i></button>
-            </div>
-            <div class="product-card">
-                <img src="{{ asset('assets/img/produk/kursi.png') }}" alt="Chair" class="product-image">
-                <h3>Kursi Chill</h>
-                <p class="normal-price">Rp 300.000</p>
-                <p class="promo-price">Rp 250.000</p>
-                <button class="add-to-cart-btn"><i class="bi bi-cart"></i></button>
-                <button class="buy-btn"><i class="bi bi-bag"></i></button>
-            </div>
-            <div class="product-card">
-                <img src="{{ asset('assets/img/produk/meja belajar.png') }}" alt="Desk" class="product-image">
-                <h3>Meja Belajar</h3>
-                <p class="normal-price">Rp 700.000</p>
-                <p class="promo-price">Rp 600.000</p>
-                <button class="add-to-cart-btn"><i class="bi bi-cart"></i></button>
-                <button class="buy-btn"><i class="bi bi-bag"></i></button>
-            </div>
+            @forelse ($promoItems as $promoItem)
+                @foreach ($promoItem->promoBarang as $items)
+                    <div class="product-card">
+                        <img src="{{ asset('storage/gambar/barang/' . $items->gambar) }}" alt="Living Room Sofa"
+                            class="product-image">
+                        <h3>{{ $items->nama }}</h3>
+                        <p class="normal-price">Rp {{ number_format($items->harga, 0, ',', '.') }}</p>
+                        @if ($harga_promo = $items->harga - $promoItem->pengurangan_harga)
+                            <p class="promo-price">Rp {{ number_format($harga_promo, 0, ',', '.') }}</p>
+                        @endif
+                        <button class="add-to-cart-btn"><i class="bi bi-cart"></i></button>
+                        <button class="buy-btn"><i class="bi bi-bag"></i></button>
+                    </div>
+                @endforeach
+            @empty
+                <p>Tidak ada barang promo saat ini.</p>
+            @endforelse
+        </div>
+
+        <div class="more-products">
+            <a href="/promo" class="more-products-btn">Lihat Promo Selengkapnya</a>
         </div>
     </section>
+
 
     <section id="katalog" class="katalog-section">
         <h2 class="font-romman pb-8">Katalog Produk</h2>
@@ -67,24 +58,24 @@
             <h3>Produk Ruang Tamu</h3>
             <div class="product-category">
                 @foreach ($barang as $item)
-                <div class="product-card">
-                    <img src="{{ asset('storage/gambar/barang/'.$item->gambar) }}" alt="Living Room Sofa" class="product-image">
-                    <h3>{{$item->nama}}</h3>
-                    {{-- format harga dari xxxxxxx to x.xxx.xxx --}}
-                    <?php
-                        $harga = (string)$item->harga;
+                    <div class="product-card">
+                        <img src="{{ asset('storage/gambar/barang/' . $item->gambar) }}" alt="Living Room Sofa"
+                            class="product-image">
+                        <h3>{{ $item->nama }}</h3>
+                        {{-- format harga dari xxxxxxx to x.xxx.xxx --}}
+                        <?php
+                        $harga = (string) $item->harga;
                         $harga = strrev($harga);
-                        $arr = str_split($harga, "3");
-
-                        $ganti_format_harga = implode(".", $arr);
+                        $arr = str_split($harga, '3');
+                        
+                        $ganti_format_harga = implode('.', $arr);
                         $ganti_format_harga = strrev($ganti_format_harga);
-                    ?>
-                    <p class="price">Rp {{$ganti_format_harga}}</p>
-                    <span>{{$item->kategori->nama}}</span> <br>
-                    <button class="add-to-cart-btn"><i class="bi bi-cart"></i></button>
-                    <button class="buy-btn"><i class="bi bi-bag"></i></button>
-                </div>
-               
+                        ?>
+                        <p class="price">Rp {{ $ganti_format_harga }}</p>
+                        <span>{{ $item->kategori->nama }}</span> <br>
+                        <button class="add-to-cart-btn"><i class="bi bi-cart"></i></button>
+                        <button class="buy-btn"><i class="bi bi-bag"></i></button>
+                    </div>
                 @endforeach
                 {{-- <div class="product-card">
                     <img src="{{ asset('assets/img/produk/sofa ruang tamu.png') }}" alt="Living Room Sofa" class="product-image">
@@ -113,25 +104,26 @@
             <h3>Produk Kamar Mandi</h3>
             <div class="product-category">
                 <div class="product-card">
-                    <img src="{{ asset('assets/img/produk/Lemari Kamar Mandi.png') }}" alt="Bathroom Cabinet" class="product-image">
+                    <img src="{{ asset('assets/img/produk/Lemari Kamar Mandi.png') }}" alt="Bathroom Cabinet"
+                        class="product-image">
                     <h3>Lemari Kamar Mandi</h3>
                     <p class="price">Rp 300.000</p>
                     <button class="add-to-cart-btn"><i class="bi bi-cart"></i></button>
-                <button class="buy-btn"><i class="bi bi-bag"></i></button>
+                    <button class="buy-btn"><i class="bi bi-bag"></i></button>
                 </div>
                 <div class="product-card">
                     <img src="{{ asset('assets/img/produk/Tirai Mandi.png') }}" alt="Shower Curtain" class="product-image">
                     <h3>Tirai Mandi</h3>
                     <p class="price">Rp 150.000</p>
                     <button class="add-to-cart-btn"><i class="bi bi-cart"></i></button>
-                <button class="buy-btn"><i class="bi bi-bag"></i></button>
+                    <button class="buy-btn"><i class="bi bi-bag"></i></button>
                 </div>
                 <div class="product-card">
                     <img src="{{ asset('assets/img/produk/Handuk.png') }}" alt="Towel Set" class="product-image">
                     <h3>Handuk</h3>
                     <p class="price">Rp 100.000</p>
                     <button class="add-to-cart-btn"><i class="bi bi-cart"></i></button>
-                <button class="buy-btn"><i class="bi bi-bag"></i></button>
+                    <button class="buy-btn"><i class="bi bi-bag"></i></button>
                 </div>
             </div>
         </div>
@@ -143,27 +135,28 @@
                     <h3>Kasur Tidur</h3>
                     <p class="price">Rp 2.000.000</p>
                     <button class="add-to-cart-btn"><i class="bi bi-cart"></i></button>
-                <button class="buy-btn"><i class="bi bi-bag"></i></button>
+                    <button class="buy-btn"><i class="bi bi-bag"></i></button>
                 </div>
                 <div class="product-card">
                     <img src="{{ asset('assets/img/produk/Lemari Pakaian.png') }}" alt="Wardrobe" class="product-image">
                     <h3>Lemari Pakaian</h3>
                     <p class="price">Rp 1.500.000</p>
                     <button class="add-to-cart-btn"><i class="bi bi-cart"></i></button>
-                <button class="buy-btn"><i class="bi bi-bag"></i></button>
+                    <button class="buy-btn"><i class="bi bi-bag"></i></button>
                 </div>
                 <div class="product-card">
-                    <img src="{{ asset('assets/img/produk/Meja Tempat Tidur.png') }}" alt="Nightstand" class="product-image">
+                    <img src="{{ asset('assets/img/produk/Meja Tempat Tidur.png') }}" alt="Nightstand"
+                        class="product-image">
                     <h3>Meja Tempat Tidur</h3>
                     <p class="price">Rp 500.000</p>
                     <button class="add-to-cart-btn"><i class="bi bi-cart"></i></button>
-                <button class="buy-btn"><i class="bi bi-bag"></i></button>
+                    <button class="buy-btn"><i class="bi bi-bag"></i></button>
                 </div>
             </div>
         </div>
         <div class="more-products">
-                <a href="/list-produk" class="more-products-btn">Lihat Produk Selengkapnya</a>
-            </div>
+            <a href="/list-produk" class="more-products-btn">Lihat Produk Selengkapnya</a>
+        </div>
     </section>
 
 @endsection

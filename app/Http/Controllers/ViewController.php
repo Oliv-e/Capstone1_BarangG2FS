@@ -9,11 +9,19 @@ use Illuminate\Http\Request;
 
 class ViewController extends Controller
 {
-    public function index() {
+    public function index(int $limit = 4) {
+        // Nampilin Barang Yang Sedang Ada Promo Secara Random di Landing
+        $promoItems = Promo::whereHas('promoBarang')
+            ->with(['promoBarang' => function ($query) {
+                $query->inRandomOrder();
+            }])
+            ->limit($limit)
+            ->get();
+
         // limiter display
         // $barang = Barang::all()->take(1);
         $barang = Barang::limit(10)->get();
-        return view('welcome', compact('barang'));
+        return view('welcome', compact('barang','promoItems'));
     }
 
     public function promo() {
@@ -21,7 +29,7 @@ class ViewController extends Controller
         return view('page.promo.list-promo', compact('promo'));
     }
     public function detailPromo(String $id) {
-        $promo = Promo::findOrFail($id);
+        $promo = Promo::with('promoBarang')->findOrFail($id);
         return view('page.promo.detail-promo', compact('promo'));
     }
 
