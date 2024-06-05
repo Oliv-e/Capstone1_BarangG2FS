@@ -24,3 +24,4 @@ class Ulasan extends Model
         return $this->belongsTo(Barang::class,'id','id_barang');
     }
 }
+

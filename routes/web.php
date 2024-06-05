@@ -8,6 +8,7 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\UlasanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,6 +34,7 @@ route::get('/order-status', [ViewController::class, 'orderStatus'])->name('order
 Route::get('/order-detail/{id}', [ViewController::class, 'orderDetail'])->name('order-detail');
 Route::get('/order-detail/{orderId}', [ViewController::class, 'showOrderDetail'])->name('order.detail');
 Route::delete('/order/cancel/{id}', [ViewController::class, 'cancelOrder'])->name('order.cancel');
+Route::post('/ulasan/{barang_id}', [UlasanController::class, 'store'])->name('ulasan.store');
 
 
 Route::middleware('is_admin')->group(function () {

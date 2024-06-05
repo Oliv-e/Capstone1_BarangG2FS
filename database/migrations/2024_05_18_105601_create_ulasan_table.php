@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('ulasan', function (Blueprint $table) {
             $table->id();
             $table->integer('id_user');
+            $table->integer('id_barang');
             $table->integer('rate');
             $table->string('komentar');
             $table->timestamps();

@@ -18,14 +18,14 @@
         <div class="card mt-4 border-none border-5 border-start rounded-none" style="border-color: #7C8046!important;">
             <div class="row g-0">
                 <div class="col-md-4 product-image">
-                    <img src="{{ asset('assets/img/produk/',$produk->gambar) }}" class="img-fluid rounded-start" alt="Gambar Produk">
+                    <img src="{{ asset('assets/img/produk/' . $produk->gambar) }}" class="img-fluid rounded-start" alt="Gambar Produk">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h2 class="card-title fw-bold fs-2">{{$produk->nama}}</h2>
-                        <p class="kategori"><span class="bold">Kategori:</span></br>{{$produk->kategori->nama}}</p>
-                        <p class="card-text my-2"><span class="bold">Deskripsi:</span></br> {!!$produk->deskripsi!!}</p>
-                            <p class="card-text my-2 price"><strong>Harga: Rp. {{number_format ($produk->harga, 0, ',', '.')}}</strong></p>
+                        <h2 class="card-title fw-bold fs-2">{{ $produk->nama }}</h2>
+                        <p class="kategori"><span class="bold">Kategori:</span></br>{{ $produk->kategori->nama }}</p>
+                        <p class="card-text my-2"><span class="bold">Deskripsi:</span></br> {!! $produk->deskripsi !!}</p>
+                        <p class="card-text my-2 price"><strong>Harga: Rp. {{ number_format($produk->harga, 0, ',', '.') }}</strong></p>
                         <div class="rating my-2">
                             <strong class="me-2">Rating:</strong>
                             <div class="stars">
@@ -46,7 +46,7 @@
         @auth
         <div class="row mt-3">
             <div class="col-12">
-                <form action="" method="POST">
+                <form action="{{ route('ulasan.store', ['barang_id' => $produk->id]) }}" method="POST">
                     @csrf
                     <div class="mb-3">
                         <label for="rating" class="form-label">Rating</label>
@@ -70,44 +70,26 @@
             <p>Anda harus <a href="{{ route('login') }}">login</a> untuk menambahkan komentar.</p>
         @endauth
         <div class="row gap-y-4 mt-4">
-            <div class="col-12">
-                <div class="card mb-3">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <div>
-                                <h5 class="review-title">Nama Pengulas</h5>
-                                <p class="review-date"><small class="text-muted">Tanggal Ulasan: 20 Mei 2024</small></p>
+            @foreach($ulasan as $review)
+                <div class="col-12">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h5 class="review-title">{{ $review->user->name }}</h5>
+                                    <p class="review-date"><small class="text-muted">Tanggal Ulasan: {{ $review->created_at->format('d M Y') }}</small></p>
+                                </div>
+                                <div class="stars text-warning">
+                                    @for($i = 1; $i <= 5; $i++)
+                                        <i class="bi {{ $i <= $review->rate ? 'bi-star-fill' : 'bi-star' }}"></i>
+                                    @endfor
+                                </div>
                             </div>
-                            <div class="stars text-warning">
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-half"></i>
-                            </div>
+                            <p class="review-text">{{ $review->komentar }}</p>
                         </div>
-                        <p class="review-text">Ulasan produk yang sangat detail dan memberikan informasi yang sangat berguna bagi calon pembeli.</p>
                     </div>
                 </div>
-                <div class="card mb-3">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <div>
-                                <h5 class="review-title">Nama Pengulas</h5>
-                                <p class="review-date"><small class="text-muted">Tanggal Ulasan: 18 Mei 2024</small></p>
-                            </div>
-                            <div class="stars text-warning">
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star"></i>
-                                <i class="bi bi-star"></i>
-                            </div>
-                        </div>
-                        <p class="review-text">Ulasan produk yang cukup baik, memberikan gambaran yang jelas mengenai produk.</p>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 @endsection
