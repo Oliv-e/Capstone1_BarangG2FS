@@ -8,23 +8,29 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('detail_transaksi', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_transaksi');
-            $table->string('resi');
-            $table->enum('status',['Pending','Proses','Dikirim','Selesai','Batal']);
+            $table->unsignedBigInteger('id_transaksi');
+            $table->unsignedBigInteger('id_barang');
+            $table->integer('jumlah');
+            $table->enum('status', ['pending', 'proses'])->default('pending');
             $table->timestamps();
-            $table->enum('diarsipkan', ['false','true'])->default('false');
+            $table->foreign('id_transaksi')->references('id')->on('transaksi')->onDelete('cascade');
+            $table->foreign('id_barang')->references('id')->on('barang')->onDelete('cascade');
         });
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('detail_transaksi');
     }

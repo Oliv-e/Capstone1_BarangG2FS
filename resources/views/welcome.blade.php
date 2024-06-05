@@ -73,8 +73,10 @@
                         ?>
                         <p class="price">Rp {{ $ganti_format_harga }}</p>
                         <span>{{ $item->kategori->nama }}</span> <br>
-                        <button class="add-to-cart-btn"><i class="bi bi-cart"></i></button>
-                        <button class="buy-btn"><i class="bi bi-bag"></i></button>
+                        <form action="{{ route('add.to.cart', ['id' => $item->id]) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-primary"><i class="bi bi-cart"></i> Add to Cart</button>
+                        </form>
                     </div>
                 @endforeach
                 {{-- <div class="product-card">

@@ -8,24 +8,30 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('transaksi', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_user');
-            $table->integer('id_barang');
-            $table->integer('jumlah');
-            $table->integer('total_harga');
+            $table->unsignedBigInteger('id_user');
+            $table->string('nama_pembeli');
+            $table->string('nomor_hp');
+            $table->text('alamat');
+            $table->decimal('total_harga', 15, 2);
             $table->timestamps();
-            $table->enum('diarsipkan', ['false','true'])->default('false');
+            $table->enum('diarsipkan', ['false', 'true'])->default('false');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('transaksi');
     }

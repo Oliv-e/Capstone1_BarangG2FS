@@ -37,38 +37,30 @@
 <div class="container p-4" style="min-height:83.3vh">
     <a href="/" class="btn btn-primary">Kembali</a>
     <div class="row gap-y-4 mt-4">
-        <div class="col-sm-12 col-md-6">
-            <div class="card border-none border-5 border-start border-bottom rounded-none" style="border-color: #93D459!important">
-                <div class="card-body">
-                  <div class="d-flex flex-wrap">
-                      <div class="product-container">
-                          <h3 class="card-title fw-bold fs-5">Sofa Ruang Tamu</h3>
-                          <img src="{{ asset('assets/img/produk/sofa ruang tamu.png') }}" alt="Gambar Produk 1" class="img-fluid mb-3 product-image">
-                      </div>
-                      <div class="product-container">
-                          <h3 class="card-title fw-bold fs-5">Kasur Tidur</h3>
-                          <img src="{{ asset('assets/img/produk/Kasur Tidur.png') }}" alt="Gambar Produk 2" class="img-fluid mb-3 product-image">
-                      </div>
-                      <div class="product-container">
-                          <h3 class="card-title fw-bold fs-5">Handuk</h3>
-                          <img src="{{ asset('assets/img/produk/Handuk.png') }}" alt="Gambar Produk 3" class="img-fluid mb-3 product-image">
-                      </div>
-                  </div>
-                  <p class="card-text my-2">Total Harga: Rp. 2.600.000</p>
-                  <button class="btn btn-success" disabled>Selesai</button>
-                  <a href="{{ route('order-detail') }}" class="btn bg-blue text-white ms-2">Detail Order</a>
-                  <div class="mt-3 rating-stars">
-                      <i class="bi bi-star-fill" data-index="0"></i>
-                      <i class="bi bi-star-fill" data-index="1"></i>
-                      <i class="bi bi-star-fill" data-index="2"></i>
-                      <i class="bi bi-star-fill" data-index="3"></i>
-                      <i class="bi bi-star-fill" data-index="4"></i>
-                  </div>
-                  <button class="btn btn-sage mt-2">Berikan Rating</button>
+        @foreach($formattedTransaksis as $index => $formattedTransaksi)
+    <div class="col-sm-12 col-md-6">
+        <div class="card border-none border-5 border-start border-bottom rounded-none" style="border-color: #93D459!important">
+            <div class="card-body">
+                <div class="d-flex flex-wrap">
+                    <div class="product-container">
+                        @foreach($formattedTransaksi['nama_produk'] as $namaProduk)
+    <h3 class="card-title fw-bold fs-5">{{ $namaProduk }}</h3>
+@endforeach
+@foreach($formattedTransaksi['gambar_produk'] as $gambarProduk)
+<img src="{{ $gambarProduk }}" alt="Gambar Produk" class="img-fluid mb-3 product-image">
+@endforeach
+                    </div>
                 </div>
+                <p class="card-text my-2">Total Harga: Rp. {{ $formattedTransaksi['total_harga'] }}</p>
+                <button class="btn btn-{{ $formattedTransaksi['status_button_color'] }}" disabled>{{ $formattedTransaksi['status'] }}</button>
+                <a href="{{ route('order-detail', ['id' => $formattedTransaksi['id_transaksi']]) }}" class="btn bg-blue text-white ms-2">Detail Order</a>
+                
             </div>
         </div>
-        <div class="col-sm-12 col-md-6">
+    </div>
+@endforeach
+
+        {{-- <div class="col-sm-12 col-md-6">
             <div class="card border-none border-5 border-start border-bottom rounded-none" style="border-color: #93D459!important">
                 <div class="card-body">
                   <h3 class="card-title fw-bold fs-5">Sofa Ruang Tamu</h3>
@@ -79,10 +71,10 @@
                   </div>
                   <p class="card-text my-2">Total Harga: Rp. 1.000.000</p>
                   <button class="btn btn-warning" disabled>Pending</button>
-                  <a href="{{ route('order-detail') }}" class="btn bg-blue text-white ms-2">Detail Order</a>
+
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>
 @endsection
@@ -105,3 +97,12 @@
         });
     });
 </script>
+
+{{-- <div class="mt-3 rating-stars">
+                      <i class="bi bi-star-fill" data-index="0"></i>
+                      <i class="bi bi-star-fill" data-index="1"></i>
+                      <i class="bi bi-star-fill" data-index="2"></i>
+                      <i class="bi bi-star-fill" data-index="3"></i>
+                      <i class="bi bi-star-fill" data-index="4"></i>
+                  </div> --}}
+                  {{-- <button class="btn btn-sage mt-2">Berikan Rating</button> --}}

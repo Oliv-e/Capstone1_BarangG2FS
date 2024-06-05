@@ -7,7 +7,7 @@ use App\Http\Controllers\PromoController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\OrderController;
-
+use App\Http\Controllers\TransaksiController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,7 +30,9 @@ route::get('/faq', [ViewController::class, 'faq'])->name('faq');
 route::get('/cart', [ViewController::class, 'cart'])->name('cart');
 route::get('/order-form', [ViewController::class, 'order'])->name('order-form');
 route::get('/order-status', [ViewController::class, 'orderStatus'])->name('order-status');
-route::get('/order-detail', [ViewController::class, 'orderDetail'])->name('order-detail');
+Route::get('/order-detail/{id}', [ViewController::class, 'orderDetail'])->name('order-detail');
+Route::get('/order-detail/{orderId}', [ViewController::class, 'showOrderDetail'])->name('order.detail');
+Route::delete('/order/cancel/{id}', [ViewController::class, 'cancelOrder'])->name('order.cancel');
 
 
 Route::middleware('is_admin')->group(function () {
@@ -51,7 +53,14 @@ Route::middleware('is_admin')->group(function () {
     Route::get('/dashboard/transaksi', [OrderController::class, 'index'])->name('transaksi.index');
     Route::get('/dashboard/transaksi/{id}/detail', [OrderController::class, 'show'])->name('transaksi.detail');
 
+    Route::get('/transaksi', [TransaksiController::class, 'index'])->name('admin.transaksi.index');
+    Route::get('/transaksi/{id}', [TransaksiController::class, 'show'])->name('transaksi.detail');
+    Route::get('/admin/transaksi/detail/{id}', [TransaksiController::class, 'detail'])->name('admin.transaksi.detail_transaksi');
+    Route::put('/transaksi/proses/{id}', [TransaksiController::class, 'proses'])->name('transaksi.proses');
 
+Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
+Route::post('/transaksi/{id}/edit-resi', [TransaksiController::class, 'editResi'])->name('transaksi.edit-resi');
+Route::post('/transaksi/{id}/tambah-resi', [TransaksiController::class, 'tambahResi'])->name('transaksi.tambah-resi');
 
     
 
@@ -65,5 +74,11 @@ Route::middleware('is_superadmin')->group(function () {
     Route::post('/dashboard/kategori/edit/{id}', [KategoriController::class, 'update'])->name('kategori.update');
     Route::get('/dashboard/kategori/delete/{id}', [KategoriController::class, 'destroy'])->name('kategori.destroy');
 });
+Route::get('cart', [ViewController::class, 'cart'])->name('cart');
+Route::post('add-to-cart/{id}', [ViewController::class, 'addToCart'])->name('add.to.cart');
 
+Route::patch('update-cart', [ViewController::class, 'update'])->name('update.cart');
+Route::delete('remove-from-cart', [ViewController::class, 'remove'])->name('remove.from.cart');
+Route::post('checkout', [ViewController::class, 'checkout'])->name('checkout');
+Route::delete('clear-cart', [ViewController::class, 'clearCart'])->name('clear.cart');
 require __DIR__ . '/auth.php';

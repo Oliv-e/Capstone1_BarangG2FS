@@ -23,93 +23,85 @@
             <div class="row mb-3">
                 <div class="col-md-6">
                     <strong>Nama Pembeli:</strong>
-                    <input type="text" class="form-control form-control-no-border" value="John Doe" disabled>
+                    <input type="text" class="form-control form-control-no-border" value="{{ $order->nama_pembeli }}" disabled>
                 </div>
                 <div class="col-md-6">
                     <strong>Alamat:</strong>
-                    <textarea class="form-control form-control-no-border" rows="3" disabled>Jl. Kebon Jeruk No. 10</textarea>
+                    <textarea class="form-control form-control-no-border" rows="3" disabled>{{ $order->alamat }}</textarea>
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="col-md-6">
                     <strong>Nomor HP:</strong>
-                    <input type="text" class="form-control form-control-no-border" value="081234567890" disabled>
-                </div>
-                <div class="col-md-6">
-                    <strong>Pengiriman:</strong>
-                    <select class="form-select" disabled>
-                        <option value="ninja-express" selected>Ninja Express</option>
-                        <option value="jnt-cargo">JNT Cargo</option>
-                        <option value="jne-cargo">JNE Cargo</option>
-                    </select>
+                    <input type="text" class="form-control form-control-no-border" value="{{ $order->nomor_hp }}" disabled>
                 </div>
             </div>
-            <div class="row mb-3">
-                <div class="col-md-3 d-flex align-items-center">
-                    <img src="{{ asset('assets/img/produk/sofa ruang tamu.png') }}" class="img-fluid product-image" alt="Gambar Produk" style="max-width: 100px;">
-                </div>
-                <div class="col-md-3 d-flex align-items-center">
-                    <div>
-                        <strong>Nama Produk:</strong>
-                        <p class="fs-5">Sofa Ruang Tamu</p>
+            <div class="col-md-6">
+                <strong>Pengiriman:</strong>
+                <select class="form-select" disabled>
+                    <option value="ninja-express" selected>Ninja Express</option>
+                    <option value="jnt-cargo">JNT Cargo</option>
+                    <option value="jne-cargo">JNE Cargo</option>
+                </select>
+            </div>
+            <!-- Loop through order details and display product information -->
+            @foreach ($details as $detailTransaksi)
+                <div class="row mb-3">
+                    <div class="col-md-3 d-flex align-items-center">
+                        <img src="{{ asset($detailTransaksi->image_url) }}" class="img-fluid product-image" alt="Gambar Produk" style="max-width: 100px;">
                     </div>
-                </div>
-                <div class="col-md-3 d-flex align-items-center">
-                    <div>
-                        <strong>Harga Produk:</strong>
-                        <p class="fs-5">Rp. 500.000</p>
+                    <div class="col-md-3 d-flex align-items-center">
+                        <div>
+                            <strong>Nama Produk:</strong>
+                            <p class="fs-5">{{ $detailTransaksi->nama_barang }}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-3 d-flex align-items-center">
-                    <div>
-                        <strong>Jumlah Produk:</strong>
-                        <div class="quantity-control">
-                            <input type="number" id="quantity" value="2" disabled>
+                    <div class="col-md-3 d-flex align-items-center">
+                        <div>
+                            <strong>Harga Produk:</strong>
+                            <p class="fs-5">{{ $detailTransaksi->harga }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 d-flex align-items-center">
+                        <div>
+                            <strong>Jumlah Produk:</strong>
+                            <div class="quantity-control">
+                                <input type="number" id="quantity" value="{{ $detailTransaksi->jumlah }}" disabled>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-md-3 d-flex align-items-center">
-                    <img src="{{ asset('assets/img/produk/Kasur Tidur.png') }}" class="img-fluid product-image" alt="Gambar Produk" style="max-width: 100px;">
-                </div>
-                <div class="col-md-3 d-flex align-items-center">
-                    <div>
-                        <strong>Nama Produk:</strong>
-                        <p class="fs-5">Kasur Tidur</p>
-                    </div>
-                </div>
-                <div class="col-md-3 d-flex align-items-center">
-                    <div>
-                        <strong>Harga Produk:</strong>
-                        <p class="fs-5">Rp. 2.000.000</p>
-                    </div>
-                </div>
-                <div class="col-md-3 d-flex align-items-center">
-                    <div>
-                        <strong>Jumlah Produk:</strong>
-                        <div class="quantity-control">
-                            <input type="number" id="quantity" value="1" disabled>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
+            <!-- End loop -->
+
             <div class="row mb-3">
                 <div class="col-md-6">
                     <strong>Total Harga:</strong>
-                    <p class="total-price" id="totalPrice">Rp. 2.500.000</p>
-                </div></div>
+                    <p class="total-price" id="totalPrice">
+                        @php
+                            $totalHarga = 0;
+                            foreach ($details as $detailTransaksi) {
+                                $totalHarga += $detailTransaksi->harga * $detailTransaksi->jumlah;
+                            }
+                            echo 'Rp. ' . number_format($totalHarga, 0, ',', '.');
+                        @endphp
+                    </p>
+                </div>
+            </div>
 
             <div class="row mb-3">
                 <div class="col-md-6 text-end offset-md-6">
-                <button class="btn btn-success" disabled>Selesai</button>
-                <button class="btn bg-red text-white" onclick="window.location.href='#';">Batalkan Pesanan</button>
+                    <button class="btn btn-success" disabled>Selesai</button>
+                    <form action="{{ route('order.cancel', $order->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn bg-red text-white">Batalkan Pesanan</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
 @endsection
-
 
 @section('footer', true)
