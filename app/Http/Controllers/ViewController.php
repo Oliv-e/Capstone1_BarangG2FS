@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Promo;
 use App\Models\Kategori;
 use App\Models\Barang;
+use App\Models\Ulasan;
 use Illuminate\Http\Request;
 use App\Models\DetailTransaksi;
 use App\Models\transaksi;
@@ -38,7 +39,8 @@ class ViewController extends Controller
 
     public function detailProduk(String $id) {
         $produk = Barang::findOrFail($id);
-        return view('page.produk.detail-produk', compact('produk'));
+        $ulasan = Ulasan::all();
+        return view('page.produk.detail-produk', compact(['produk','ulasan']));
     }
 
     public function listProduk(Request $request) {

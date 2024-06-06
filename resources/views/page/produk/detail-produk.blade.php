@@ -70,26 +70,33 @@
             <p>Anda harus <a href="{{ route('login') }}">login</a> untuk menambahkan komentar.</p>
         @endauth
         <div class="row gap-y-4 mt-4">
-            @foreach($ulasan as $review)
-                <div class="col-12">
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <h5 class="review-title">{{ $review->user->name }}</h5>
-                                    <p class="review-date"><small class="text-muted">Tanggal Ulasan: {{ $review->created_at->format('d M Y') }}</small></p>
+            @isset($ulasan)
+                @foreach($ulasan as $review)
+                    <div class="col-12">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h5 class="review-title">{{ $review->user->name }}</h5>
+                                        <p class="review-date"><small class="text-muted">Tanggal Ulasan: {{ $review->created_at->format('d M Y') }}</small></p>
+                                    </div>
+                                    <div class="stars text-warning">
+                                        @for($i = 1; $i <= 5; $i++)
+                                            <i class="bi {{ $i <= $review->rate ? 'bi-star-fill' : 'bi-star' }}"></i>
+                                        @endfor
+                                    </div>
                                 </div>
-                                <div class="stars text-warning">
-                                    @for($i = 1; $i <= 5; $i++)
-                                        <i class="bi {{ $i <= $review->rate ? 'bi-star-fill' : 'bi-star' }}"></i>
-                                    @endfor
-                                </div>
+                                <p class="review-text">{{ $review->komentar }}</p>
                             </div>
-                            <p class="review-text">{{ $review->komentar }}</p>
                         </div>
                     </div>
+                @endforeach
+            @else
+                <div class="col-12">
+                    <h1>Komentar tidak ditemukan</h1>
                 </div>
-            @endforeach
+            @endisset
+            
         </div>
     </div>
 @endsection
