@@ -21,7 +21,7 @@
             @endif
 
             <div class="card">
-                <div class="table-responsive">
+                <div class="table-responsive d-none d-md-block">
                     <table class="table align-items-center mb-0">
                         <thead>
                             <tr>
@@ -74,6 +74,34 @@
                     </table>
                 </div>
             </div>
+
+            <div class="d-md-none">
+                @forelse ($promo as $item)
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $item->nama }}</h5>
+                            <p class="card-text">
+                                <strong>Barang Promo:</strong>
+                                {{ $item->promoBarang->pluck('nama')->implode(' | ') }}<br>
+                                <strong>Deskripsi:</strong> {{ $item->deskripsi }}<br>
+                                <strong>Pengurangan Harga:</strong> {{ $item->pengurangan_harga }}
+                            </p>
+                            <div class="d-flex gap-1">
+                                <form action="{{ route('promo.edit', $item->id) }}" method="GET">
+                                    <button type="submit" class="btn bg-gradient-warning">Edit</button>
+                                </form>
+                                <a onclick="confirmDelete(this)" data-url="{{ route('promo.destroy', $item->id) }}"
+                                    class="btn bg-gradient-danger" role="button">Hapus</a>
+                            </div>
+                        </div>
+                    </div>
+                @empty
+                    <div class="card-body text-center">
+                        <p class="card-text">Data Kosong</p>
+                    </div>
+                @endforelse
+            </div>
+
         </div>
         @include('admin.components.footer')
     </main>
