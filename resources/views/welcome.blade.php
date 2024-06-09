@@ -12,7 +12,7 @@
             <h1 class="font-romman">Furniture Max</h1>
             <p>Deskripsi singkat tentang website Furniture Max yang menawarkan berbagai macam furniture berkualitas tinggi
                 dengan harga terjangkau.</p>
-            <button class="shop-now-btn">Belanja Sekarang</button>
+            <button class="shop-now-btn" onclick="window.location.href='/list-produk'">Belanja Sekarang</button>
         </div>
         <div class="hero-image">
             <img src="{{ asset('assets/img/produk/sofa header.png') }}" alt="Produk">

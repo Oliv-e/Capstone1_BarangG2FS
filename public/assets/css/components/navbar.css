@@ -1,3 +1,4 @@
+/* Navbar CSS */
 #list-responsive {
     display: none;
 }
@@ -37,4 +38,29 @@ body {
 #list-responsive {
     cursor: pointer;
     z-index: 1001; /* Pastikan toggle icon di atas elemen lain */
+}
+
+/* Ukuran font untuk navbar */
+#desktop-menu a, 
+#mobile-menu a {
+    font-size: 1.2rem; /* Atau ukuran lain yang Anda inginkan */
+}
+
+@media screen and (max-width: 768px) {
+    #desktop-menu a {
+        font-size: 1rem; /* Ukuran lebih kecil untuk perangkat kecil */
+    }
+    #mobile-menu a {
+        font-size: 1.2rem; /* Ukuran yang lebih besar untuk mobile */
+    }
+}
+
+/* Tambahkan jarak antar elemen navbar di desktop */
+#desktop-menu li {
+    margin: 0 10px; /* Sesuaikan dengan jarak yang Anda inginkan */
+}
+
+#desktop-menu a {
+    display: block; /* Pastikan link ditampilkan sebagai block untuk penerapan margin */
+    padding: 10px 0; /* Sesuaikan padding untuk memperbaiki tampilan vertikal */
 }

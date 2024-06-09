@@ -14,30 +14,35 @@
         <li><a href="#tentang" class="text-sage">Tentang</a></li>
         <li><a href="#kontak" class="text-sage">Kontak</a></li>
     </ul>
-    {{-- BUG NAVBAR TIDAK DISPLAY KALAU DARI MOBILE KE DESKTOP --}}
     <div class="flex items-center" id="desktop-menu">
         @if(Auth::check())
             <button class="bg-sage py-2 px-4 text-white rounded-md" id="userDropdown">
-            <i class="bi bi-person-fill"></i> {{Auth::user()->nama}} <i class="bi bi-caret-down-fill"></i></button>
+                <i class="bi bi-person-fill"></i> {{Auth::user()->nama}} <i class="bi bi-caret-down-fill"></i>
+            </button>
             <ul class="absolute hidden mt-36 bg-sage text-black rounded-md shadow-lg" id="userDropdownMenu">
                 <li class="text-center capitalize text-white p-2">
                     @if (Auth::user()->role == "admin" || Auth::user()->role == "super-admin")
-                    <div class="py-2">
-                        <a href="{{route('dashboard')}}" class="text-white capitalize text-center w-full"><i class="bi bi-grid-1x2-fill"></i> Dashboard</a>
-                    </div>
-                    <hr class="border border-white">
+                        <div class="py-2">
+                            <a href="{{route('dashboard')}}" class="text-white capitalize text-center w-full">
+                                <i class="bi bi-grid-1x2-fill"></i> Dashboard
+                            </a>
+                        </div>
+                        <hr class="border border-white">
                     @endif
                     <form action="{{route('logout')}}" method="POST">
                         @csrf
-                        <button type="submit" class="py-2"><i class="bi bi-box-arrow-in-left"></i> Logout</button>
+                        <button type="submit" class="py-2 bg-red-500 text-white rounded-md hover:bg-red-600">
+                            <i class="bi bi-box-arrow-in-left"></i> Logout
+                        </button>
                     </form>
                 </li>
             </ul>
         @else
-        <form action="{{route('login')}}">
-            <button class="bg-sage py-2 px-4 text-white rounded-md">
-                <i class="bi bi-box-arrow-in-right"></i> Login</button>
-        </form>
+            <form action="{{route('login')}}">
+                <button class="bg-sage py-2 px-4 text-white rounded-md">
+                    <i class="bi bi-box-arrow-in-right"></i> Login
+                </button>
+            </form>
         @endif
     </div>
 </div>
@@ -50,23 +55,26 @@
         <a href="#kontak" class="w-full text-center text-white uppercase bg-sage p-5">Kontak</a>
         <div class="flex flex-col gap-1 w-full">
             @if (Auth::check())
-            <p class="w-full uppercase p-5"><i class="bi bi-person-fill"></i> {{Auth::user()->nama}}</p>
-            @if (Auth::user()->role == "admin" || Auth::user()->role == "super-admin")
-                <div class="p-5 bg-sage text-center">
-                    <a href="{{route('dashboard')}}" class="text-white mx-auto capitalize text-center w-full"><i class="bi bi-grid-1x2-fill"></i> Dashboard</a>
-                </div>
+                <p class="w-full uppercase p-5"><i class="bi bi-person-fill"></i> {{Auth::user()->nama}}</p>
+                @if (Auth::user()->role == "admin" || Auth::user()->role == "super-admin")
+                    <div class="p-5 bg-sage text-center">
+                        <a href="{{route('dashboard')}}" class="text-white mx-auto capitalize text-center w-full">
+                            <i class="bi bi-grid-1x2-fill"></i> Dashboard
+                        </a>
+                    </div>
+                @endif
+                <form action="{{route('logout')}}" method="POST" class="p-5 w-full">
+                    @csrf
+                    <button type="submit" class="py-2 bg-red-500 text-white rounded-md hover:bg-red-600">
+                        <i class="bi bi-box-arrow-in-left"></i> Logout
+                    </button>
+                </form>
             @endif
-            <form action="{{route('logout')}}" method="POST" class="p-5 bg-sage w-full">
-            @csrf
-                <button type="submit" class="text-white capitalize text-center w-full"><i class="bi bi-box-arrow-in-left"></i> Logout</button>
-            </form>
-        @endif
         </div>
     </div>
 </div>
 <script>
     $(document).ready(function() {
-        
         @if(Auth::check())
             var button = document.getElementById('userDropdown');
             var dropdownMenu = document.getElementById('userDropdownMenu');
