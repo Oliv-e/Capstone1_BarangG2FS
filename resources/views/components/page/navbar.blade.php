@@ -19,7 +19,7 @@
         @if(Auth::check())
             <button class="bg-sage py-2 px-4 text-white rounded-md" id="userDropdown">
             <i class="bi bi-person-fill"></i> {{Auth::user()->nama}} <i class="bi bi-caret-down-fill"></i></button>
-            <ul class="absolute hidden mt-36 bg-sage text-black rounded-md shadow-lg" id="userDropdownMenu">
+            <ul class="absolute hidden bg-sage text-black rounded-md shadow-lg" id="userDropdownMenu" style="margin-top: 12rem">
                 <li class="text-center capitalize text-white p-2">
                     @if (Auth::user()->role == "admin" || Auth::user()->role == "super-admin")
                     <div class="py-2">
@@ -27,6 +27,10 @@
                     </div>
                     <hr class="border border-white">
                     @endif
+                    <div class="py-2">
+                        <a href="{{route('cart')}}" class="text-white mx-auto capitalize text-center w-full"><i class="bi bi-cart"></i> Keranjang</a>
+                    </div>
+                    <hr class="border border-white">
                     <form action="{{route('logout')}}" method="POST">
                         @csrf
                         <button type="submit" class="py-2"><i class="bi bi-box-arrow-in-left"></i> Logout</button>
@@ -51,6 +55,9 @@
         <div class="flex flex-col gap-1 w-full">
             @if (Auth::check())
             <p class="w-full uppercase p-5"><i class="bi bi-person-fill"></i> {{Auth::user()->nama}}</p>
+            <div class="p-5 bg-sage text-center">
+                <a href="{{route('cart')}}" class="text-white mx-auto capitalize text-center w-full"><i class="bi bi-cart"></i> Keranjang</a>
+            </div>
             @if (Auth::user()->role == "admin" || Auth::user()->role == "super-admin")
                 <div class="p-5 bg-sage text-center">
                     <a href="{{route('dashboard')}}" class="text-white mx-auto capitalize text-center w-full"><i class="bi bi-grid-1x2-fill"></i> Dashboard</a>
@@ -66,7 +73,7 @@
 </div>
 <script>
     $(document).ready(function() {
-        
+
         @if(Auth::check())
             var button = document.getElementById('userDropdown');
             var dropdownMenu = document.getElementById('userDropdownMenu');
@@ -78,6 +85,7 @@
             $(this).toggleClass('bi-list bi-x');
             $('#mobile-menu').toggle();
         });
+
         $('#userDropdown').click(function (e) {
             e.preventDefault();
             $('#userDropdownMenu').toggleClass('hidden block');
@@ -88,9 +96,9 @@
             let activeLinkFound = false;
 
             $('#desktop-menu a, #mobile-menu a').each(function() {
-                const section = $($(this).attr('href'));
+                const section = $($(this).attr('href').replace(/([ !"#$%&'()*+,.\/:;<=>?@[\\\]^`{|}~])/g, '\\$1'));
 
-                if (
+                if (section.length && 
                     section.offset().top <= fromTop &&
                     section.offset().top + section.outerHeight() > fromTop
                 ) {
@@ -103,7 +111,7 @@
 
             if (!activeLinkFound && ($(window).innerHeight() + $(window).scrollTop()) >= $(document).outerHeight()) {
                 $('#desktop-menu a, #mobile-menu a').each(function() {
-                    const section = $($(this).attr('href'));
+                    const section = $($(this).attr('href').replace(/([ !"#$%&'()*+,.\/:;<=>?@[\\\]^`{|}~])/g, '\\$1'));
                     if (section.attr('id') === 'kontak') {
                         $(this).addClass('active');
                     } else {
@@ -116,4 +124,5 @@
         $(window).on('scroll', highlightNavbarLink);
         highlightNavbarLink();
     });
+
 </script>

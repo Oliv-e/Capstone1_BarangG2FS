@@ -73,7 +73,7 @@
                         ?>
                         <p class="price">Rp {{ $ganti_format_harga }}</p>
                         <span>{{ $item->kategori->nama }}</span> <br>
-                        <form action="{{ route('add.to.cart', ['id' => $item->id]) }}" method="POST">
+                        <form action="{{ route('add.to.cart', ['id' => $item->id]) }}" method="POST" class="my-2">
                             @csrf
                             <button type="submit" class="btn btn-primary"><i class="bi bi-cart"></i> Add to Cart</button>
                         </form>
