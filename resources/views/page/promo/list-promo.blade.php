@@ -7,11 +7,11 @@
 @endsection
 
 @section('content')
-<div class="container-fluid p-5" style="background-color: #e6c7ab">
-    <div class="container">
-        <h1 class="fw-bold px-4 fs-2"><i class="bi bi-megaphone-fill text-sage"></i> LIST PROMO</h1>
+    <div class="container-fluid p-5" style="background-color: #e6c7ab">
+        <div class="container">
+            <h1 class="fw-bold px-4 fs-2"><i class="bi bi-megaphone-fill text-sage"></i> LIST PROMO</h1>
+        </div>
     </div>
-</div>
     <div class="container p-4" style="min-height:83.3vh">
         <a href="/" class="btn btn-primary">Kembali</a>
         <div class="row gap-y-4 mt-4">

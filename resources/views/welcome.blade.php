@@ -3,7 +3,7 @@
 @section('title', 'Welcome to Furniture Max')
 
 @section('css-style')
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('assets/css/page/welcome.css') }}">
 @endsection
 
@@ -97,31 +97,31 @@
 @section('kontak', true)
 @section('footer', true)
 @section('js-scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script>
-    confirmCart = function(button) {
-        var url = $(button).data('url');
-        swal({
-            'title': 'Tambah Barang',
-            'text': 'Apakah Kamu Yakin Ingin Menambah Barang Ini?',
-            'buttons': true
-        }).then(function(value) {
-            if (value) {
-                window.location = url;
-            }
-        })
-    }
-    document.addEventListener("DOMContentLoaded", function() {
-        showCategory(1);
-    });
-    function showCategory(id) {
-        const kategoris = document.querySelectorAll('.category');
-        kategoris.forEach((kategori) => {
-            kategori.style.display = 'none';
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        confirmCart = function(button) {
+            var url = $(button).data('url');
+            swal({
+                'title': 'Tambah Barang',
+                'text': 'Apakah Kamu Yakin Ingin Menambah Barang Ini?',
+                'buttons': true
+            }).then(function(value) {
+                if (value) {
+                    window.location = url;
+                }
+            })
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+            showCategory(1);
         });
-        const selectedKategori = document.getElementById('kategori-' + id);
-        selectedKategori.style.display = 'block';
-    }
-</script>
+        function showCategory(id) {
+            const kategoris = document.querySelectorAll('.category');
+            kategoris.forEach((kategori) => {
+                kategori.style.display = 'none';
+            });
+            const selectedKategori = document.getElementById('kategori-' + id);
+            selectedKategori.style.display = 'block';
+        }
+    </script>
 @endsection
