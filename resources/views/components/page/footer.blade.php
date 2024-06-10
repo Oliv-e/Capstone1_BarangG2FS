@@ -14,21 +14,21 @@
     
 </section>
 <footer class="container-fluid bg-coklat-gelap text-white pt-5">
-    <div class="row">
-        <div class="col-4 d-flex flex-column align-items-center">
+    <div class="row text-center gap-4 gap-md-0 text-lg-start">
+        <div class="col-12 col-md-4 d-lg-flex flex-lg-column align-items-lg-center">
             <div>
                 <h3><i class="bi bi-geo-alt"></i> Alamat</h3>
                 <p>Jl. Raya Menganti Karangan No.578,<br> Babatan, Kec. Wiyung, Surabaya,<br> Jawa Timur 60227</p>
             </div>
         </div>
-        <div class="col-4 d-flex flex-column align-items-center">
+        <div class="col-12 col-md-4 d-lg-flex flex-lg-column align-items-lg-center">
             <div>
                 <h3><i class="bi bi-telephone"></i> Kontak</h3>
                 <p><i class="bi bi-phone"></i> 08123456789</p>
                 <p><i class="bi bi-envelope"></i> furnituremax@gmail.com</p>
             </div>
         </div>
-        <div class="col-4 d-flex flex-column align-items-center">
+        <div class="col-12 col-md-4 d-lg-flex flex-lg-column align-items-lg-center">
             <div>
                 <h3><i class="bi bi-share"></i> Sosial Media</h3>
                 <p><i class="bi bi-instagram instagram-icon"></i> FurnitureMax</p>
