@@ -28,7 +28,7 @@
         </div>
     @endif --}}
 
-    @include('components.page.navbar')
+    @include('components.page.navbar2')
     @yield('content')
 
     @hasSection ('about-us')

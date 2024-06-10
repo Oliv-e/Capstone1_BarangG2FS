@@ -104,7 +104,7 @@
             <h3>Produk Kamar Mandi</h3>
             <div class="product-category">
                 <div class="product-card">
-                    <img src="{{ asset('assets/img/produk/Lemari Kamar Mandi.png') }}" alt="Bathroom Cabinet"
+                    <img src="{{ asset('assets/img/produk/Lemari_Kamar_Mandi.png') }}" alt="Bathroom Cabinet"
                         class="product-image">
                     <h3>Lemari Kamar Mandi</h3>
                     <p class="price">Rp 300.000</p>

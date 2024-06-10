@@ -15,3 +15,35 @@ body {
 html {
     scroll-behavior: smooth;
 }
+.btn-sage {
+    border-color: #93D459!important;
+    background-color: #93D459!important;
+    color: white!important;
+    a {
+        color: white!important;
+    }
+}
+
+.btn-sage:hover {
+    border-color: #93D459!important;
+    background-color: white!important;
+    color: #93D459!important
+}
+
+.btn-outline-sage {
+    border-color: #93D459!important;
+    color: #93D459!important
+}
+.btn-outline-sage a {
+    color: #93D459!important;
+}
+
+.btn-outline-sage:hover {
+    background: #93D459!important;
+}
+.btn-outline-sage:hover {
+    color: white!important;
+    a {
+        color: white!important;
+    }
+}

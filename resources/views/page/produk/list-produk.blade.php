@@ -8,7 +8,7 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid p-5" style="margin-top: 13px; background-color: #e6c7ab;">
+    <div class="container-fluid p-5" style="background-color: #e6c7ab;">
         <div class="container">
             <h1 class="fw-bold px-4 fs-2"><i class="bi bi-box2-fill" style="color: #7C8046;"></i> LIST PRODUK</h1>
         </div>

@@ -11,7 +11,7 @@
     $pajak = $total * 0.1; // Menghitung pajak 10%
     $totalPajak = $total + $pajak; // Menambahkan pajak ke total belanja
 @endphp
-<div class="container-fluid text-center bg-sage p-4 text-white">
+<div class="container-fluid p-5" style="background-color: #e6c7ab;">
     <h1 class="fs-1 fw-bold"><i class="bi bi-cart"></i> Keranjang Belanja Saya</h1>
 </div>
 <div class="container">
