@@ -3,6 +3,7 @@
 @section('title', 'Welcome to Furniture Max')
 
 @section('css-style')
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('assets/css/page/welcome.css') }}">
 @endsection
 
@@ -73,10 +74,7 @@
                         ?>
                         <p class="price">Rp {{ $ganti_format_harga }}</p>
                         <span>{{ $item->kategori->nama }}</span> <br>
-                        <form action="{{ route('add.to.cart', ['id' => $item->id]) }}" method="POST" class="my-2">
-                            @csrf
-                            <button type="submit" class="btn btn-primary"><i class="bi bi-cart"></i> Add to Cart</button>
-                        </form>
+                        <a onclick="confirmCart(this)" data-url="{{ route('add.to.cart', ['id' => $item->id]) }}" class="btn btn-success" role="button"><i class="bi bi-cart"></i> Add to Cart</a>
                     </div>
                 @endforeach
                 {{-- <div class="product-card">
@@ -165,3 +163,21 @@
 @section('about-us', true)
 @section('kontak', true)
 @section('footer', true)
+@section('js-scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    confirmCart = function(button) {
+            var url = $(button).data('url');
+            swal({
+                'title': 'Tambah Barang',
+                'text': 'Apakah Kamu Yakin Ingin Menambah Barang Ini?',
+                'buttons': true
+            }).then(function(value) {
+                if (value) {
+                    window.location = url;
+                }
+            })
+        }
+</script>
+@endsection

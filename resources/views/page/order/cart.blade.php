@@ -48,7 +48,7 @@
                     @php $total += $details['harga'] * $details['quantity'] @endphp
             <div class="d-flex justify-content-between align-items-center py-2" data-id="{{ $id }}">
                 <div class="w-100">
-                    <img src="{{ $details['gambar'] }}" class="img-fluid product-image" alt="Gambar Produk">
+                    <img src="{{ asset('storage/gambar/barang/'.$details['gambar']) }}" class="img-fluid product-image" alt="Gambar Produk">
                 </div>
                 <div class="text-center w-100">
                     Rp. {{ number_format($details['harga'], 0, ',', '.') }}
@@ -112,19 +112,19 @@
 
                         <div class="mb-3">
                             <label for="nama" class="form-label">Nama Pembeli:</label>
-                            <input type="text" class="form-control" name="nama" id="nama" required>
+                            <input type="text" class="form-control border rounded" name="nama" id="nama" @if(session('cart') == null) disabled placeholder="Tidak dapat mengisi form, keranjang anda kosong" @endif required>
                         </div>
                         <div class="mb-3">
                             <label for="alamat" class="form-label">Alamat:</label>
-                            <textarea class="form-control" name="alamat" id="alamat" rows="3" required></textarea>
+                            <textarea  class="form-control border rounded" name="alamat" id="alamat" rows="3" @if(session('cart') == null) disabled placeholder="Tidak dapat mengisi form, keranjang anda kosong" @endif required></textarea>
                         </div>
                         <div class="mb-3">
                             <label for="nomor_hp" class="form-label">Nomor HP:</label>
-                            <input type="text" class="form-control" name="nomor_hp" id="nomor_hp" required>
+                            <input type="text"  class="form-control border rounded" name="nomor_hp" id="nomor_hp" @if(session('cart') == null) disabled placeholder="Tidak dapat mengisi form, keranjang anda kosong" @endif required>
                         </div>
                         <div class="mb-3">
                             <label for="pengiriman" class="form-label">Pengiriman:</label>
-                            <select class="form-select" name="pengiriman" id="pengiriman" required>
+                            <select class="form-select border rounded" name="pengiriman" id="pengiriman" @if(session('cart') == null) disabled @endif required>
                                 <option selected disabled>Pilih Pengiriman</option>
                                 <option value="ninja-express">Ninja Express</option>
                                 <option value="jnt-cargo">JNT Cargo</option>
@@ -132,7 +132,7 @@
                             </select>
                         </div>
 
-                        <button type="submit" class="btn bg-sage text-white w-100">Checkout</button>
+                        <button type="submit" class="btn bg-sage text-white w-100" @if(session('cart') == null) disabled @endif>Checkout</button>
                     </form>
                 </div>  
             </div>

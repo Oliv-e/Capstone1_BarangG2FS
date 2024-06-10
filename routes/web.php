@@ -77,7 +77,7 @@ Route::middleware('is_superadmin')->group(function () {
     Route::get('/dashboard/kategori/delete/{id}', [KategoriController::class, 'destroy'])->name('kategori.destroy');
 });
 Route::get('cart', [ViewController::class, 'cart'])->name('cart');
-Route::post('add-to-cart/{id}', [ViewController::class, 'addToCart'])->name('add.to.cart');
+Route::get('add-to-cart/{id}', [ViewController::class, 'addToCart'])->name('add.to.cart');
 
 Route::patch('update-cart', [ViewController::class, 'update'])->name('update.cart');
 Route::delete('remove-from-cart', [ViewController::class, 'remove'])->name('remove.from.cart');

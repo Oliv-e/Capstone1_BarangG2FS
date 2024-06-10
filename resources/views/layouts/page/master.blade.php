@@ -18,7 +18,7 @@
     @endif
 </head>
 <body>
-    @if (session('success'))
+    {{-- @if (session('success'))
         <div class="alert alert-success text-white">
             {{ session('success') }}
         </div>
@@ -26,7 +26,7 @@
         <div class="alert alert-danger text-white">
             {{ session('error') }}
         </div>
-    @endif
+    @endif --}}
 
     @include('components.page.navbar')
     @yield('content')
