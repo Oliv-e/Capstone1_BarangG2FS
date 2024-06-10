@@ -11,24 +11,24 @@
 }
 
 .hero-text h1 {
-    font-size: 3rem;
+    font-size: 100px;
     color: #B17330;
     margin-bottom: 1rem;
 }
 
 .hero-text p {
     margin: 1rem 0;
-    font-size: 18px;
+    font-size: 25px;
     margin-bottom: 2rem;
+    text-align: justify;
 }
 
 .shop-now-btn {
     padding: 0.75rem 1.5rem;
-    background-color: #7C8046;
     color: white;
     border: none;
     cursor: pointer;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 .hero-image img {

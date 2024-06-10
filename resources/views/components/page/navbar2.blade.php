@@ -31,7 +31,7 @@
               <div class="text-uppercase">{{Auth::user()->nama}}</div>
             </div>
           @else
-            <div class="d-none d-md-flex gap-2 border rounded p-2 btn btn-outline-sage">
+            <div class="d-none d-md-flex gap-2 border rounded p-2 btn btn-outline-coklat-gelap">
               <i class="bi bi-box-arrow-in-right"></i>
               <a href="{{route('login')}}" class="text-decoration-none text-uppercase">Login</a>
             </div>
@@ -55,19 +55,19 @@
       <!-- Left elements -->
       <div class="w-full d-flex align-items-center my-lg-0">
 
-        <a class="btn {{ Request::routeIs('home') ? 'btn-sage' : 'btn-outline-sage'}} fw-bold text-uppercase me-1" href="{{route('home')}}">
+        <a class="btn {{ Request::routeIs('home') ? 'btn-coklat-gelap' : 'btn-outline-coklat-gelap'}} fw-bold text-uppercase me-1" href="{{route('home')}}">
           <i class="bi bi-house me-2 d-none d-sm-inline-block"></i>Home
         </a>
-        <a class="btn {{ Request::routeIs('list-produk') ? 'btn-sage' : 'btn-outline-sage'}} fw-bold text-uppercase me-1" href="{{route('list-produk')}}">
+        <a class="btn {{ Request::routeIs('list-produk') ? 'btn-coklat-gelap' : 'btn-outline-coklat-gelap'}} fw-bold text-uppercase me-1" href="{{route('list-produk')}}">
           <i class="bi bi-box me-2 d-none d-sm-inline-block"></i>Produk
         </a>
-        <a class="btn {{ Request::routeIs('list-promo') ? 'btn-sage' : 'btn-outline-sage'}} fw-bold text-uppercase me-1" href="{{route('list-promo')}}">
+        <a class="btn {{ Request::routeIs('list-promo') ? 'btn-coklat-gelap' : 'btn-outline-coklat-gelap'}} fw-bold text-uppercase me-1" href="{{route('list-promo')}}">
           <i class="bi bi-percent me-2 d-none d-sm-inline-block"></i>Promo
         </a>
-        <a class="btn {{ Request::routeIs('about-us') ? 'btn-sage' : 'btn-outline-sage'}} fw-bold text-uppercase me-1" href="#">
+        <a class="btn {{ Request::routeIs('about-us') ? 'btn-coklat-gelap' : 'btn-outline-coklat-gelap'}} fw-bold text-uppercase me-1" href="#">
           <i class="bi bi-info-circle-fill me-2 d-none d-sm-inline-block"></i>Tentang
         </a>
-        <a class="btn {{ Request::routeIs('kontak') ? 'btn-sage' : 'btn-outline-sage'}} fw-bold text-uppercase me-1" href="#">
+        <a class="btn {{ Request::routeIs('kontak') ? 'btn-coklat-gelap' : 'btn-outline-coklat-gelap'}} fw-bold text-uppercase me-1" href="#">
           <i class="bi bi-person-lines-fill me-2 d-none d-sm-inline-block"></i>Kontak
         </a>
 
@@ -82,14 +82,14 @@
       @if(Auth::check())
         <div class="d-flex gap-2 me-1 mt-0 mt-md-2 mt-lg-0">
           @if(Auth::user()->role == 'admin' || Auth::user()->role == 'super-admin')
-            <a class="btn btn-sage d-flex align-items-center" href="{{route('dashboard')}}">
+            <a class="btn btn-coklat-gelap d-flex align-items-center" href="{{route('dashboard')}}">
               <i class="bi bi-grid me-1"></i>Dashboard
             </a>
           @else
-            <a class="btn btn-sage d-flex align-items-center" href="#">
+            <a class="btn btn-coklat-gelap d-flex align-items-center" href="#">
               <i class="bi bi-clipboard me-1"></i>Data Pribadi
             </a>
-            <a class="btn btn-sage d-flex align-items-center" href="{{route('cart')}}">
+            <a class="btn btn-coklat-gelap d-flex align-items-center" href="{{route('cart')}}">
               <i class="bi bi-cart me-1"></i>Keranjang Saya
             </a>
           @endif
