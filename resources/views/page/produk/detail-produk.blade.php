@@ -50,14 +50,16 @@
                     @csrf
                     <div class="mb-3">
                         <label for="rating" class="form-label">Rating</label>
-                        <select class="form-control" id="rating" name="rating" required>
-                            <option value="1">1 - Sangat Buruk</option>
-                            <option value="2">2 - Buruk</option>
-                            <option value="3">3 - Biasa</option>
-                            <option value="4">4 - Baik</option>
-                            <option value="5">5 - Sangat Baik</option>
-                        </select>
+                        <div class="rating" id="rating">
+                            <i class="bi bi-star" data-value="1"></i>
+                            <i class="bi bi-star" data-value="2"></i>
+                            <i class="bi bi-star" data-value="3"></i>
+                            <i class="bi bi-star" data-value="4"></i>
+                            <i class="bi bi-star" data-value="5"></i>
+                        </div>
+                        <input type="hidden" name="rating" id="rating-value" required>
                     </div>
+
                     <div class="mb-3">
                         <label for="komentar" class="form-label">Komentar</label>
                         <textarea class="form-control" id="komentar" name="komentar" rows="3" required></textarea>
@@ -96,9 +98,40 @@
                     <h1>Komentar tidak ditemukan</h1>
                 </div>
             @endisset
-            
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                const stars = document.querySelectorAll('.rating i');
+                const ratingValue = document.getElementById('rating-value');
+
+                stars.forEach(star => {
+                    star.addEventListener('click', function() {
+                        ratingValue.value = this.getAttribute('data-value');
+                        updateStars(this.getAttribute('data-value'));
+                    });
+
+                    star.addEventListener('mouseover', function() {
+                        updateStars(this.getAttribute('data-value'), 'hovered');
+                    });
+
+                    star.addEventListener('mouseout', function() {
+                        updateStars(ratingValue.value);
+                    });
+                });
+
+                function updateStars(value, state = 'selected') {
+                    stars.forEach(star => {
+                        star.classList.remove('selected', 'hovered');
+                        if (star.getAttribute('data-value') <= value) {
+                            star.classList.add(state);
+                        }
+                    });
+                }
+            });
+            </script>
         </div>
+        
     </div>
+    
 @endsection
 
 @section('footer', true)
