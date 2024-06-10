@@ -8,154 +8,87 @@
 @endsection
 
 @section('content')
-    <section id="home" class="hero-section">
-        <div class="hero-text">
-            <h1 class="font-title">Furniture Max</h1>
-            <p>Deskripsi singkat tentang website Furniture Max yang menawarkan berbagai macam furniture berkualitas tinggi
-                dengan harga terjangkau.</p>
-            <a class="btn btn-coklat-gelap shop-now-btn" onclick="window.location.href='/list-produk'">Belanja Sekarang</a>
-        </div>
-        <div class="hero-image">
-            <img src="{{ asset('assets/img/produk/sofa header.png') }}" alt="Produk">
-        </div>
-    </section>
-
-    <section id="promo" class="promo-section">
-        <h2 class="font-romman">Promo</h2>
-        <div class="promo-products">
-            @forelse ($promoItems as $promoItem)
-                @foreach ($promoItem->promoBarang as $items)
-                    <div class="product-card">
-                        <img src="{{ asset('storage/gambar/barang/' . $items->gambar) }}" alt="Living Room Sofa"
-                            class="product-image">
-                        <h3>{{ $items->nama }}</h3>
-                        <p class="normal-price">Rp {{ number_format($items->harga, 0, ',', '.') }}</p>
-                        @if ($harga_promo = $items->harga - $promoItem->pengurangan_harga)
-                            <p class="promo-price">Rp {{ number_format($harga_promo, 0, ',', '.') }}</p>
-                        @endif
-                        <button class="add-to-cart-btn"><i class="bi bi-cart"></i></button>
-                        <button class="buy-btn"><i class="bi bi-bag"></i></button>
-                    </div>
-                @endforeach
-            @empty
-                <p>Tidak ada barang promo saat ini.</p>
-            @endforelse
-        </div>
-
-        <div class="more-products">
-            <a href="/promo" class="more-products-btn">Lihat Promo Selengkapnya</a>
+    {{-- Section Home --}}
+    <section id="home" class="container-fluid bg-coklat py-5">
+        <div class="container d-flex flex-column-reverse flex-md-row justify-content-center align-items-center mx-auto">
+            <div class="w-100 w-md-50">
+                <h1 class="fw-bold brand-title text-coklat-gelap text-center text-md-start">Furniture Max</h1>
+                <p class="brand-description">Deskripsi singkat tentang website Furniture Max yang menawarkan berbagai macam furniture berkualitas tinggi dengan harga terjangkau.</p>
+                <a href="{{route('list-produk')}}" class="btn btn-coklat-gelap">Lihat Furniture Kami</a>
+            </div>
+            <div class="w-100 w-md-50">
+                <img src="{{ asset('assets/img/produk/sofa header.png') }}" alt="Produk" class="img-fluid">
+            </div>
         </div>
     </section>
 
+    {{-- Section Promo --}}
+    @if($promoItems->count() > 0)
+        <section id="promo" class="container-fluid text-center text-coklat-gelap">
+            <h2 class="brand-title py-5"><i class="bi bi-percent"></i> Promo</h2>
+            <div class="promo-products">
+                @forelse ($promoItems as $promoItem)
+                    @foreach ($promoItem->promoBarang as $items)
+                        <div class="product-card">
+                            <img src="{{ asset('storage/gambar/barang/' . $items->gambar) }}" alt="Living Room Sofa"
+                                class="product-image">
+                            <h3>{{ $items->nama }}</h3>
+                            <p class="normal-price">Rp {{ number_format($items->harga, 0, ',', '.') }}</p>
+                            @if ($harga_promo = $items->harga - $promoItem->pengurangan_harga)
+                                <p class="promo-price">Rp {{ number_format($harga_promo, 0, ',', '.') }}</p>
+                            @endif
+                            <button class="add-to-cart-btn"><i class="bi bi-cart"></i></button>
+                            <button class="buy-btn"><i class="bi bi-bag"></i></button>
+                        </div>
+                    @endforeach
+                @empty
+                    <p>Tidak ada promo saat ini.</p>
+                @endforelse
+            </div>
 
-    <section id="katalog" class="katalog-section">
-        <h2 class="font-romman pb-8">Katalog Produk</h2>
+            <div class="more-products">
+                <a href="/promo" class="btn btn-outline-coklat-gelap">Lihat Promo Selengkapnya</a>
+            </div>
+        </section>
+    @else
+    <h2 class="brand-title text-coklat-gelap text-center bg-coklat p-5">Tidak Ada Promo Yang Tersedia</h2>
+    @endif
+
+    {{-- Section Produk --}}
+    <section id="produk" class="container-fluid text-center text-coklat-gelap py-5">
+        <h2 class="brand-title py-5"><i class="bi bi-box2"></i> Produk</h2>
         <div class="category-links">
-            <a href="#katalog" class="category-link" onclick="showCategory('ruang-tamu', this)">Ruang Tamu</a>
-            <a href="#katalog" class="category-link" onclick="showCategory('kamar-mandi', this)">Kamar Mandi</a>
-            <a href="#katalog" class="category-link" onclick="showCategory('kamar-tidur', this)">Kamar Tidur</a>
+            @foreach ($kategori as $item)
+            <a class="btn btn-outline-coklat-gelap" onclick="showCategory({{$item->id}})">{{$item->nama}}</a>
+            @endforeach
         </div>
-        <div id="ruang-tamu" class="category">
-            <h3>Produk Ruang Tamu</h3>
-            <div class="product-category">
-                @foreach ($barang as $item)
-                    <div class="product-card">
-                        <img src="{{ asset('storage/gambar/barang/' . $item->gambar) }}" alt="Living Room Sofa"
-                            class="product-image">
-                        <h3>{{ $item->nama }}</h3>
-                        {{-- format harga dari xxxxxxx to x.xxx.xxx --}}
-                        <?php
-                        $harga = (string) $item->harga;
-                        $harga = strrev($harga);
-                        $arr = str_split($harga, '3');
-                        
-                        $ganti_format_harga = implode('.', $arr);
-                        $ganti_format_harga = strrev($ganti_format_harga);
-                        ?>
-                        <p class="price">Rp {{ $ganti_format_harga }}</p>
-                        <span>{{ $item->kategori->nama }}</span> <br>
-                        <a onclick="confirmCart(this)" data-url="{{ route('add.to.cart', ['id' => $item->id]) }}" class="btn btn-success" role="button"><i class="bi bi-cart"></i> Add to Cart</a>
-                    </div>
-                @endforeach
-                {{-- <div class="product-card">
-                    <img src="{{ asset('assets/img/produk/sofa ruang tamu.png') }}" alt="Living Room Sofa" class="product-image">
-                    <h3>Sofa Ruang Tamu</h3>
-                    <p class="price">Rp 1.200.000</p>
-                    <button class="add-to-cart-btn"><i class="bi bi-cart"></i></button>
-                <button class="buy-btn"><i class="bi bi-bag"></i></button>
-                </div>
-                <div class="product-card">
-                    <img src="{{ asset('assets/img/produk/meja kopi.png') }}" alt="Coffee Table" class="product-image">
-                    <h3>Meja Kopi</h3>
-                    <p class="price">Rp 600.000</p>
-                    <button class="add-to-cart-btn"><i class="bi bi-cart"></i></button>
-                <button class="buy-btn"><i class="bi bi-bag"></i></button>
-                </div>
-                <div class="product-card">
-                    <img src="{{ asset('assets/img/produk/dudukan tv.png') }}" alt="TV Stand" class="product-image">
-                    <h3>Dudukan TV</h3>
-                    <p class="price">Rp 800.000</p>
-                    <button class="add-to-cart-btn"><i class="bi bi-cart"></i></button>
-                <button class="buy-btn"><i class="bi bi-bag"></i></button>
-                </div> --}}
-            </div>
-        </div>
-        <div id="kamar-mandi" class="category" style="display: none;">
-            <h3>Produk Kamar Mandi</h3>
-            <div class="product-category">
-                <div class="product-card">
-                    <img src="{{ asset('assets/img/produk/Lemari_Kamar_Mandi.png') }}" alt="Bathroom Cabinet"
-                        class="product-image">
-                    <h3>Lemari Kamar Mandi</h3>
-                    <p class="price">Rp 300.000</p>
-                    <button class="add-to-cart-btn"><i class="bi bi-cart"></i></button>
-                    <button class="buy-btn"><i class="bi bi-bag"></i></button>
-                </div>
-                <div class="product-card">
-                    <img src="{{ asset('assets/img/produk/Tirai Mandi.png') }}" alt="Shower Curtain" class="product-image">
-                    <h3>Tirai Mandi</h3>
-                    <p class="price">Rp 150.000</p>
-                    <button class="add-to-cart-btn"><i class="bi bi-cart"></i></button>
-                    <button class="buy-btn"><i class="bi bi-bag"></i></button>
-                </div>
-                <div class="product-card">
-                    <img src="{{ asset('assets/img/produk/Handuk.png') }}" alt="Towel Set" class="product-image">
-                    <h3>Handuk</h3>
-                    <p class="price">Rp 100.000</p>
-                    <button class="add-to-cart-btn"><i class="bi bi-cart"></i></button>
-                    <button class="buy-btn"><i class="bi bi-bag"></i></button>
+        @foreach ($kategoris as $kategori)
+            <div class="category" id="kategori-{{$kategori->id}}">
+                <h3>Kategori {{$kategori->nama}}</h3>
+                <div class="product-category">
+                    @foreach ($kategori->barang as $barang)
+                        <div class="product-card">
+                            <img src="{{ asset('storage/gambar/barang/' . $barang->gambar) }}" alt="Living Room Sofa" class="product-image">
+                            <h3>{{ $barang->nama }}</h3>
+                            {{-- format harga dari xxxxxxx to x.xxx.xxx --}}
+                            <?php
+                                $harga = (string) $barang->harga;
+                                $harga = strrev($harga);
+                                $arr = str_split($harga, '3');
+                                
+                                $ganti_format_harga = implode('.', $arr);
+                                $ganti_format_harga = strrev($ganti_format_harga);
+                            ?>
+                            <p class="price">Rp {{ $ganti_format_harga }}</p>
+                            <span>{{ $barang->kategori->nama }}</span> <br>
+                            <a onclick="confirmCart(this)" data-url="{{ route('add.to.cart', ['id' => $barang->id]) }}" class="btn btn-coklat-gelap my-3" role="button"><i class="bi bi-cart"></i> Add to Cart</a>
+                        </div>
+                    @endforeach
                 </div>
             </div>
-        </div>
-        <div id="kamar-tidur" class="category" style="display: none;">
-            <h3>Produk Kamar Tidur</h3>
-            <div class="product-category">
-                <div class="product-card">
-                    <img src="{{ asset('assets/img/produk/Kasur Tidur.png') }}" alt="Bedroom Bed" class="product-image">
-                    <h3>Kasur Tidur</h3>
-                    <p class="price">Rp 2.000.000</p>
-                    <button class="add-to-cart-btn"><i class="bi bi-cart"></i></button>
-                    <button class="buy-btn"><i class="bi bi-bag"></i></button>
-                </div>
-                <div class="product-card">
-                    <img src="{{ asset('assets/img/produk/Lemari Pakaian.png') }}" alt="Wardrobe" class="product-image">
-                    <h3>Lemari Pakaian</h3>
-                    <p class="price">Rp 1.500.000</p>
-                    <button class="add-to-cart-btn"><i class="bi bi-cart"></i></button>
-                    <button class="buy-btn"><i class="bi bi-bag"></i></button>
-                </div>
-                <div class="product-card">
-                    <img src="{{ asset('assets/img/produk/Meja Tempat Tidur.png') }}" alt="Nightstand"
-                        class="product-image">
-                    <h3>Meja Tempat Tidur</h3>
-                    <p class="price">Rp 500.000</p>
-                    <button class="add-to-cart-btn"><i class="bi bi-cart"></i></button>
-                    <button class="buy-btn"><i class="bi bi-bag"></i></button>
-                </div>
-            </div>
-        </div>
-        <div class="more-products">
-            <a href="/list-produk" class="more-products-btn">Lihat Produk Selengkapnya</a>
+        @endforeach
+        <div>
+            <a href="{{route('list-produk')}}" class="btn btn-outline-coklat-gelap">Lihat Produk Selengkapnya</a>
         </div>
     </section>
 
@@ -168,16 +101,27 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     confirmCart = function(button) {
-            var url = $(button).data('url');
-            swal({
-                'title': 'Tambah Barang',
-                'text': 'Apakah Kamu Yakin Ingin Menambah Barang Ini?',
-                'buttons': true
-            }).then(function(value) {
-                if (value) {
-                    window.location = url;
-                }
-            })
-        }
+        var url = $(button).data('url');
+        swal({
+            'title': 'Tambah Barang',
+            'text': 'Apakah Kamu Yakin Ingin Menambah Barang Ini?',
+            'buttons': true
+        }).then(function(value) {
+            if (value) {
+                window.location = url;
+            }
+        })
+    }
+    document.addEventListener("DOMContentLoaded", function() {
+        showCategory(1);
+    });
+    function showCategory(id) {
+        const kategoris = document.querySelectorAll('.category');
+        kategoris.forEach((kategori) => {
+            kategori.style.display = 'none';
+        });
+        const selectedKategori = document.getElementById('kategori-' + id);
+        selectedKategori.style.display = 'block';
+    }
 </script>
 @endsection

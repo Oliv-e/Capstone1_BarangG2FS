@@ -11,21 +11,34 @@
                 referrerpolicy="no-referrer-when-downgrade"
             ></iframe>
         </div>
-    <div class="kontak-content">
-        <div class="kontak-item">
-            <h3><i class="bi bi-geo-alt"></i> Alamat</h3>
-            <p>Jl. Raya Menganti Karangan No.578,<br> Babatan, Kec. Wiyung, Surabaya,<br> Jawa Timur 60227</p>
+    
+</section>
+<footer class="container-fluid bg-coklat-gelap text-white pt-5">
+    <div class="row">
+        <div class="col-4 d-flex flex-column align-items-center justify-content-center">
+            <div>
+                <h3><i class="bi bi-geo-alt"></i> Alamat</h3>
+                <p>Jl. Raya Menganti Karangan No.578,<br> Babatan, Kec. Wiyung, Surabaya,<br> Jawa Timur 60227</p>
+            </div>
         </div>
-        <div class="kontak-item">
-            <h3><i class="bi bi-telephone"></i> Kontak</h3>
-            <p><i class="bi bi-phone"></i> 08123456789</p>
-            <p><i class="bi bi-envelope"></i> furnituremax@gmail.com</p>
+        <div class="col-4 d-flex flex-column align-items-center justify-content-center">
+            <div>
+                <h3><i class="bi bi-telephone"></i> Kontak</h3>
+                <p><i class="bi bi-phone"></i> 08123456789</p>
+                <p><i class="bi bi-envelope"></i> furnituremax@gmail.com</p>
+            </div>
         </div>
-        <div class="kontak-item">
-            <h3><i class="bi bi-share"></i> Sosial Media</h3>
-            <p><i class="bi bi-instagram instagram-icon"></i> FurnitureMax</p>
-            <p><i class="bi bi-facebook facebook-icon"></i> FurnitureMax</p>
-            <p><i class="bi bi-tiktok tiktok-icon"></i> FurnitureMax</p>
+        <div class="col-4 d-flex flex-column align-items-center justify-content-center">
+            <div>
+                <h3><i class="bi bi-share"></i> Sosial Media</h3>
+                <p><i class="bi bi-instagram instagram-icon"></i> FurnitureMax</p>
+                <p><i class="bi bi-facebook facebook-icon"></i> FurnitureMax</p>
+                <p><i class="bi bi-tiktok tiktok-icon"></i> FurnitureMax</p>
+            </div>
         </div>
     </div>
-</section>
+    <div class="container py-4">
+        <hr>
+        © Copyright FurnitureMax. All Rights Reserved
+    </div>
+</footer>

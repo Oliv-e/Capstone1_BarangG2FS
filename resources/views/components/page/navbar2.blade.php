@@ -59,7 +59,7 @@
           <i class="bi bi-house me-2 d-none d-sm-inline-block"></i>Home
         </a>
         <a class="btn {{ Request::routeIs('list-produk') ? 'btn-coklat-gelap' : 'btn-outline-coklat-gelap'}} fw-bold text-uppercase me-1" href="{{route('list-produk')}}">
-          <i class="bi bi-box me-2 d-none d-sm-inline-block"></i>Produk
+          <i class="bi bi-box2 me-2 d-none d-sm-inline-block"></i>Produk
         </a>
         <a class="btn {{ Request::routeIs('list-promo') ? 'btn-coklat-gelap' : 'btn-outline-coklat-gelap'}} fw-bold text-uppercase me-1" href="{{route('list-promo')}}">
           <i class="bi bi-percent me-2 d-none d-sm-inline-block"></i>Promo

@@ -25,7 +25,9 @@ class ViewController extends Controller
         // limiter display
         // $barang = Barang::all()->take(1);
         $barang = Barang::limit(10)->get();
-        return view('welcome', compact('barang','promoItems'));
+        $kategori = Kategori::all();
+        $kategoris = Kategori::with('barang')->get();
+        return view('welcome', compact('barang','promoItems','kategori','kategoris'));
     }
 
     public function promo() {
