@@ -1,130 +1,129 @@
-@vite(['resources/css/app.css', 'resources/js/app.js'])
-<link rel="stylesheet" href="{{ asset('assets/css/components/navbar.css')}}">
-<div class="flex justify-between items-center px-4 bg-white border-b-4 border-sage" id="navbar">
-    <div class="flex items-center gap-2">
-        <a href="{{route('home')}}">
-            <img src="{{ asset('assets/img/LOGOFM2.png')}}" alt="logo" class="py-2" width="200px">
-        </a>
-    </div>
-    <i class="bi bi-list text-sage" style="font-size: 50px" id="list-responsive"></i>
-    <ul class="flex gap-4 items-center" id="desktop-menu">
-        <li><a href="#home" class="text-sage active">Home</a></li>
-        <li><a href="#promo" class="text-sage">Promo</a></li>
-        <li><a href="#katalog" class="text-sage">Produk</a></li>
-        <li><a href="#tentang" class="text-sage">Tentang</a></li>
-        <li><a href="#kontak" class="text-sage">Kontak</a></li>
-    </ul>
-    <div class="flex items-center" id="desktop-menu">
-        @if(Auth::check())
-            <button class="bg-sage py-2 px-4 text-white rounded-md" id="userDropdown">
-                <i class="bi bi-person-fill"></i> {{Auth::user()->nama}} <i class="bi bi-caret-down-fill"></i>
-            </button>
-            <ul class="absolute hidden bg-sage text-black rounded-md shadow-lg" id="userDropdownMenu" style="margin-top: 12rem">
-                <li class="text-center capitalize text-white p-2">
-                    @if (Auth::user()->role == "admin" || Auth::user()->role == "super-admin")
-                        <div class="py-2">
-                            <a href="{{route('dashboard')}}" class="text-white capitalize text-center w-full">
-                                <i class="bi bi-grid-1x2-fill"></i> Dashboard
-                            </a>
-                        </div>
-                        <hr class="border border-white">
-                    @endif
-                    <div class="py-2">
-                        <a href="{{route('cart')}}" class="text-white mx-auto capitalize text-center w-full"><i class="bi bi-cart"></i> Keranjang</a>
-                    </div>
-                    <hr class="border border-white">
-                    <form action="{{route('logout')}}" method="POST">
-                        @csrf
-                        <button type="submit" class="py-2 bg-red-500 text-white rounded-md hover:bg-red-600">
-                            <i class="bi bi-box-arrow-in-left"></i> Logout
-                        </button>
-                    </form>
-                </li>
-            </ul>
-        @else
-            <form action="{{route('login')}}">
-                <button class="bg-sage py-2 px-4 text-white rounded-md">
-                    <i class="bi bi-box-arrow-in-right"></i> Login
-                </button>
-            </form>
-        @endif
-    </div>
-</div>
-<div class="hidden bg-white" id="mobile-menu">
-    <div class="flex flex-col gap-1 items-center bg-white" style="margin-top: 0.59rem">
-        <a href="#home" class="w-full text-center text-white uppercase bg-sage p-5">Home</a>
-        <a href="#promo" class="w-full text-center text-white uppercase bg-sage p-5">Promo</a>
-        <a href="#katalog" class="w-full text-center text-white uppercase bg-sage p-5">Kategori</a>
-        <a href="#tentang" class="w-full text-center text-white uppercase bg-sage p-5">Tentang</a>
-        <a href="#kontak" class="w-full text-center text-white uppercase bg-sage p-5">Kontak</a>
-        <div class="flex flex-col gap-1 w-full">
-            @if (Auth::check())
-            <p class="w-full uppercase p-5"><i class="bi bi-person-fill"></i> {{Auth::user()->nama}}</p>
-            @if (Auth::user()->role == "admin" || Auth::user()->role == "super-admin")
-                <div class="p-5 bg-sage text-center">
-                    <a href="{{route('dashboard')}}" class="text-white mx-auto capitalize text-center w-full"><i class="bi bi-grid-1x2-fill"></i> Dashboard</a>
-                </div>
-            @endif
-            <form action="{{route('logout')}}" method="POST" class="p-5 bg-sage w-full">
-            @csrf
-                <button type="submit" class="text-white capitalize text-center w-full"><i class="bi bi-box-arrow-in-left"></i> Logout</button>
-            </form>
-        @endif
+<link rel="stylesheet" href="{{asset('assets/css/components/navbar.css')}}">
+<!--Main Navigation-->
+<header class="sticky-top border border-bottom-2">
+  <!-- Jumbotron -->
+  <div class="p-3 text-center bg-white border-bottom">
+    <div class="container-fluid">
+      <div class="row align-items-center justify-content-between">
+        <!-- Left elements -->
+        <div class="col-5 justify-content-start align-items-center d-flex">
+          <a href="/" class="ms-md-2">
+            <img src="{{asset('assets/img/LOGOFM2.png')}}" height="35" />
+          </a>
         </div>
+        <!-- Left elements -->
+
+        <!-- Center elements -->
+        <div class="col-2 d-none d-lg-block">
+
+        </div>
+        <!-- Center elements -->
+
+        <!-- Right elements -->
+        <div class="col-5 d-flex justify-content-end gap-4 align-items-center">
+          <form class="d-none d-md-flex input-group w-auto mb-3 mb-md-0">
+            <input autocomplete="off" type="search" class="form-control rounded" placeholder="Cari Barang [ Ctrl + / ]" />
+            <span class="input-group-text border-0 d-none d-lg-flex"><i class="bi bi-search"></i></span>
+          </form>
+          @if (Auth::check())
+            <div class="d-none d-md-flex gap-2 flex-column flex-lg-row align-items-center">
+              <i class="bi bi-person-fill d-none d-lg-block"></i>
+              <div class="text-uppercase">{{Auth::user()->nama}}</div>
+            </div>
+          @else
+            <div class="d-none d-md-flex gap-2 p-2 btn btn-outline-coklat-gelap">
+              <i class="bi bi-box-arrow-in-right"></i>
+              <a href="{{route('login')}}" class="text-decoration-none text-uppercase">Login</a>
+            </div>
+          @endif
+            <div class="d-flex d-md-none">
+              <a id="ganti-icon-a">
+                <i class="bi bi-list fs-2 text-dark" id="icon-a"></i>
+              </a>
+            </div>
+        </div>
+        <!-- Right elements -->
+      </div>
     </div>
-</div>
-<script>
-    $(document).ready(function() {
-        
-        @if(Auth::check())
-            var button = document.getElementById('userDropdown');
-            var dropdownMenu = document.getElementById('userDropdownMenu');
-            dropdownMenu.style.width = button.offsetWidth + 'px';
+  </div>
+  <!-- Jumbotron -->
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white d-none d-md-block" id="toggle-nav">
+    <!-- Container wrapper -->
+    <div class="container-fluid flex-column flex-lg-row justify-content-center align-items-end align-items-lg-center w-full justify-content-lg-between">
+      <!-- Left elements -->
+      <div class="w-full d-flex align-items-center my-lg-0">
+
+        <a class="btn {{ Request::routeIs('home') ? 'btn-coklat-gelap' : 'btn-outline-coklat-gelap'}} fw-bold text-uppercase me-1" href="{{route('home')}}">
+          <i class="bi bi-house me-2 d-none d-sm-inline-block"></i>Home
+        </a>
+        <a class="btn {{ Request::routeIs('list-produk') ? 'btn-coklat-gelap' : 'btn-outline-coklat-gelap'}} fw-bold text-uppercase me-1" href="{{route('list-produk')}}">
+          <i class="bi bi-box2 me-2 d-none d-sm-inline-block"></i>Produk
+        </a>
+        <a class="btn {{ Request::routeIs('list-promo') ? 'btn-coklat-gelap' : 'btn-outline-coklat-gelap'}} fw-bold text-uppercase me-1" href="{{route('list-promo')}}">
+          <i class="bi bi-percent me-2 d-none d-sm-inline-block"></i>Promo
+        </a>
+        <a class="btn {{ Request::routeIs('about-us') ? 'btn-coklat-gelap' : 'btn-outline-coklat-gelap'}} fw-bold text-uppercase me-1" href="#">
+          <i class="bi bi-info-circle-fill me-2 d-none d-sm-inline-block"></i>Tentang
+        </a>
+        <a class="btn {{ Request::routeIs('kontak') ? 'btn-coklat-gelap' : 'btn-outline-coklat-gelap'}} fw-bold text-uppercase me-1" href="#">
+          <i class="bi bi-person-lines-fill me-2 d-none d-sm-inline-block"></i>Kontak
+        </a>
+
+      </div>
+      <!-- Left elements -->
+      <div class="d-flex d-md-none my-2 text-uppercase">
+        @if (Auth::check())
+          <i class="bi bi-person-fill me-2"></i>{{Auth::user()->nama}}
         @endif
+      </div>
+      <!-- Right elements -->
+      @if(Auth::check())
+        <div class="d-flex gap-2 me-1 mt-0 mt-md-2 mt-lg-0">
+          @if(Auth::user()->role == 'admin' || Auth::user()->role == 'super-admin')
+            <a class="btn btn-coklat-gelap d-flex align-items-center" href="{{route('dashboard')}}">
+              <i class="bi bi-grid me-1"></i>Dashboard
+            </a>
+          @else
+            <a class="btn btn-coklat-gelap d-flex align-items-center" href="#">
+              <i class="bi bi-clipboard me-1"></i>Data Pribadi
+            </a>
+            <a class="btn btn-coklat-gelap d-flex align-items-center" href="{{route('cart')}}">
+              <i class="bi bi-cart me-1"></i>Keranjang Saya
+            </a>
+          @endif
+          <form action="{{route('logout')}}" method="POST">
+            @csrf
+            <button type="submit" class="btn btn-outline-danger d-flex align-items-center">
+              <i class="bi bi-box-arrow-left me-2 fs-5"></i>Keluar
+            </button>
+          </form>
+        </div>
+      @else
+        <div class="me-1">
+          Silahkan Login Terlebih Dahulu
+        </div>
+      @endif
+      <!-- Right elements -->
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
+</header>
+<script>
+  document.addEventListener('keydown', function(event) {
+    if (event.ctrlKey && event.key === '/') {
+      event.preventDefault();
+      document.querySelector('input[type="search"]').focus();
+    }
+  });
+  document.getElementById('ganti-icon-a').addEventListener('click', () => {
+    document.getElementById('icon-a').classList.toggle('bi-list');
+    document.getElementById('icon-a').classList.toggle('bi-x');
 
-        $('#list-responsive').click(function (e) { 
-            e.preventDefault();
-            $(this).toggleClass('bi-list bi-x');
-            $('#mobile-menu').toggle();
-        });
-
-        $('#userDropdown').click(function (e) {
-            e.preventDefault();
-            $('#userDropdownMenu').toggleClass('hidden block');
-        });
-
-        function highlightNavbarLink() {
-            const fromTop = $(window).scrollTop() + $(window).innerHeight() / 4;
-            let activeLinkFound = false;
-
-            $('#desktop-menu a, #mobile-menu a').each(function() {
-                const section = $($(this).attr('href').replace(/([ !"#$%&'()*+,.\/:;<=>?@[\\\]^`{|}~])/g, '\\$1'));
-
-                if (section.length && 
-                    section.offset().top <= fromTop &&
-                    section.offset().top + section.outerHeight() > fromTop
-                ) {
-                    $(this).addClass('active');
-                    activeLinkFound = true;
-                } else {
-                    $(this).removeClass('active');
-                }
-            });
-
-            if (!activeLinkFound && ($(window).innerHeight() + $(window).scrollTop()) >= $(document).outerHeight()) {
-                $('#desktop-menu a, #mobile-menu a').each(function() {
-                    const section = $($(this).attr('href').replace(/([ !"#$%&'()*+,.\/:;<=>?@[\\\]^`{|}~])/g, '\\$1'));
-                    if (section.attr('id') === 'kontak') {
-                        $(this).addClass('active');
-                    } else {
-                        $(this).removeClass('active');
-                    }
-                });
-            }
-        }
-
-        $(window).on('scroll', highlightNavbarLink);
-        highlightNavbarLink();
-    });
-
+    document.getElementById('toggle-nav').classList.toggle('d-none');
+    document.getElementById('toggle-nav').classList.toggle('d-block');
+  });
 </script>
+<!--Main Navigation-->
