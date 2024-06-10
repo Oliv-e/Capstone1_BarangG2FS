@@ -31,7 +31,7 @@
               <div class="text-uppercase">{{Auth::user()->nama}}</div>
             </div>
           @else
-            <div class="d-none d-md-flex gap-2 border rounded p-2 btn btn-outline-coklat-gelap">
+            <div class="d-none d-md-flex gap-2 p-2 btn btn-outline-coklat-gelap">
               <i class="bi bi-box-arrow-in-right"></i>
               <a href="{{route('login')}}" class="text-decoration-none text-uppercase">Login</a>
             </div>
