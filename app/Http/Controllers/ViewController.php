@@ -11,7 +11,7 @@ use App\Models\Barang;
 use App\Models\Ulasan;
 use Illuminate\Http\Request;
 use App\Models\DetailTransaksi;
-use App\Models\transaksi;
+use App\Models\Transaksi;
 
 class ViewController extends Controller
 {
