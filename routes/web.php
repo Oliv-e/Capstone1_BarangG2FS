@@ -84,8 +84,4 @@ Route::delete('remove-from-cart', [ViewController::class, 'remove'])->name('remo
 Route::post('checkout', [ViewController::class, 'checkout'])->name('checkout');
 Route::delete('clear-cart', [ViewController::class, 'clearCart'])->name('clear.cart');
 
-
-Route::get('/linkstorage', function () {
-    Artisan::call('storage:link');
-});
 require __DIR__ . '/auth.php';
