@@ -18,6 +18,8 @@ class UserSeeder extends Seeder
             [
                 'nama' => 'guest',
                 'email' => 'guest@g.com',
+                'alamat' => 'Jl. Imam Bonjol No. 01',
+                'nomor_hp' => '081234567890',
                 'password' => Hash::make('12341234'),
                 'role' => 'guest',
                 'diarsipkan' => 'false'
@@ -25,6 +27,8 @@ class UserSeeder extends Seeder
             [
                 'nama' => 'admin',
                 'email' => 'admin@g.com',
+                'alamat' => 'Jl. Imam Bonjol No. 01',
+                'nomor_hp' => '081234567890',
                 'password' => Hash::make('12341234'),
                 'role' => 'admin',
                 'diarsipkan' => 'false'
@@ -32,6 +36,8 @@ class UserSeeder extends Seeder
             [
                 'nama' => 'super-admin',
                 'email' => 'super@g.com',
+                'alamat' => 'Jl. Imam Bonjol No. 01',
+                'nomor_hp' => '081234567890',
                 'password' => Hash::make('12341234'),
                 'role' => 'super-admin',
                 'diarsipkan' => 'false'
