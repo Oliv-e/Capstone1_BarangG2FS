@@ -51,7 +51,7 @@
             </div>
         </section>
     @else
-    <h2 class="brand-title text-coklat-gelap text-center bg-coklat p-5">Tidak Ada Promo Yang Tersedia</h2>
+    <h2 class="brand-title text-coklat-gelap text-center bg-coklat p-5 mt-1">Tidak Ada Promo Yang Tersedia</h2>
     @endif
 
     {{-- Section Produk --}}

@@ -22,32 +22,34 @@
             ></iframe>
             </div>
         </div>
-        <div class="p-4 col-6 d-flex flex-column justify-content-center align-items-center">
-            <div>
-                <div class="d-flex align-items-center gap-2 fs-3">
-                    <i class="bi bi-telephone"></i> Kontak
-                </div>
-                <div class="d-flex align-items-center gap-2">
-                    <i class="bi bi-phone fs-3"></i> 0895 4118 98900
-                </div>
-                <div class="d-flex align-items-center gap-2">
-                    <i class="bi bi-envelope fs-3"></i> furnituremax@gmail.com
+        <div class="d-flex flex-column flex-sm-row justify-content-center align-items-center">
+            <div class="p-4 col-12 col-sm-6 d-flex flex-column justify-content-center align-items-center">
+                <div>
+                    <div class="d-flex align-items-center gap-2 fs-3">
+                        <i class="bi bi-telephone"></i> Kontak
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-phone fs-3"></i> 0895 4118 98900
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-envelope fs-3"></i> furnituremax@gmail.com
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="p-4 col-6 d-flex flex-column justify-content-center align-items-center">
-            <div>
-                <div class="d-flex align-items-center gap-2 fs-3">
-                    <i class="bi bi-share"></i> Sosial Media
-                </div>
-                <div class="d-flex align-items-center gap-2">
-                    <i class="bi bi-instagram fs-3"></i> Furniture Max
-                </div>
-                <div class="d-flex align-items-center gap-2">
-                    <i class="bi bi-facebook fs-3"></i> Furniture Max
-                </div>
-                <div class="d-flex align-items-center gap-2">
-                    <i class="bi bi-tiktok fs-3"></i> Furniture Max
+            <div class="p-4 col-12 col-sm-6 d-flex flex-column justify-content-center align-items-center">
+                <div>
+                    <div class="d-flex align-items-center gap-2 fs-3">
+                        <i class="bi bi-share"></i> Sosial Media
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-instagram fs-3"></i> Furniture Max
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-facebook fs-3"></i> Furniture Max
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-tiktok fs-3"></i> Furniture Max
+                    </div>
                 </div>
             </div>
         </div>

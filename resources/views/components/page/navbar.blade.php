@@ -53,7 +53,7 @@
     <!-- Container wrapper -->
     <div class="container-fluid flex-column flex-lg-row justify-content-center align-items-end align-items-lg-center w-full justify-content-lg-between">
       <!-- Left elements -->
-      <div class="w-full d-flex align-items-center my-lg-0">
+      <div class="d-grid d-md-block col-12 col-lg-6 col-lg-8 mx-auto mx-lg-0 gap-2 gap-lg-0 align-items-center my-lg-0">
 
         <a class="btn {{ Request::routeIs('home') ? 'btn-coklat-gelap' : 'btn-outline-coklat-gelap'}} fw-bold text-uppercase me-1" href="{{route('home')}}">
           <i class="bi bi-house me-2 d-none d-sm-inline-block"></i>Home
