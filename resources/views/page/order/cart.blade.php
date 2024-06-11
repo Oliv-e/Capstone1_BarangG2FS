@@ -2,7 +2,8 @@
 
 @section('title', 'Keranjang Saya')
 @section('css-style')
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 @endsection
 
 @section('content')
@@ -14,7 +15,7 @@
         <h1 class="fs-1 fw-bold"><i class="bi bi-cart"></i> Keranjang Belanja Saya</h1>
     </div>
     <div class="container">
-        @if(session('success'))
+        @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
             </div>
@@ -42,38 +43,40 @@
                     <div class="my-4" id="success-message"></div>
                 </div>
                 @php $total = 0 @endphp
-                @if(session('cart'))
-                    @foreach(session('cart') as $id => $details)
+                @if (session('cart'))
+                    @foreach (session('cart') as $id => $details)
                         @php $total += $details['harga'] * $details['quantity'] @endphp
-                <div class="d-flex justify-content-between align-items-center py-2" data-id="{{ $id }}">
-                    <div class="w-100">
-                        <img src="{{ asset('storage/gambar/barang/'.$details['gambar']) }}" class="img-fluid product-image" alt="Gambar Produk">
-                    </div>
-                    <div class="text-center w-100">
-                        Rp. {{ number_format($details['harga'], 0, ',', '.') }}
-                    </div>
-                    <div class="text-center w-100">
-                        <input type="number" value="{{ $details['quantity'] }}" class="form-control quantity update-cart" />
-                    </div>
-                    <div class="text-center w-100 subtotal" id="subtotal_{{ $id }}">
-                        Rp. {{ number_format($details['harga'] * $details['quantity'], 0, ',', '.') }}
-                    </div>
-                    <div class="text-center w-100">
-                        <form action="{{ route('remove.from.cart', $id) }}" method="POST" class="remove-from-cart">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-                    </div>
-                </div>
-                @endforeach
-            @endif
+                        <div class="d-flex justify-content-between align-items-center py-2" data-id="{{ $id }}">
+                            <div class="w-100">
+                                <img src="{{ asset('storage/gambar/barang/' . $details['gambar']) }}"
+                                    class="img-fluid product-image" alt="Gambar Produk">
+                            </div>
+                            <div class="text-center w-100">
+                                Rp. {{ number_format($details['harga'], 0, ',', '.') }}
+                            </div>
+                            <div class="text-center w-100">
+                                <input type="number" value="{{ $details['quantity'] }}"
+                                    class="form-control quantity update-cart" data-id="{{ $id }}" />
+                            </div>
+                            <div class="text-center w-100 subtotal" id="subtotal_{{ $id }}">
+                                Rp. {{ number_format($details['harga'] * $details['quantity'], 0, ',', '.') }}
+                            </div>
+                            <div class="text-center w-100">
+                                <form action="{{ route('remove.from.cart', $id) }}" method="POST" class="remove-from-cart">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
                 <hr class="border-2">
                 <div class="d-flex justify-content-between w-100 py-4">
                     <a href="{{ url('/') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Kembali</a>
-                </div> 
+                </div>
             </div>
-            
+
             <div class="col-12 col-lg-6 p-4">
                 <div class="bg-light p-4 my-4">
                     <div class="my-4 text-center">
@@ -82,14 +85,14 @@
                     <div class="my-4">
                         <div class="d-flex justify-content-between my-4">
                             <h2>Subtotal : </h2>
-                            <h2>Rp. {{ number_format($total, 0, ',', '.') }}</h2>
+                            <h2 id="subtotal-display">Rp. {{ number_format($total, 0, ',', '.') }}</h2>
                         </div>
                         <hr>
                     </div>
                     <div class="my-4">
                         <div class="d-flex justify-content-between my-4">
                             <h2>Total : </h2>
-                            <h2>Rp. {{ number_format($totalPajak, 0, ',', '.') }}</h2>
+                            <h2 id="total-display">Rp. {{ number_format($totalPajak, 0, ',', '.') }}</h2>
                         </div>
                         <hr>
                     </div>
@@ -100,30 +103,41 @@
                         <form action="{{ route('checkout') }}" method="POST">
                             @csrf
                             <input type="hidden" name="total" value="{{ $totalPajak }}">
-                            @if(session('cart'))
-                                @foreach(session('cart') as $id => $details)
-                                    <input type="hidden" name="products[{{ $id }}][id_barang]" value="{{ $details['id_barang'] }}">
-                                    <input type="hidden" name="products[{{ $id }}][nama]" value="{{ $details['nama'] }}">
-                                    <input type="hidden" name="products[{{ $id }}][harga]" value="{{ $details['harga'] }}">
-                                    <input type="hidden" name="products[{{ $id }}][quantity]" value="{{ $details['quantity'] }}">
+                            @if (session('cart'))
+                                @foreach (session('cart') as $id => $details)
+                                    <input type="hidden" name="products[{{ $id }}][id_barang]"
+                                        value="{{ $details['id_barang'] }}">
+                                    <input type="hidden" name="products[{{ $id }}][nama]"
+                                        value="{{ $details['nama'] }}">
+                                    <input type="hidden" name="products[{{ $id }}][harga]"
+                                        value="{{ $details['harga'] }}">
+                                    <input type="hidden" name="products[{{ $id }}][quantity]"
+                                        value="{{ $details['quantity'] }}">
                                 @endforeach
                             @endif
 
                             <div class="mb-3">
                                 <label for="nama" class="form-label">Nama Pembeli:</label>
-                                <input type="text" class="form-control border rounded" name="nama" id="nama" @if(session('cart') == null) disabled placeholder="Tidak dapat mengisi form, keranjang anda kosong" @endif required>
+                                <input type="text" class="form-control border rounded" name="nama" id="nama"
+                                    @if (session('cart') == null) disabled placeholder="Tidak dapat mengisi form, keranjang anda kosong" @endif
+                                    required>
                             </div>
                             <div class="mb-3">
                                 <label for="alamat" class="form-label">Alamat:</label>
-                                <textarea  class="form-control border rounded" name="alamat" id="alamat" rows="3" @if(session('cart') == null) disabled placeholder="Tidak dapat mengisi form, keranjang anda kosong" @endif required></textarea>
+                                <textarea class="form-control border rounded" name="alamat" id="alamat" rows="3"
+                                    @if (session('cart') == null) disabled placeholder="Tidak dapat mengisi form, keranjang anda kosong" @endif
+                                    required></textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="nomor_hp" class="form-label">Nomor HP:</label>
-                                <input type="text"  class="form-control border rounded" name="nomor_hp" id="nomor_hp" @if(session('cart') == null) disabled placeholder="Tidak dapat mengisi form, keranjang anda kosong" @endif required>
+                                <input type="text" class="form-control border rounded" name="nomor_hp" id="nomor_hp"
+                                    @if (session('cart') == null) disabled placeholder="Tidak dapat mengisi form, keranjang anda kosong" @endif
+                                    required>
                             </div>
                             <div class="mb-3">
                                 <label for="pengiriman" class="form-label">Pengiriman:</label>
-                                <select class="form-select border rounded" name="pengiriman" id="pengiriman" @if(session('cart') == null) disabled @endif required>
+                                <select class="form-select border rounded" name="pengiriman" id="pengiriman"
+                                    @if (session('cart') == null) disabled @endif required>
                                     <option selected disabled>Pilih Pengiriman</option>
                                     <option value="ninja-express">Ninja Express</option>
                                     <option value="jnt-cargo">JNT Cargo</option>
@@ -131,9 +145,10 @@
                                 </select>
                             </div>
 
-                            <button type="submit" class="btn btn-coklat-gelap text-white w-100" @if(session('cart') == null) disabled @endif>Checkout</button>
+                            <button type="submit" class="btn btn-coklat-gelap text-white w-100"
+                                @if (session('cart') == null) disabled @endif>Checkout</button>
                         </form>
-                    </div>  
+                    </div>
                 </div>
             </div>
         </div>
@@ -142,48 +157,54 @@
 @section('footer', true)
 @section('js-scripts')
     <script type="text/javascript">
-        $(document).on('input', '.update-cart', function (e) {
+        $(document).on('input', '.update-cart', function(e) {
             e.preventDefault();
 
             var ele = $(this);
             var quantity = ele.val();
             var id = ele.closest("div[data-id]").data("id");
 
+            if (quantity === '' || quantity <= 0) {
+                return; // Jika quantity kosong atau nol, tidak mengirim permintaan AJAX
+            }
+
             $.ajax({
                 url: '{{ route('update.cart') }}',
                 method: "PATCH",
                 data: {
-                    _token: '{{ csrf_token() }}', 
-                    id: id, 
+                    _token: '{{ csrf_token() }}',
+                    id: id,
                     quantity: quantity
                 },
-                success: function (response) {
-                    window.location.reload();
+                success: function(response) {
+                    // Update subtotal
                     $('#subtotal_' + id).text("Rp. " + response.subtotal);
+
+                    // Update total
                     $('#cart-total').text("Rp. " + response.total);
-                    $('#success-message').html('<div class="alert alert-success">Quantity berhasil diupdate!</div>');
-                    setTimeout(function() {
-                        $('#success-message').empty();
-                    }, 1000);
+
+                    // Update total di bagian summary
+                    $('#subtotal-display').text("Rp. " + response.total);
+                    $('#total-display').text("Rp. " + response.totalPajak);
                 }
             });
         });
 
-        $(".remove-from-cart").click(function (e) {
+        $(".remove-from-cart").click(function(e) {
             e.preventDefault();
 
             var ele = $(this);
             var id = ele.closest("div[data-id]").data("id");
 
-            if(confirm("Are you sure want to remove?")) {
+            if (confirm("Are you sure want to remove?")) {
                 $.ajax({
                     url: '{{ route('remove.from.cart') }}',
                     method: "DELETE",
                     data: {
-                        _token: '{{ csrf_token() }}', 
+                        _token: '{{ csrf_token() }}',
                         id: id
                     },
-                    success: function (response) {
+                    success: function(response) {
                         window.location.reload();
                     }
                 });
