@@ -65,7 +65,7 @@
                         <form action="{{ route('transaksi.proses', $transaksi->id) }}" method="POST">
                             @csrf
                             @method('PUT') 
-                            <button type="submit" class="btn bg-gradient-info">Proses</button>
+                            <button type="submit" onclick="sendWhatsappMessages({{$transaksi->nomor_hp}})" class="btn bg-gradient-info">Kirim Pesan & Proses</button>
                         </form>
                         <button class="btn btn-success ms-2" onclick="window.location.href='/dashboard/transaksi';">Kirim</button>
                     </div>
@@ -75,4 +75,13 @@
     </div>
     @include('admin.components.footer')
 </main>
+<script>
+    function sendWhatsappMessages(nomor) {
+        const kode = '+62';
+        nomor = kode + nomor
+        const pesan = 'Pesanan Anda Sedang Di Proses';
+        const encoded = encodeURIComponent(pesan);
+        window.open('https://api.whatsapp.com/send?phone='+nomor+'&text='+encoded);
+    }
+</script>
 @endsection

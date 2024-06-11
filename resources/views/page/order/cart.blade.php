@@ -131,7 +131,7 @@
                                 </select>
                             </div>
 
-                            <button type="submit" class="btn bg-sage text-white w-100" @if(session('cart') == null) disabled @endif>Checkout</button>
+                            <button type="submit" class="btn btn-coklat-gelap text-white w-100" @if(session('cart') == null) disabled @endif>Checkout</button>
                         </form>
                     </div>  
                 </div>
