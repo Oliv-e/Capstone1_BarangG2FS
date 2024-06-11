@@ -30,7 +30,9 @@ html {
         color: white!important;
     }
 }
-
+.border-coklat-gelap {
+    border-color: var(--coklat-gelap)!important;
+}
 .btn-coklat-gelap:hover {
     border-color: var(--coklat-gelap)!important;
     background-color: transparent!important;
