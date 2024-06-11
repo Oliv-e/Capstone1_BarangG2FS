@@ -83,4 +83,9 @@ Route::patch('update-cart', [ViewController::class, 'update'])->name('update.car
 Route::delete('remove-from-cart', [ViewController::class, 'remove'])->name('remove.from.cart');
 Route::post('checkout', [ViewController::class, 'checkout'])->name('checkout');
 Route::delete('clear-cart', [ViewController::class, 'clearCart'])->name('clear.cart');
+
+
+Route::get('/linkstorage', function () {
+    Artisan::call('storage:link');
+});
 require __DIR__ . '/auth.php';
