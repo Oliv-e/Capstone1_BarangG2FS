@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_transaksi');
             $table->unsignedBigInteger('id_barang');
             $table->integer('jumlah');
-            $table->enum('status', ['pending', 'proses'])->default('pending');
+            $table->enum('status', ['pending', 'proses', 'dibatalkan'])->default('pending');
             $table->timestamps();
             $table->foreign('id_transaksi')->references('id')->on('transaksi')->onDelete('cascade');
             $table->foreign('id_barang')->references('id')->on('barang')->onDelete('cascade');

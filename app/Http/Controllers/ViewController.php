@@ -50,13 +50,16 @@ class ViewController extends Controller
         $ulasan = Ulasan::all();
         return view('page.produk.detail-produk', compact(['produk', 'ulasan']));
     }
-    public function faq() {
+    public function faq()
+    {
         return view('page.faq.faq');
     }
-    public function aboutUs() {
+    public function aboutUs()
+    {
         return view('page.about.about-us');
     }
-    public function dataPribadi() {
+    public function dataPribadi()
+    {
         return view('page.data.data-pribadi');
     }
 
@@ -241,7 +244,7 @@ class ViewController extends Controller
             if ($promo) {
                 $harga -= $promo->pengurangan_harga;
                 if ($harga < 0) {
-                    $harga = 0; 
+                    $harga = 0;
                 }
             }
 
@@ -279,7 +282,8 @@ class ViewController extends Controller
 
         return redirect()->route('order-complete');
     }
-    public function orderComplete() {
+    public function orderComplete()
+    {
         return view('page.order.order-complete');
     }
 
@@ -453,11 +457,10 @@ class ViewController extends Controller
             return redirect()->back()->with('error', 'Transaksi tidak ditemukan.');
         }
 
+        DetailTransaksi::where('id_transaksi', $id)->update(['status' => 'dibatalkan']);
 
-        DetailTransaksi::where('id_transaksi', $id)->delete();
-
-
-        $transaksi->delete();
+        $transaksi->diarsipkan = "true";
+        $transaksi->save();
 
         return redirect()->route('order-status')->with('success', 'Pesanan berhasil dibatalkan.');
     }
