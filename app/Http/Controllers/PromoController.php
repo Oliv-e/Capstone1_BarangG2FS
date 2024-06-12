@@ -10,7 +10,7 @@ class PromoController extends Controller
 {
     public function index()
     {
-        $promo = Promo::with('promoBarang')->get();
+        $promo = Promo::with('promoBarang')->where('diarsipkan', 'false')->get();
         return view('admin.promo.home', compact('promo'));
     }
     public function create()
@@ -77,7 +77,8 @@ class PromoController extends Controller
     public function destroy($id)
     {
         $promo = Promo::findOrFail($id);
-        $promo->delete();
+        $promo->diarsipkan = "true";
+        $promo->save();
 
         return redirect(route('promo.index'))->with('success', 'Promo Berhasil Dihapus.');
     }

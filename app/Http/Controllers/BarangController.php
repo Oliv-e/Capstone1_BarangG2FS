@@ -11,13 +11,12 @@ class BarangController extends Controller
 {
     public function index()
     {
-        $barang = Barang::all();
+        $barang = Barang::where('diarsipkan', 'false')->get();
         return view('admin.barang.home', compact('barang'));
 
-        $categories = Kategori::all();
+        $categories = Kategori::where('diarsipkan', 'false')->get();
         $products = Barang::with('kategori')->paginate(9);
         return view('list-produk', compact('categories', 'products'));
-        
     }
 
     public function getProductsByCategory(Request $request)
@@ -34,7 +33,7 @@ class BarangController extends Controller
     }
     public function store(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'id_kategori' => 'required|integer',
             'gambar' => 'required|image|max:2048|mimes:png,jpg,jpeg',
             'nama' => 'required|min:5',
@@ -54,18 +53,18 @@ class BarangController extends Controller
             'diarsipkan' => 'false',
         ]);
 
-        return redirect(route('barang.index'))->with('success','Barang Berhasil Dibuat!!!');
+        return redirect(route('barang.index'))->with('success', 'Barang Berhasil Dibuat!!!');
     }
     public function edit(String $id)
     {
         $selected_barang = Barang::findOrFail($id);
         // dd($selected_barang);
         $kategori = Kategori::all();
-        return view('admin.barang.edit', compact(['kategori','selected_barang']));
+        return view('admin.barang.edit', compact(['kategori', 'selected_barang']));
     }
     public function update(Request $request, String $id)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'id_kategori' => 'required|integer',
             'gambar' => 'image|max:2048|mimes:png,jpg,jpeg',
             'nama' => 'required|min:5',
@@ -75,10 +74,10 @@ class BarangController extends Controller
 
         $barang = Barang::findOrFail($id);
 
-        if($request->hasFile('gambar')) {
+        if ($request->hasFile('gambar')) {
             $gambar = $request->file('gambar');
             $gambar->storeAs('public/gambar/barang', $gambar->hashName());
-            Storage::delete('public/gambar/barang/'. $barang->gambar);
+            Storage::delete('public/gambar/barang/' . $barang->gambar);
             $barang->update([
                 'id_kategori' => $request->id_kategori,
                 'gambar' => $gambar->hashName(),
@@ -97,13 +96,15 @@ class BarangController extends Controller
             ]);
         }
 
-        return redirect(route('barang.index'))->with('success','Barang Berhasil Diedit!!!');
+        return redirect(route('barang.index'))->with('success', 'Barang Berhasil Diedit!!!');
     }
-    public function destroy(String $id) {
+    public function destroy(String $id)
+    {
         $selected_barang = Barang::findOrFail($id);
-        Storage::delete('public/gambar/barang/'. $selected_barang->gambar);
+        Storage::delete('public/gambar/barang/' . $selected_barang->gambar);
 
-        $selected_barang->delete();
-        return redirect(route('barang.index'))->with('success','Data Berhasil di Hapus');
+        $selected_barang->diarsipkan = "true";
+        $selected_barang->save();
+        return redirect(route('barang.index'))->with('success', 'Data Berhasil di Hapus');
     }
 }

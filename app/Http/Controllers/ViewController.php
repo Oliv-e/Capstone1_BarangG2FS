@@ -23,31 +23,31 @@ class ViewController extends Controller
                 $query->inRandomOrder();
             }])
             ->limit($limit)
-            ->get();
+            ->where('diarsipkan', 'false')->get();
 
         // limiter display
         // $barang = Barang::all()->take(1);
-        $barang = Barang::limit(10)->get();
-        $kategori = Kategori::all();
-        $kategoris = Kategori::with('barang')->get();
+        $barang = Barang::limit(10)->where('diarsipkan', 'false')->get();
+        $kategori = Kategori::where('diarsipkan', 'false')->get();
+        $kategoris = Kategori::with('barang')->where('diarsipkan', 'false')->get();
         return view('welcome', compact('barang', 'promoItems', 'kategori', 'kategoris'));
     }
 
     public function promo()
     {
-        $promo = Promo::all();
+        $promo = Promo::where('diarsipkan', 'false')->get();
         return view('page.promo.list-promo', compact('promo'));
     }
     public function detailPromo(String $id)
     {
-        $promo = Promo::with('promoBarang')->findOrFail($id);
+        $promo = Promo::with('promoBarang')->where('diarsipkan', 'false')->findOrFail($id);
         return view('page.promo.detail-promo', compact('promo'));
     }
 
     public function detailProduk(String $id)
     {
-        $produk = Barang::findOrFail($id);
-        $ulasan = Ulasan::all();
+        $produk = Barang::where('diarsipkan', 'false')->findOrFail($id);
+        $ulasan = Ulasan::where('diarsipkan', 'false')->get();
         return view('page.produk.detail-produk', compact(['produk', 'ulasan']));
     }
     public function faq()
@@ -65,7 +65,7 @@ class ViewController extends Controller
 
     public function listProduk(Request $request)
     {
-        $kategori = Kategori::all();
+        $kategori = Kategori::where('diarsipkan', 'false')->get();
 
         $categories = array();
 
@@ -102,15 +102,12 @@ class ViewController extends Controller
 
         $cart = session()->get('cart', []);
 
-
         $total = 0;
         foreach ($cart as $id => $details) {
             $total += $details['harga'] * $details['quantity'];
         }
 
-
         $pajak = $total * 0.1;
-
 
         $totalPajak = $total + $pajak;
 
@@ -128,7 +125,7 @@ class ViewController extends Controller
      */
     public function addToCart($id)
     {
-        $barang = Barang::findOrFail($id);
+        $barang = Barang::where('diarsipkan', 'false')->findOrFail($id);
         $cart = session()->get('cart', []);
 
         if (isset($barang->id)) {
