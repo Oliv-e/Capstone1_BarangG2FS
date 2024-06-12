@@ -12,7 +12,7 @@ class KategoriController extends Controller
 {
     public function index()
     {
-        $kategori = Kategori::all();
+        $kategori = Kategori::where('diarsipkan', 'false')->get();
         return view('admin.kategori.home', compact('kategori'));
     }
     public function create()
@@ -21,7 +21,7 @@ class KategoriController extends Controller
     }
     public function store(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'nama' => 'required|min:5'
         ]);
 
@@ -30,7 +30,7 @@ class KategoriController extends Controller
             'diarsipkan' => 'false',
         ]);
 
-        return redirect(route('kategori.index'))->with('success','Kategori Berhasil Dibuat!!!');
+        return redirect(route('kategori.index'))->with('success', 'Kategori Berhasil Dibuat!!!');
     }
     public function edit(String $id)
     {
@@ -40,24 +40,24 @@ class KategoriController extends Controller
     }
     public function update(Request $request, String $id)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'nama' => 'required|min:5',
             'diarsipkan' => 'false',
         ]);
         $kategori = Kategori::findOrFail($id);
 
         $kategori->update([
-                'id_kategori' => $request->id,
-                'nama' => $request->nama,
-                'diarsipkan' => 'false',
+            'id_kategori' => $request->id,
+            'nama' => $request->nama,
+            'diarsipkan' => 'false',
         ]);
 
-        return redirect(route('kategori.index'))->with('success','Kategori Berhasil Diedit!!!');
+        return redirect(route('kategori.index'))->with('success', 'Kategori Berhasil Diedit!!!');
     }
-    public function destroy(String $id) {
-
+    public function destroy(String $id)
+    {
         if (Kategori::count() > 1) {
-            $available_kategori = Kategori::where('id','!=',$id)->first();
+            $available_kategori = Kategori::where('id', '!=', $id)->first();
             $selected_kategori = Kategori::findOrFail($id);
 
             $barang = Barang::where('id_kategori', $id);
@@ -65,11 +65,13 @@ class KategoriController extends Controller
                 'id_kategori' => $available_kategori->id,
                 'updated_at' => Carbon::now(),
             ]);
-            $selected_kategori->delete();
-            return redirect(route('kategori.index'))->with('success','Kategori Berhasil di Hapus!!!');
+
+            $selected_kategori->diarsipkan = "true";
+            $selected_kategori->save();
+
+            return redirect(route('kategori.index'))->with('success', 'Kategori Berhasil di Hapus!!!');
         } else {
             return redirect(route('kategori.index'))->with('error', 'Kategori Tidak dapat dihapus!!!');
         }
-        
     }
 }
