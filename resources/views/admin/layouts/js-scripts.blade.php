@@ -2,6 +2,7 @@
 <script src="{{ asset("assets/js/admin/core/bootstrap.min.js")}}"></script>
 <script src="{{ asset("assets/js/admin/plugins/perfect-scrollbar.min.js")}}"></script>
 <script src="{{ asset("assets/js/admin/plugins/smooth-scrollbar.min.js")}}"></script>
+<script src="{{ asset("assets/js/admin/plugins/chartjs.min.js")}}"></script>
 <script>
   var a = document.getElementById("sidenav-main");
   var b = document.getElementById("showsidenav");
