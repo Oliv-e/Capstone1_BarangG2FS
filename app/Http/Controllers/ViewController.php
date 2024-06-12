@@ -11,7 +11,7 @@ use App\Models\Barang;
 use App\Models\Ulasan;
 use Illuminate\Http\Request;
 use App\Models\DetailTransaksi;
-use App\Models\Transaksi;
+use App\Models\transaksi;
 
 class ViewController extends Controller
 {
@@ -117,11 +117,18 @@ class ViewController extends Controller
     public function addToCart($id)
     {
         $barang = Barang::findOrFail($id);
-
         $cart = session()->get('cart', []);
 
-
         if (isset($barang->id)) {
+            // Check if the item qualifies for any promotions
+            $promotions = Promo::all();
+            foreach ($promotions as $promotion) {
+                if ($promotion->promoBarang->contains($barang)) {
+                    // Apply promotion discount
+                    $barang->harga -= $promotion->pengurangan_harga;
+                }
+            }
+
             if (isset($cart[$id])) {
                 $cart[$id]['quantity']++;
             } else {
@@ -129,7 +136,7 @@ class ViewController extends Controller
                     "nama" => $barang->nama,
                     "id_barang" => $barang->id,
                     "quantity" => 1,
-                    "harga" => $barang->harga,
+                    "harga" => $barang->harga, // Use discounted price if applicable
                     "gambar" => $barang->gambar
                 ];
             }
@@ -165,7 +172,7 @@ class ViewController extends Controller
                     return $sum + ($item["harga"] * $item["quantity"]);
                 }, 0);
 
-                $totalPajak = $total + ($total * 0.1); 
+                $totalPajak = $total + ($total * 0.1);
 
                 return response()->json([
                     'subtotal' => number_format($subtotal, 0, ',', '.'),
@@ -189,11 +196,7 @@ class ViewController extends Controller
 
     public function checkout(Request $request)
     {
-        $total = $request->total;
-        $products = $request->products;
-        $id_user = Auth::check() ? Auth::id() : null;
-
-        // Validasi input
+        // Validate input
         $request->validate([
             'nama' => 'required|string|max:255',
             'alamat' => 'required|string',
@@ -207,6 +210,44 @@ class ViewController extends Controller
             'products.*.quantity' => 'required|integer',
         ]);
 
+        $total = 0;
+        $id_user = Auth::check() ? Auth::id() : null;
+        $discountedProducts = [];
+
+        foreach ($request->products as $produk) {
+            if (!array_key_exists('id_barang', $produk)) {
+                continue;
+            }
+
+            $barang = Barang::find($produk['id_barang']);
+            if (!$barang) {
+                continue;
+            }
+
+            $promo = Promo::whereHas('promoBarang', function ($query) use ($barang) {
+                $query->where('id_barang', $barang->id);
+            })->first();
+
+            $harga = $produk['harga'];
+            if ($promo) {
+                $harga -= $promo->pengurangan_harga;
+                if ($harga < 0) {
+                    $harga = 0; 
+                }
+            }
+
+            $totalHarga = $harga * $produk['quantity'];
+            $total += $totalHarga;
+
+            $discountedProducts[] = [
+                'id_barang' => $produk['id_barang'],
+                'nama' => $produk['nama'],
+                'harga' => $harga,
+                'quantity' => $produk['quantity'],
+                'total_harga' => $totalHarga,
+            ];
+        }
+
         $transaksi = Transaksi::create([
             'id_user' => $id_user,
             'nama_pembeli' => $request->nama,
@@ -215,24 +256,16 @@ class ViewController extends Controller
             'total_harga' => $total,
         ]);
 
-        $produkTransaksi = [];
-        foreach ($products as $produk) {
-            if (!array_key_exists('id_barang', $produk)) {
-                continue;
-            }
-            $produkTransaksi[] = [
-                'id_barang' => $produk['id_barang'],
-                'nama' => $produk['nama'],
-                'harga' => $produk['harga'],
-                'total_harga' => $produk['harga'] * $produk['quantity'],
-            ];
-
+        foreach ($discountedProducts as $produk) {
             DetailTransaksi::create([
                 'id_transaksi' => $transaksi->id,
                 'id_barang' => $produk['id_barang'],
-                'jumlah' => $produk['quantity']
+                'jumlah' => $produk['quantity'],
+                'harga' => $produk['harga'],
+                'total_harga' => $produk['total_harga'],
             ]);
         }
+
         session()->forget('cart');
 
         return redirect()->route('order-status');
@@ -382,8 +415,6 @@ class ViewController extends Controller
                 return 'secondary';
         }
     }
-
-
 
     public function orderDetail($orderId)
     {

@@ -97,7 +97,7 @@
                         <hr>
                     </div>
                     <div class="my-4">
-                        <p class="text-sage">* Sudah termasuk pajak 10%</p>
+                        <p class="text-sage">* Sudah termasuk pajak 10% dan Pengurangan promo bila ada</p>
                     </div>
                     <div class="my-4 w-100">
                         <form action="{{ route('checkout') }}" method="POST">
