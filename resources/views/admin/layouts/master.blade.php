@@ -12,5 +12,8 @@
   @include('admin.components.settings')
 
   @include('admin.layouts.js-scripts')
+  @hasSection ('add-js')
+    @yield('add-js')
+  @endif
 </body>
 </html>
