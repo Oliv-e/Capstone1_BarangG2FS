@@ -42,3 +42,15 @@
         .card-text .bold {
             font-weight: bold;
         }
+
+        .rating i {
+            font-size: 2rem;
+            color: #ccc;
+            cursor: pointer;
+        }
+        
+        .rating i.selected,
+        .rating i.hovered {
+            color: #f0ad4e;
+        }
+        
