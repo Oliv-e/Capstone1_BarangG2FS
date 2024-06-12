@@ -37,8 +37,8 @@
                             @if ($harga_promo = $items->harga - $promoItem->pengurangan_harga)
                                 <p class="promo-price">Rp {{ number_format($harga_promo, 0, ',', '.') }}</p>
                             @endif
-                            <button class="add-to-cart-btn"><i class="bi bi-cart"></i></button>
-                            <button class="buy-btn"><i class="bi bi-bag"></i></button>
+                            <button class="btn btn-coklat-gelap"><i class="bi bi-cart"></i></button>
+                            <button class="btn btn-coklat-gelap"><i class="bi bi-bag"></i></button>
                         </div>
                     @endforeach
                 @empty

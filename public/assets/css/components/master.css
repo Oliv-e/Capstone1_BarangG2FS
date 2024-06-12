@@ -6,6 +6,7 @@
 }
 
 :root {
+    --coklat : #E6C7AB;
     --coklat-gelap: #BC6C25;
     --coklat-terang: #DDA15E;
     --hijau-gelap: #283618;
@@ -22,6 +23,22 @@ body {
 html {
     scroll-behavior: smooth;
 }
+.btn-coklat {
+    border-color: var(--coklat)!important;
+    background-color: var(--coklat)!important;
+    color: white!important;
+    a {
+        color: white!important;
+    }
+}
+.btn-coklat:hover {
+    border-color: var(--coklat)!important;
+    background-color: transparent!important;
+    color: var(--coklat)!important
+}
+.border-coklat-gelap {
+    border-color: var(--coklat-gelap)!important;
+}
 .btn-coklat-gelap {
     border-color: var(--coklat-gelap)!important;
     background-color: var(--coklat-gelap)!important;
@@ -30,15 +47,11 @@ html {
         color: white!important;
     }
 }
-.border-coklat-gelap {
-    border-color: var(--coklat-gelap)!important;
-}
 .btn-coklat-gelap:hover {
     border-color: var(--coklat-gelap)!important;
     background-color: transparent!important;
     color: var(--coklat-gelap)!important
 }
-
 .btn-outline-coklat-gelap {
     border-color: var(--coklat-gelap)!important;
     color: var(--coklat-gelap)!important

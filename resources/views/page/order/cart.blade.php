@@ -2,8 +2,8 @@
 
 @section('title', 'Keranjang Saya')
 @section('css-style')
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('assets/css/page/welcome.css') }}">
 @endsection
 
 @section('content')
@@ -14,10 +14,11 @@
     <div class="container-fluid p-5" style="background-color: #e6c7ab;">
         <h1 class="fs-1 fw-bold"><i class="bi bi-cart"></i> Keranjang Belanja Saya</h1>
     </div>
-    <div class="container">
+    <div class="container" id="session">
         @if (session('success'))
-            <div class="alert alert-success">
+            <div class="bg-coklat text-coklat-gelap fs-3 p-2 px-4 rounded mt-1 d-flex justify-content-between">
                 {{ session('success') }}
+                <a id="hideSession"><i class="bi bi-x"></i></a>
             </div>
         @endif
     </div>
@@ -73,7 +74,7 @@
                 @endif
                 <hr class="border-2">
                 <div class="d-flex justify-content-between w-100 py-4">
-                    <a href="{{ url('/') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Kembali</a>
+                    <a onclick="history.back()" class="btn btn-coklat-gelap mb-3">Kembali</a>
                 </div>
             </div>
 
@@ -157,6 +158,9 @@
 @section('footer', true)
 @section('js-scripts')
     <script type="text/javascript">
+        document.getElementById('hideSession').addEventListener('click', function() {
+            document.getElementById('session').style.display = 'none';
+        })
         $(document).on('input', '.update-cart', function(e) {
             e.preventDefault();
 
