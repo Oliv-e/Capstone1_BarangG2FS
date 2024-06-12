@@ -79,7 +79,7 @@
                             <div class="card-body">
                                 <div class="d-flex justify-content-between">
                                     <div>
-                                        <h5 class="review-title">{{ $review->user->name }}</h5>
+                                        <h5 class="review-title">{{ $review->user->nama }}</h5>
                                         <p class="review-date"><small class="text-muted">Tanggal Ulasan: {{ $review->created_at->format('d M Y') }}</small></p>
                                     </div>
                                     <div class="stars text-warning">
