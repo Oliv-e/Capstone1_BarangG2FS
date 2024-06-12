@@ -33,7 +33,7 @@ route::get('/order-form', [ViewController::class, 'order'])->name('order-form');
 route::get('/order-status', [ViewController::class, 'orderStatus'])->name('order-status');
 Route::get('/order-detail/{id}', [ViewController::class, 'orderDetail'])->name('order-detail');
 Route::get('/order-detail/{orderId}', [ViewController::class, 'showOrderDetail'])->name('order.detail');
-Route::delete('/order/cancel/{id}', [ViewController::class, 'cancelOrder'])->name('order.cancel');
+Route::get('/order/cancel/{id}', [ViewController::class, 'cancelOrder'])->name('order.cancel');
 Route::post('/ulasan/{barang_id}', [UlasanController::class, 'store'])->name('ulasan.store');
 
 

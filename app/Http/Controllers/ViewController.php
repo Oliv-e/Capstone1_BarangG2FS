@@ -268,7 +268,10 @@ class ViewController extends Controller
 
         session()->forget('cart');
 
-        return redirect()->route('order-status');
+        return redirect()->route('order-complete');
+    }
+    public function orderComplete() {
+        return view('page.order.order-complete');
     }
 
     // public function checkout(Request $request)

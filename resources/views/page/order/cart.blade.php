@@ -4,6 +4,7 @@
 @section('css-style')
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('assets/css/page/welcome.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/components/master.css') }}">
 @endsection
 
 @section('content')
@@ -11,7 +12,7 @@
         $pajak = $total * 0.1; // Menghitung pajak 10%
         $totalPajak = $total + $pajak; // Menambahkan pajak ke total belanja
     @endphp
-    <div class="container-fluid p-5" style="background-color: #e6c7ab;">
+    <div class="container-fluid p-5 bg-coklat text-coklat-gelap">
         <h1 class="fs-1 fw-bold"><i class="bi bi-cart"></i> Keranjang Belanja Saya</h1>
     </div>
     <div class="container" id="session">
