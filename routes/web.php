@@ -9,6 +9,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UlasanController;
+use App\Http\Controllers\DataController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,16 +26,20 @@ Route::get('/detail-promo/{id}', [ViewController::class, 'detailPromo'])->name('
 Route::get('/promo', [ViewController::class, 'promo'])->name('list-promo');
 Route::get('/detail-produk/{id}', [ViewController::class, 'detailProduk'])->name('detail-produk');
 Route::get('/list-produk', [ViewController::class, 'listProduk'])->name('list-produk');
-Route::get('/products-by-category', [BarangController::class, 'getProductsByCategory']);
+// Route::get('/products-by-category', [BarangController::class, 'getProductsByCategory']);
 route::get('/order-complete', [ViewController::class, 'orderComplete'])->name('order-complete');
 route::get('/faq', [ViewController::class, 'faq'])->name('faq');
+route::get('/about-us', [ViewController::class, 'aboutUs'])->name('about-us');
+route::get('/data-pribadi', [ViewController::class, 'dataPribadi'])->name('data-pribadi');
 route::get('/cart', [ViewController::class, 'cart'])->name('cart');
-route::get('/order-form', [ViewController::class, 'order'])->name('order-form');
+// route::get('/order-form', [ViewController::class, 'order'])->name('order-form');
 route::get('/order-status', [ViewController::class, 'orderStatus'])->name('order-status');
 Route::get('/order-detail/{id}', [ViewController::class, 'orderDetail'])->name('order-detail');
 Route::get('/order-detail/{orderId}', [ViewController::class, 'showOrderDetail'])->name('order.detail');
 Route::get('/order/cancel/{id}', [ViewController::class, 'cancelOrder'])->name('order.cancel');
 Route::post('/ulasan/{barang_id}', [UlasanController::class, 'store'])->name('ulasan.store');
+
+Route::post('/update-data/{id}', [DataController::class, 'updateData'])->name('update-data');
 
 
 Route::middleware('is_admin')->group(function () {
@@ -60,11 +65,9 @@ Route::middleware('is_admin')->group(function () {
     Route::get('/admin/transaksi/detail/{id}', [TransaksiController::class, 'detail'])->name('admin.transaksi.detail_transaksi');
     Route::put('/transaksi/proses/{id}', [TransaksiController::class, 'proses'])->name('transaksi.proses');
 
-Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
-Route::post('/transaksi/{id}/edit-resi', [TransaksiController::class, 'editResi'])->name('transaksi.edit-resi');
-Route::post('/transaksi/{id}/tambah-resi', [TransaksiController::class, 'tambahResi'])->name('transaksi.tambah-resi');
-
-    
+    Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
+    Route::post('/transaksi/{id}/edit-resi', [TransaksiController::class, 'editResi'])->name('transaksi.edit-resi');
+    Route::post('/transaksi/{id}/tambah-resi', [TransaksiController::class, 'tambahResi'])->name('transaksi.tambah-resi');
 
 });
 

@@ -122,25 +122,27 @@
                                 <label for="nama" class="form-label">Nama Pembeli:</label>
                                 <input type="text" class="form-control border rounded" name="nama" id="nama"
                                     @if (session('cart') == null) disabled placeholder="Tidak dapat mengisi form, keranjang anda kosong" @endif
+                                    value="{{Auth::user()->nama}}"
                                     required>
                             </div>
                             <div class="mb-3">
                                 <label for="alamat" class="form-label">Alamat:</label>
                                 <textarea class="form-control border rounded" name="alamat" id="alamat" rows="3"
                                     @if (session('cart') == null) disabled placeholder="Tidak dapat mengisi form, keranjang anda kosong" @endif
-                                    required></textarea>
+                                    required>{{Auth::user()->alamat}}</textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="nomor_hp" class="form-label">Nomor HP:</label>
                                 <input type="text" class="form-control border rounded" name="nomor_hp" id="nomor_hp"
                                     @if (session('cart') == null) disabled placeholder="Tidak dapat mengisi form, keranjang anda kosong" @endif
+                                    value="{{Auth::user()->nomor_hp}}"
                                     required>
                             </div>
                             <div class="mb-3">
                                 <label for="pengiriman" class="form-label">Pengiriman:</label>
                                 <select class="form-select border rounded" name="pengiriman" id="pengiriman"
                                     @if (session('cart') == null) disabled @endif required>
-                                    <option selected disabled>Pilih Pengiriman</option>
+                                    <option selected disabled hidden>Pilih Pengiriman</option>
                                     <option value="ninja-express">Ninja Express</option>
                                     <option value="jnt-cargo">JNT Cargo</option>
                                     <option value="jne-cargo">JNE Cargo</option>

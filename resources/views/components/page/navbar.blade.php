@@ -64,11 +64,11 @@
         <a class="btn {{ Request::routeIs('list-promo') ? 'btn-coklat-gelap' : 'btn-outline-coklat-gelap'}} fw-bold text-uppercase me-1" href="{{route('list-promo')}}">
           <i class="bi bi-percent me-2 d-none d-sm-inline-block"></i>Promo
         </a>
-        <a class="btn {{ Request::routeIs('about-us') ? 'btn-coklat-gelap' : 'btn-outline-coklat-gelap'}} fw-bold text-uppercase me-1" href="#">
+        <a class="btn {{ Request::routeIs('about-us') ? 'btn-coklat-gelap' : 'btn-outline-coklat-gelap'}} fw-bold text-uppercase me-1" href="{{route('about-us')}}">
           <i class="bi bi-info-circle-fill me-2 d-none d-sm-inline-block"></i>Tentang
         </a>
-        <a class="btn {{ Request::routeIs('kontak') ? 'btn-coklat-gelap' : 'btn-outline-coklat-gelap'}} fw-bold text-uppercase me-1" href="#">
-          <i class="bi bi-person-lines-fill me-2 d-none d-sm-inline-block"></i>Kontak
+        <a class="btn {{ Request::routeIs('faq') ? 'btn-coklat-gelap' : 'btn-outline-coklat-gelap'}} fw-bold text-uppercase me-1" href="{{route('faq')}}">
+          <i class="bi bi-question-circle-fill me-2 d-none d-sm-inline-block"></i>FAQ
         </a>
 
       </div>
@@ -86,7 +86,7 @@
               <i class="bi bi-grid me-1"></i>Dashboard
             </a>
           @else
-            <a class="btn btn-coklat-gelap d-flex align-items-center" href="#">
+            <a class="btn btn-coklat-gelap d-flex align-items-center" href="{{route('data-pribadi')}}">
               <i class="bi bi-clipboard me-1"></i>Data Pribadi
             </a>
             <a class="btn btn-coklat-gelap d-flex align-items-center" href="{{route('cart')}}">

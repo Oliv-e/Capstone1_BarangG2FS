@@ -50,6 +50,15 @@ class ViewController extends Controller
         $ulasan = Ulasan::all();
         return view('page.produk.detail-produk', compact(['produk', 'ulasan']));
     }
+    public function faq() {
+        return view('page.faq.faq');
+    }
+    public function aboutUs() {
+        return view('page.about.about-us');
+    }
+    public function dataPribadi() {
+        return view('page.data.data-pribadi');
+    }
 
     public function listProduk(Request $request)
     {
