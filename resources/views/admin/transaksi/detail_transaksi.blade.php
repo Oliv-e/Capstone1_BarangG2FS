@@ -33,35 +33,39 @@
                 @foreach($transaksi->detailTransaksi as $detail)
                 <div class="row mb-3">
                     <div class="col-md-3 d-flex align-items-center">
-                        <img src="{{ $detail->barang->image_url }}" class="img-fluid product-image" alt="Gambar Produk">
+                        <img src="{{ asset('storage/gambar/barang/'.$detail->barang->gambar) }}" class="img-fluid product-image" alt="Gambar Produk">
                     </div>
                     <div class="col-md-3 d-flex align-items-center">
                         <div>
-                            <strong>Nama Produk:</strong>
+                            <strong>Nama Produk :</strong>
                             <p class="fs-5">{{ $detail->barang->nama }}</p>
                         </div>
                     </div>
                     <div class="col-md-3 d-flex align-items-center">
                         <div>
-                            <strong>Harga Produk:</strong>
+                            <strong>Harga Produk :</strong>
                             <p class="fs-5">Rp. {{ number_format($detail->barang->harga, 2) }}</p>
                         </div>
                     </div>
                     <div class="col-md-3 d-flex align-items-center">
                         <div>
-                            <strong>Jumlah Produk:</strong>
+                            <strong>Jumlah Produk :</strong>
                             <p class="fs-5">{{ $detail->jumlah }}</p>
                         </div>
                     </div>
-                </div>
-                @endforeach
-
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <strong>Total Harga:</strong>
-                        <p class="total-price" id="totalPrice">Rp. {{ number_format($transaksi->total_harga, 2) }}</p>
+                    <div class="col-md-3 d-flex align-items-center">
+                        <div>
+                            <strong>Status : </strong>
+                            <p class="fs-5">{{ $detail->status }}</p>
+                        </div>
                     </div>
-                    <div class="col-md-6 text-end">
+                    <div class="col-md-3 d-flex align-items-center">
+                        <div>
+                            <strong>Status : </strong>
+                            <p class="fs-5">Rp. {{ number_format($transaksi->total_harga, 2) }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 d-flex align-items-center justify-content-end">
                         <form action="{{ route('transaksi.proses', $transaksi->id) }}" method="POST">
                             @csrf
                             @method('PUT') 
@@ -70,6 +74,7 @@
                         <button class="btn btn-success ms-2" onclick="window.location.href='/dashboard/transaksi';">Kirim</button>
                     </div>
                 </div>
+                @endforeach
             </div>
         </div>
     </div>

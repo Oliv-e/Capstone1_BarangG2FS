@@ -55,9 +55,9 @@ public function detail($id)
 {
 
     $transaksi = Transaksi::findOrFail($id);
-    
+    $d_transaksi = DetailTransaksi::where('id_transaksi', $id)->get();
 
-    return view('admin.transaksi.detail_transaksi', compact('transaksi'));
+    return view('admin.transaksi.detail_transaksi', compact('transaksi','d_transaksi'));
 }
 
 

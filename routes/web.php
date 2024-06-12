@@ -26,21 +26,29 @@ Route::get('/detail-promo/{id}', [ViewController::class, 'detailPromo'])->name('
 Route::get('/promo', [ViewController::class, 'promo'])->name('list-promo');
 Route::get('/detail-produk/{id}', [ViewController::class, 'detailProduk'])->name('detail-produk');
 Route::get('/list-produk', [ViewController::class, 'listProduk'])->name('list-produk');
-// Route::get('/products-by-category', [BarangController::class, 'getProductsByCategory']);
-route::get('/order-complete', [ViewController::class, 'orderComplete'])->name('order-complete');
 route::get('/faq', [ViewController::class, 'faq'])->name('faq');
 route::get('/about-us', [ViewController::class, 'aboutUs'])->name('about-us');
-route::get('/data-pribadi', [ViewController::class, 'dataPribadi'])->name('data-pribadi');
-route::get('/cart', [ViewController::class, 'cart'])->name('cart');
+
+// Route::get('/products-by-category', [BarangController::class, 'getProductsByCategory']);
 // route::get('/order-form', [ViewController::class, 'order'])->name('order-form');
-route::get('/order-status', [ViewController::class, 'orderStatus'])->name('order-status');
-Route::get('/order-detail/{id}', [ViewController::class, 'orderDetail'])->name('order-detail');
-Route::get('/order-detail/{orderId}', [ViewController::class, 'showOrderDetail'])->name('order.detail');
-Route::get('/order/cancel/{id}', [ViewController::class, 'cancelOrder'])->name('order.cancel');
-Route::post('/ulasan/{barang_id}', [UlasanController::class, 'store'])->name('ulasan.store');
+Route::middleware('is_guest')->group(function() {
+    route::get('/order-complete', [ViewController::class, 'orderComplete'])->name('order-complete');
+    route::get('/data-pribadi', [ViewController::class, 'dataPribadi'])->name('data-pribadi');
+    // route::get('/cart', [ViewController::class, 'cart'])->name('cart');
+    route::get('/order-status', [ViewController::class, 'orderStatus'])->name('order-status');
+    Route::get('/order-detail/{id}', [ViewController::class, 'orderDetail'])->name('order-detail');
+    Route::get('/order-detail/{orderId}', [ViewController::class, 'showOrderDetail'])->name('order.detail');
+    Route::get('/order/cancel/{id}', [ViewController::class, 'cancelOrder'])->name('order.cancel');
+    Route::post('/ulasan/{barang_id}', [UlasanController::class, 'store'])->name('ulasan.store');
+    Route::post('/update-data/{id}', [DataController::class, 'updateData'])->name('update-data');
 
-Route::post('/update-data/{id}', [DataController::class, 'updateData'])->name('update-data');
-
+    Route::get('cart', [ViewController::class, 'cart'])->name('cart');
+    Route::get('add-to-cart/{id}', [ViewController::class, 'addToCart'])->name('add.to.cart');
+    Route::patch('update-cart', [ViewController::class, 'update'])->name('update.cart');
+    Route::delete('remove-from-cart', [ViewController::class, 'remove'])->name('remove.from.cart');
+    Route::post('checkout', [ViewController::class, 'checkout'])->name('checkout');
+    Route::delete('clear-cart', [ViewController::class, 'clearCart'])->name('clear.cart');
+});
 
 Route::middleware('is_admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
@@ -57,18 +65,6 @@ Route::middleware('is_admin')->group(function () {
     Route::get('/dashboard/promo/{id}/edit', [PromoController::class, 'edit'])->name('promo.edit');
     Route::put('/dashboard/promo/{id}/update', [PromoController::class, 'update'])->name('promo.update');
     Route::get('/dashboard/promo/{id}/destroy', [PromoController::class, 'destroy'])->name('promo.destroy');
-    Route::get('/dashboard/transaksi', [OrderController::class, 'index'])->name('transaksi.index');
-    Route::get('/dashboard/transaksi/{id}/detail', [OrderController::class, 'show'])->name('transaksi.detail');
-
-    Route::get('/transaksi', [TransaksiController::class, 'index'])->name('admin.transaksi.index');
-    Route::get('/transaksi/{id}', [TransaksiController::class, 'show'])->name('transaksi.detail');
-    Route::get('/admin/transaksi/detail/{id}', [TransaksiController::class, 'detail'])->name('admin.transaksi.detail_transaksi');
-    Route::put('/transaksi/proses/{id}', [TransaksiController::class, 'proses'])->name('transaksi.proses');
-
-    Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
-    Route::post('/transaksi/{id}/edit-resi', [TransaksiController::class, 'editResi'])->name('transaksi.edit-resi');
-    Route::post('/transaksi/{id}/tambah-resi', [TransaksiController::class, 'tambahResi'])->name('transaksi.tambah-resi');
-
 });
 
 Route::middleware('is_superadmin')->group(function () {
@@ -78,13 +74,18 @@ Route::middleware('is_superadmin')->group(function () {
     Route::get('/dashboard/kategori/edit/{id}', [KategoriController::class, 'edit'])->name('kategori.edit');
     Route::post('/dashboard/kategori/edit/{id}', [KategoriController::class, 'update'])->name('kategori.update');
     Route::get('/dashboard/kategori/delete/{id}', [KategoriController::class, 'destroy'])->name('kategori.destroy');
-});
-Route::get('cart', [ViewController::class, 'cart'])->name('cart');
-Route::get('add-to-cart/{id}', [ViewController::class, 'addToCart'])->name('add.to.cart');
 
-Route::patch('update-cart', [ViewController::class, 'update'])->name('update.cart');
-Route::delete('remove-from-cart', [ViewController::class, 'remove'])->name('remove.from.cart');
-Route::post('checkout', [ViewController::class, 'checkout'])->name('checkout');
-Route::delete('clear-cart', [ViewController::class, 'clearCart'])->name('clear.cart');
+    // Route::get('/dashboard/transaksi', [OrderController::class, 'index'])->name('transaksi.index');
+    // Route::get('/dashboard/transaksi/{id}/detail', [OrderController::class, 'show'])->name('transaksi.detail');
+
+    Route::get('/dashboard/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
+    Route::get('/dashboard/transaksi/{id}', [TransaksiController::class, 'show'])->name('transaksi.detail');
+    Route::get('/dashboard/transaksi/detail/{id}', [TransaksiController::class, 'detail'])->name('admin.transaksi.detail_transaksi');
+    Route::put('/dashboard/transaksi/proses/{id}', [TransaksiController::class, 'proses'])->name('transaksi.proses');
+
+    // Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
+    Route::post('/transaksi/{id}/edit-resi', [TransaksiController::class, 'editResi'])->name('transaksi.edit-resi');
+    Route::post('/transaksi/{id}/tambah-resi', [TransaksiController::class, 'tambahResi'])->name('transaksi.tambah-resi');
+});
 
 require __DIR__ . '/auth.php';
