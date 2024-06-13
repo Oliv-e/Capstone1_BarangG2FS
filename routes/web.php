@@ -78,9 +78,6 @@ Route::middleware('is_superadmin')->group(function () {
     Route::get('/dashboard/transaksi/{id}', [TransaksiController::class, 'show'])->name('transaksi.detail');
     Route::get('/dashboard/transaksi/detail/{id}', [TransaksiController::class, 'detail'])->name('admin.transaksi.detail_transaksi');
     Route::put('/dashboard/transaksi/proses/{id}', [TransaksiController::class, 'proses'])->name('transaksi.proses');
-
-    Route::post('/transaksi/{id}/edit-resi', [TransaksiController::class, 'editResi'])->name('transaksi.edit-resi');
-    Route::post('/transaksi/{id}/tambah-resi', [TransaksiController::class, 'tambahResi'])->name('transaksi.tambah-resi');
 });
 
 require __DIR__ . '/auth.php';
