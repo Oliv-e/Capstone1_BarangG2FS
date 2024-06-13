@@ -21,9 +21,10 @@
 
         <!-- Right elements -->
         <div class="col-5 d-flex justify-content-end gap-4 align-items-center">
-          <form class="d-none d-md-flex input-group w-auto mb-3 mb-md-0">
-            <input autocomplete="off" type="search" class="form-control rounded" placeholder="Cari Barang [ Ctrl + / ]" />
+          <form method="GET" action="{{ route('list-produk') }}" class="d-none d-md-flex input-group w-auto mb-3 mb-md-0">
+            <input autocomplete="off" type="search" class="form-control rounded" name="search" placeholder="Cari Barang [ Ctrl + / ]" />
             <span class="input-group-text border-0 d-none d-lg-flex"><i class="bi bi-search"></i></span>
+            @csrf
           </form>
           @if (Auth::check())
             <div class="d-none d-md-flex gap-2 flex-column flex-lg-row align-items-center">
@@ -125,5 +126,11 @@
     document.getElementById('toggle-nav').classList.toggle('d-none');
     document.getElementById('toggle-nav').classList.toggle('d-block');
   });
+    document.querySelector('input[name="search"]').addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            this.form.submit();
+        }
+    });
 </script>
 <!--Main Navigation-->

@@ -39,33 +39,37 @@
 
         <!-- Product List -->
         <div class="row" id="productList">
-            @foreach ($products as $product)
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <div class="product-image">
-                            <img src="{{ asset('storage/gambar/barang/' . $product->gambar) }}" class="img-fluid rounded-start" alt="{{ $product->nama }}">
-                            <i class="bi bi-cart-fill bg-coklat-gelap cart-icon" onclick="confirmCart(this)" data-url="{{ route('add.to.cart', ['id' => $product->id]) }}"></i>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title fw-bold fs-3">{{ $product->nama }}</h5>
-                            <p class="kategori"><span class="fw-bold">Kategori:</span> {{ $product->kategori->nama }}</p>
-                            <p class="card-text my-2">{!! $product->deskripsi !!}</p>
-                            <p class="card-text my-2 text-coklat-gelap"><strong>Harga: Rp. {{ number_format($product->harga, 0, ',', '.') }}</strong></p>
-                            <div class="rating my-2">
-                                <div class="stars">
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-half"></i>
-                                </div>
-                                <span>(4.5/5 dari 2 ulasan)</span>
+            @if(count($products) > 0)
+                @foreach ($products as $product)
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="product-image">
+                                <img src="{{ asset('storage/gambar/barang/' . $product->gambar) }}" class="img-fluid rounded-start" alt="{{ $product->nama }}">
+                                <i class="bi bi-cart-fill bg-coklat-gelap cart-icon" onclick="confirmCart(this)" data-url="{{ route('add.to.cart', ['id' => $product->id]) }}"></i>
                             </div>
-                            <a href="{{ route('detail-produk', ['id' => $product->id]) }}" class="btn btn-outline-coklat-gelap">Detail Produk</a>
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold fs-3">{{ $product->nama }}</h5>
+                                <p class="kategori"><span class="fw-bold">Kategori:</span> {{ $product->kategori->nama }}</p>
+                                <p class="card-text my-2">{!! $product->deskripsi !!}</p>
+                                <p class="card-text my-2 text-coklat-gelap"><strong>Harga: Rp. {{ number_format($product->harga, 0, ',', '.') }}</strong></p>
+                                <div class="rating my-2">
+                                    <div class="stars">
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-half"></i>
+                                    </div>
+                                    <span>(4.5/5 dari 2 ulasan)</span>
+                                </div>
+                                <a href="{{ route('detail-produk', ['id' => $product->id]) }}" class="btn btn-outline-coklat-gelap">Detail Produk</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            @else
+                <div>Barang tidak ditemukan.</div>
+            @endif
         </div>
 
         <!-- Pagination -->
@@ -101,55 +105,14 @@
         fetch(`/products-by-category?category_id=${categoryId}`).then(response => response.json()).then(data => {
             const productList = document.getElementById('productList');
             productList.innerHTML = '';
-
-            data.forEach(product => {
-                const productCard = `
-                    <div class="col-md-4 mb-4">
-                        <div class="card">
-                            <div class="product-image">
-                                <img src="{{ asset('storage/gambar/barang/') }}/${product.gambar}" class="img-fluid rounded-start" alt="${product.nama}">
-                                <i class="bi bi-cart-fill bg-coklat-gelap cart-icon" onclick="confirmCart(this)" data-url="{{ route('add.to.cart', ['id' => $product->id]) }}"></i>
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title fw-bold fs-3">${product.nama}</h5>
-                                <p class="kategori"><span class="fw-bold">Kategori:</span> ${product.kategori.nama}</p>
-                                <p class="card-text my-2">${product.deskripsi}</p>
-                                <p class="card-text my-2 text-coklat-gelap"><strong>Harga: Rp. ${new Intl.NumberFormat('id-ID').format(product.harga)}</strong></p>
-                                <div class="rating my-2">
-                                    <div class="stars">
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-half"></i>
-                                    </div>
-                                    <span>(4.5/5 dari 2 ulasan)</span>
-                                </div>
-                                <a href="/detail-produk/${product.id}" class="btn btn-outline-coklat-gelap">Detail Produk</a>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                productList.innerHTML += productCard;
-            });
-        }).catch(error => console.error('Error:', error));
-    }
-
-    function searchProducts() {
-        const search = document.getElementById('search').value.toLowerCase();
-        const categoryId = document.getElementById('category').value;
-        fetch(`/products-by-category?category_id=${categoryId}&search=${search}`).then(response => response.json()).then(data => {
-            const productList = document.getElementById('productList');
-            productList.innerHTML = '';
-
-            data.forEach(product => {
-                if (product.nama.toLowerCase().includes(search)) {
+            if (data.length > 0) {
+                data.forEach(product => {
                     const productCard = `
                         <div class="col-md-4 mb-4">
                             <div class="card">
                                 <div class="product-image">
-                                    <img src="{{ asset('storage/gambar/barang/') }}/${product.gambar}" class="img-fluid rounded-start" alt="${product.nama}">
-                                    <i class="bi bi-cart-fill bg-coklat-gelap cart-icon" onclick="confirmCart(this)" data-url="{{ route('add.to.cart', ['id' => $product->id]) }}"></i>
+                                    <img src="/storage/gambar/barang/${product.gambar}" class="img-fluid rounded-start" alt="${product.nama}">
+                                    <i class="bi bi-cart-fill bg-coklat-gelap cart-icon" onclick="confirmCart(this)" data-url="/add-to-cart/${product.id}"></i>
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title fw-bold fs-3">${product.nama}</h5>
@@ -172,8 +135,57 @@
                         </div>
                     `;
                     productList.innerHTML += productCard;
-                }
-            });
+                });
+            } else {
+                const productCard = `<div>Barang tidak di Temukan.</div>`;
+                productList.innerHTML += productCard;
+            }
+        }).catch(error => console.error('Error:', error));
+    }
+
+    function searchProducts() {
+        const search = document.getElementById('search').value.toLowerCase();
+        const categoryId = document.getElementById('category').value;
+        fetch(`/products-by-category?category_id=${categoryId}&search=${search}`).then(response => response.json()).then(data => {
+            const productList = document.getElementById('productList');
+            productList.innerHTML = '';
+            if (data.length > 0) {
+                data.forEach(product => {
+                    if (product.nama.toLowerCase().includes(search)) {
+                        const productCard = `
+                            <div class="col-md-4 mb-4">
+                                <div class="card">
+                                    <div class="product-image">
+                                        <img src="/storage/gambar/barang/${product.gambar}" class="img-fluid rounded-start" alt="${product.nama}">
+                                        <i class="bi bi-cart-fill bg-coklat-gelap cart-icon" onclick="confirmCart(this)" data-url="/add-to-cart/${product.id}"></i>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title fw-bold fs-3">${product.nama}</h5>
+                                        <p class="kategori"><span class="fw-bold">Kategori:</span> ${product.kategori.nama}</p>
+                                        <p class="card-text my-2">${product.deskripsi}</p>
+                                        <p class="card-text my-2 text-coklat-gelap"><strong>Harga: Rp. ${new Intl.NumberFormat('id-ID').format(product.harga)}</strong></p>
+                                        <div class="rating my-2">
+                                            <div class="stars">
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-half"></i>
+                                            </div>
+                                            <span>(4.5/5 dari 2 ulasan)</span>
+                                        </div>
+                                        <a href="/detail-produk/${product.id}" class="btn btn-outline-coklat-gelap">Detail Produk</a>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        productList.innerHTML += productCard;
+                    }
+                });
+            } else {
+                const productCard = `<div>Barang tidak di Temukan.</div>`;
+                productList.innerHTML += productCard;
+            }
         }).catch(error => console.error('Error:', error));
     }
 </script>
