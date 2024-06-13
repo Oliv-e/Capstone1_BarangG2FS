@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use App\Models\Ulasan; // Import model Ulasan
 use Illuminate\Support\Facades\Auth; // Import facade Auth
@@ -31,42 +32,66 @@ class UlasanController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request, $barang_id)
-    {
-        
+{
+    // Mengambil transaksi terbaru dari pengguna
+    $transaksi = Transaksi::where('id_user', Auth::id())
+                          ->latest()
+                          ->first();
+
+    // Verifikasi apakah ada transaksi yang ditemukan
+    if ($transaksi) {
+        // Validasi data yang dikirimkan
         $request->validate([
             'rating' => 'required|integer|min:1|max:5',
             'komentar' => 'required|string',
         ]);
 
+        // Simpan ulasan ke dalam database
         Ulasan::create([
-            'id_user' => Auth::id(), // Ubah 'user_id' menjadi 'id_user'
+            'id_user' => Auth::id(),
             'id_barang' => $barang_id,
             'rate' => $request->rating,
             'komentar' => $request->komentar,
         ]);
 
         return redirect()->back()->with('success', 'Ulasan Anda telah ditambahkan.');
+    } else {
+        return redirect()->back()->with('error', 'Anda harus melakukan transaksi untuk dapat menambahkan ulasan.');
     }
+}
 
     /**
      * Display the specified resource.
      */
     public function show($id)
+{
+    // Mengambil data produk berdasarkan ID
+    $produk = Barang::findOrFail($id);
+    
+    // Pastikan hanya pengguna yang sudah melakukan transaksi yang dapat mengakses halaman ini
+    if (!$produk->userHasPurchased()) {
+        return redirect()->back()->with('error', 'Anda tidak memiliki izin untuk mengakses halaman ini.');
+    }
+    
+    // Menghitung rating produk
+    $rating = Ulasan::where('produk_id', $produk->id)->avg('rate');
+    
+    // Menyimpan rating ke dalam data produk
+    $produk->rating = $rating;
+    
+    // Mengambil ulasan produk
+    $ulasan = Ulasan::where('produk_id', $produk->id)->get();
+    
+    // Mengirim data produk dan ulasan ke halaman detail produk
+    return view('detail_produk', compact('produk', 'ulasan'));
+}
+
+    protected function calculateAverageRating($barang_id)
     {
-        // Mengambil data produk berdasarkan ID
-        $produk = Barang::findOrFail($id);
-        
-        // Menghitung rating produk
-        $rating = Ulasan::where('produk_id', $produk->id)->avg('rating');
-        
-        // Menyimpan rating ke dalam data produk
-        $produk->rating = $rating;
-        
-        // Mengambil ulasan produk
-        $ulasan = Ulasan::where('produk_id', $produk->id)->get();
-        
-        // Mengirim data produk dan ulasan ke halaman detail produk
-        return view('detail_produk', compact('produk', 'ulasan'));
+        // Menghitung rata-rata rating produk
+        $averageRating = Ulasan::where('id_barang', $barang_id)->avg('rate');
+
+        return $averageRating;
     }
 
     /**

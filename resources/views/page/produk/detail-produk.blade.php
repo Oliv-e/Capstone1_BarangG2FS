@@ -29,14 +29,8 @@
                         <p class="card-text my-2 text-coklat-gelap"><strong>Harga: Rp. {{ number_format($produk->harga, 0, ',', '.') }}</strong></p>
                         <div class="rating my-2">
                             <strong class="me-2">Rating:</strong>
-                            <div class="stars">
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-half"></i>
-                            </div>
-                            <span>(4.5/5 dari 2 ulasan)</span>
+                            
+                            <span>({{ number_format($produk->rating, 1) }}/5 dari {{ $ulasan->count() }} ulasan)</span>
                         </div>
                         <a onclick="confirmCart(this)" data-url="{{ route('add.to.cart', ['id' => $produk->id]) }}" class="btn btn-coklat-gelap my-3" role="button"><i class="bi bi-cart"></i> Add to Cart</a>
                     </div>
@@ -46,6 +40,7 @@
         <h3 class="fw-bold fs-3 mt-4"><i class="bi bi-star-fill text-coklat-gelap"></i> ULASAN PRODUK</h3>
         <h4 class="fw-bold fs-4 mt-4">Tambahkan Komentar Anda</h4>
         @auth
+    @if ($produk->userHasPurchased())
         <div class="row mt-3">
             <div class="col-12">
                 <form action="{{ route('ulasan.store', ['barang_id' => $produk->id]) }}" method="POST">
@@ -70,9 +65,12 @@
                 </form>
             </div>
         </div>
-        @else
-            <p>Anda harus <a href="{{ route('login') }}">login</a> untuk menambahkan komentar.</p>
-        @endauth
+    @else
+        <p>Anda hanya dapat menambahkan komentar setelah melakukan transaksi.</p>
+    @endif
+@else
+    <p>Anda harus <a href="{{ route('login') }}">login</a> untuk menambahkan komentar.</p>
+@endauth
         <div class="row gap-y-4 mt-4">
             @isset($ulasan)
                 @foreach($ulasan as $review)
@@ -81,7 +79,7 @@
                             <div class="card-body">
                                 <div class="d-flex justify-content-between">
                                     <div>
-                                        <h5 class="review-title">{{ $review->user->nama }}</h5>
+                                        <h5 class="review-title">{{ $review->user ? $review->user->nama : 'User tidak diketahui' }}</h5>
                                         <p class="review-date"><small class="text-muted">Tanggal Ulasan: {{ $review->created_at->format('d M Y') }}</small></p>
                                     </div>
                                     <div class="stars text-warning">

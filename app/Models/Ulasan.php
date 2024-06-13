@@ -9,15 +9,10 @@ class Ulasan extends Model
 {
     use HasFactory;
     protected $table = "ulasan";
-    protected $fillable = [
-        'id_user',
-        'id_barang',
-        'rate',
-        'komentar',
-    ];
+    protected $fillable = ['id_user', 'id_barang', 'rate', 'komentar'];
     public function user()
     {
-        return $this->belongsTo(User::class, 'id');
+        return $this->belongsTo(User::class, 'id_user');
     }
     public function barang()
     {
