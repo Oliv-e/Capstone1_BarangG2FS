@@ -14,6 +14,7 @@ class DetailTransaksi extends Model
     protected $table = 'detail_transaksi'; // Nama tabel dalam database
     
     protected $fillable = [
+        'resi',
         'id_transaksi',
         'id_barang',
         'status',

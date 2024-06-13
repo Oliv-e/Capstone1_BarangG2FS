@@ -48,6 +48,9 @@
                 </div>
                 <!-- Loop through order details and display product information -->
                 @foreach ($details as $detailTransaksi)
+                    <div>
+                        <h2 class="bg-coklat-gelap p-2 text-white rounded">Nomor Resi : {{$detailTransaksi->resi}}</h2>
+                    </div>
                     <div class="row mb-3">
                         <div class="col-md-3 d-flex align-items-center">
                             <img src="{{ asset('storage/gambar/barang/'.$detailTransaksi->image_url) }}" class="img-fluid product-image" alt="Gambar Produk" style="max-width: 100px;">
@@ -93,8 +96,19 @@
 
                 <div class="row mb-3">
                     <div class="col-md-6 text-end offset-md-6">
-                        <button class="btn btn-success" disabled>Selesai</button>
-                        <a onclick="confirmDelete(this)" data-url="{{ route('order.cancel', ['id' => $order->id]) }}" class="btn btn-danger" role="button"><i class="bi bi-x-circle"></i> Batalkan Pesanan</a>
+                        
+                        @foreach ($details as $dt)
+                            @if ($dt->status == 'dibatalkan')
+                                <button class="btn btn-coklat-gelap" disabled>Dibatalkan</button>
+                            @elseif ($dt->status == 'dikirim')
+                                <a onclick="confirmDone(this)" data-url="{{ route('order.done', ['id' => $order->id]) }}" class="btn btn-success" role="button"><i class="bi bi-check-circle me-2"></i>Pesanan Sampai</a>
+                            @elseif ($dt->status == 'selesai')
+                                <p>Pesanan Telah Selesai.</p>
+                            @else
+                                <a onclick="confirmDelete(this)" data-url="{{ route('order.cancel', ['id' => $order->id]) }}" class="btn btn-danger" role="button"><i class="bi bi-x-circle me-2"></i>Batalkan Pesanan</a>
+                            @endif
+                        @endforeach
+                        
                     </div>
                 </div>
             </div>
@@ -113,6 +127,18 @@
                 'title': 'Batalkan Pesanan',
                 'text': 'Apakah Kamu Yakin Ingin Membatalkan Pesanan ini?',
                 'dangerMode' : true,
+                'buttons': true
+            }).then(function(value) {
+                if (value) {
+                    window.location = url;
+                }
+            })
+        }
+        confirmDone = function(button) {
+            var url = $(button).data('url');
+            swal({
+                'title': 'Pesanan Selesai',
+                'text': 'Apakah Kamu Yakin Ingin Menyelesaikan Pesanan ini?',
                 'buttons': true
             }).then(function(value) {
                 if (value) {

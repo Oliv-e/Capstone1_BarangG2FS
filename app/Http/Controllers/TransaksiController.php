@@ -42,14 +42,21 @@ class TransaksiController extends Controller
         return view('admin.transaksi.detail_transaksi', compact('transaksi'));
     }
 
-    public function proses($id)
-{
+    public function proses($id, Request $request)
+    {
+        $dt = DetailTransaksi::where('id_transaksi', $id)->first();
+        if ($dt->status == 'dikirim') {
+            DetailTransaksi::where('id_transaksi', $id)->update(['status' => 'selesai']);
+        } else {
+            if ($request->resi != null) {
+                DetailTransaksi::where('id_transaksi', $id)->update(['status' => 'dikirim', 'resi' => $request->resi]);
+            } else {
+                DetailTransaksi::where('id_transaksi', $id)->update(['status' => 'diproses']);
+            }
+        }
 
-    DetailTransaksi::where('id_transaksi', $id)->update(['status' => 'proses']);
-
-
-    return redirect()->route('admin.transaksi.detail_transaksi', $id)->with('success', 'Transaksi telah diproses.');
-}
+        return redirect()->route('admin.transaksi.detail_transaksi', $id)->with('success', 'Transaksi telah diproses.');
+    }
 
 public function detail($id)
 {

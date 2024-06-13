@@ -21,9 +21,10 @@
 
         <!-- Right elements -->
         <div class="col-5 d-flex justify-content-end gap-4 align-items-center">
-          <form class="d-none d-md-flex input-group w-auto mb-3 mb-md-0">
-            <input autocomplete="off" type="search" class="form-control rounded" placeholder="Cari Barang [ Ctrl + / ]" />
+          <form method="GET" action="{{ route('list-produk') }}" class="d-none d-md-flex input-group w-auto mb-3 mb-md-0">
+            <input autocomplete="off" type="search" class="form-control rounded" name="search" placeholder="Cari Barang [ Ctrl + / ]" />
             <span class="input-group-text border-0 d-none d-lg-flex"><i class="bi bi-search"></i></span>
+            @csrf
           </form>
           @if (Auth::check())
             <div class="d-none d-md-flex gap-2 flex-column flex-lg-row align-items-center">
@@ -87,10 +88,13 @@
             </a>
           @else
             <a class="btn btn-coklat-gelap d-flex align-items-center" href="{{route('data-pribadi')}}">
-              <i class="bi bi-clipboard me-1"></i>Data Pribadi
+              <i class="bi bi-clipboard me-1"></i>Data
             </a>
             <a class="btn btn-coklat-gelap d-flex align-items-center" href="{{route('cart')}}">
-              <i class="bi bi-cart me-1"></i>Keranjang Saya
+              <i class="bi bi-cart me-1"></i>Keranjang
+            </a>
+            <a class="btn btn-coklat-gelap d-flex align-items-center" href="{{route('order-status')}}">
+              <i class="bi bi-cart me-1"></i>Pesanan
             </a>
           @endif
           <form action="{{route('logout')}}" method="POST">
@@ -125,5 +129,11 @@
     document.getElementById('toggle-nav').classList.toggle('d-none');
     document.getElementById('toggle-nav').classList.toggle('d-block');
   });
+    document.querySelector('input[name="search"]').addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            this.form.submit();
+        }
+    });
 </script>
 <!--Main Navigation-->

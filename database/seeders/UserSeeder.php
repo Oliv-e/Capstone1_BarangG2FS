@@ -25,6 +25,15 @@ class UserSeeder extends Seeder
                 'diarsipkan' => 'false'
             ],
             [
+                'nama' => 'guest2',
+                'email' => 'guest2@g.com',
+                'alamat' => 'Jl. Imam Bonjol No. 01',
+                'nomor_hp' => '081234567890',
+                'password' => Hash::make('12341234'),
+                'role' => 'guest',
+                'diarsipkan' => 'false'
+            ],
+            [
                 'nama' => 'admin',
                 'email' => 'admin@g.com',
                 'alamat' => 'Jl. Imam Bonjol No. 01',

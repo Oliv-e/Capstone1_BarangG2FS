@@ -13,28 +13,29 @@
 <div class="container-fluid" style="min-height: 65.5vh">
     <div class="row mt-2">
         <div class="col-12 col-lg-6 p-4">
-            <h3 class="py-4 fs-3 fw-bolder">General Information</h3>
+            <h3 class="py-4 fs-3 fw-bolder">Paling Sering Ditanyakan</h3>
             <div class="flex flex-col my-4 gap-y-2">
                 <h5 class="fs-5 fw-bold">Jika barang sesuai, apakah bisa melakukan retur dan refund?</h5>
                 <p style="text-align: justify" class="text-muted">Tentu bisa, karena kami selalu mengutamakan pembeli sesuai dengan visi misi kami, namun biaya operasional ditanggung pembeli.</p>
             </div>
             <div class="flex flex-col my-4 gap-y-2">
-                <h5 class="fs-5 fw-bold">Lorem Ipsum Dolor Sit Amet?</h5>
-                <p style="text-align: justify" class="text-muted">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatem tempore consectetur laboriosam suscipit sunt odit soluta expedita nemo aspernatur, alias, unde perspiciatis cum architecto beatae, nihil quis delectus eum consequuntur?.</p>
+                <h5 class="fs-5 fw-bold">Bagaimana cara mendapatkan diskon promo atau penawaran spesial?</h5>
+                <p style="text-align: justify" class="text-muted">Anda dapat memeriksa bagian promo di landingpage untuk informasi terbaru tentang diskon dan promosi produk yang tersedia.</p>
             </div>
             <div class="flex flex-col my-4 gap-y-2">
-                <h5 class="fs-5 fw-bold">Lorem Ipsum Dolor Sit Amet?</h5>
-                <p style="text-align: justify" class="text-muted">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatem tempore consectetur laboriosam suscipit sunt odit soluta expedita nemo aspernatur, alias, unde perspiciatis cum architecto beatae, nihil quis delectus eum consequuntur?.</p>
+                <h5 class="fs-5 fw-bold">Bagaimana cara melacak status pengiriman pesanan saya?</h5>
+                <p style="text-align: justify" class="text-muted">Anda dapat melacak status pengiriman melalui fitur status di halaman pesanan Anda. Untuk nomor resi terkait produk yang di pesan bisa konfirmasi langsung ke kontak admin sesuai dengan id pesanan Anda.</p>
             </div>
             <div class="flex flex-col my-4 gap-y-2">
-                <h5 class="fs-5 fw-bold">Lorem Ipsum Dolor Sit Amet?</h5>
-                <p style="text-align: justify" class="text-muted">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatem tempore consectetur laboriosam suscipit sunt odit soluta expedita nemo aspernatur, alias, unde perspiciatis cum architecto beatae, nihil quis delectus eum consequuntur?.</p>
+                <h5 class="fs-5 fw-bold">Apakah saya bisa membatalkan pesanan setelah pembayaran?</h5>
+                <p style="text-align: justify" class="text-muted">Tentu, Anda dapat membatalkan pesanan sebelum proses pengiriman dimulai. Untuk pembatalan, silakan kunjungi halaman pesanan anda dan pilih pesanan yang ingin dibatalkan, atau hubungi admin untuk bantuan.</p>
             </div>
         </div>
         <div class="col-12 col-lg-6 p-4 bg-coklat">
             <form action="mailto:valinellaprojects@gmail.com" method="POST" enctype="multipart/form-data" name="EmailForm">
                 <div class="my-4">
-                    <label class="fs-3 fw-bolder">Ask a Question</label>
+                    <label class="fs-3 fw-bolder">Tanya Kebingungan Anda Disini</label>
+                    <p style="text-align: justify;" class="">Aksi ini akan membuka mail anda untuk mengirimkan pesan silahkan klik <a href="https://wa.me/6285161214171">disini</a> untuk bertanya melalui whatsapp.</p>
                 </div>
                 <div class="my-4">
                     <input type="text" name="Contact-Name" id="nama" class="form-control" placeholder="Nama Kamu">

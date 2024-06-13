@@ -65,14 +65,41 @@
                             <p class="fs-5">Rp. {{ number_format($transaksi->total_harga, 2) }}</p>
                         </div>
                     </div>
-                    <div class="col-md-6 d-flex align-items-center justify-content-end">
-                        <form action="{{ route('transaksi.proses', $transaksi->id) }}" method="POST">
-                            @csrf
-                            @method('PUT') 
-                            <button type="submit" onclick="sendWhatsappMessages({{$transaksi->nomor_hp}})" class="btn bg-gradient-info">Kirim Pesan & Proses</button>
-                        </form>
-                        <button class="btn btn-success ms-2" onclick="window.location.href='/dashboard/transaksi';">Kirim</button>
+                    <div class="col-md-3 d-flex align-items-center">
+                        <div>
+                            <strong>Resi : </strong>
+                            <p class="fs-5">{{ $detail->resi }}</p>
+                        </div>
                     </div>
+                    @if ($detail->status == 'diproses')
+                        <div class="col-md-3 d-flex align-items-center justify-content-end">
+                            <form action="{{ route('transaksi.proses', $transaksi->id) }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <div class="input-group input-group-outline my-3">
+                                    <label class="form-label">Resi</label>
+                                    <input type="text" name="resi" class="form-control" required>
+                                </div>
+                                <button type="submit" class="btn bg-gradient-info">Kirim</button>
+                            </form>
+                        </div>
+                    @elseif ($detail->status == 'dikirim')
+                        <div class="col-md-3 d-flex align-items-center justify-content-end">
+                            <form action="{{ route('transaksi.proses', $transaksi->id) }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <button type="submit" class="btn bg-gradient-info">Tandai Sudah Sampai</button>
+                            </form>
+                        </div>
+                    @elseif ($detail->status == 'pending')
+                        <div class="col-md-3 d-flex align-items-center justify-content-end">
+                            <form action="{{ route('transaksi.proses', $transaksi->id) }}" method="POST">
+                                @csrf
+                                @method('PUT') 
+                                <button type="submit" onclick="sendWhatsappMessages({{$transaksi->nomor_hp}})" class="btn bg-gradient-info">Kirim Pesan & Proses</button>
+                            </form>
+                        </div>
+                    @endif
                 </div>
                 @endforeach
             </div>

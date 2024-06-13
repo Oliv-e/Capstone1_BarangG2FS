@@ -140,13 +140,18 @@
                             </div>
                             <div class="mb-3">
                                 <label for="pengiriman" class="form-label">Pengiriman:</label>
-                                <select class="form-select border rounded" name="pengiriman" id="pengiriman"
+                                <select class="form-select border rounded @error('pengiriman') is-invalid @enderror" name="pengiriman" id="pengiriman"
                                     @if (session('cart') == null) disabled @endif required>
                                     <option selected disabled hidden>Pilih Pengiriman</option>
                                     <option value="ninja-express">Ninja Express</option>
                                     <option value="jnt-cargo">JNT Cargo</option>
                                     <option value="jne-cargo">JNE Cargo</option>
                                 </select>
+                                @error('pengiriman')
+                                    <div class="alert bg    -danger text-white mt-2">
+                                        {{$message}}
+                                    </div>
+                                @enderror
                             </div>
 
                             <button type="submit" class="btn btn-coklat-gelap text-white w-100"
