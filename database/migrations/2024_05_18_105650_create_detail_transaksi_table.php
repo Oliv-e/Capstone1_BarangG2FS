@@ -15,10 +15,11 @@ return new class extends Migration
     {
         Schema::create('detail_transaksi', function (Blueprint $table) {
             $table->id();
+            $table->string('resi')->nullable();
             $table->unsignedBigInteger('id_transaksi');
             $table->unsignedBigInteger('id_barang');
             $table->integer('jumlah');
-            $table->enum('status', ['pending', 'proses', 'dibatalkan'])->default('pending');
+            $table->enum('status', ['pending' , 'diproses' , 'dikirim' , 'selesai' , 'dibatalkan'])->default('pending');
             $table->timestamps();
             $table->foreign('id_transaksi')->references('id')->on('transaksi')->onDelete('cascade');
             $table->foreign('id_barang')->references('id')->on('barang')->onDelete('cascade');

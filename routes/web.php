@@ -36,6 +36,7 @@ Route::middleware('is_guest')->group(function() {
     route::get('/order-status', [ViewController::class, 'orderStatus'])->name('order-status');
     Route::get('/order-detail/{id}', [ViewController::class, 'orderDetail'])->name('order-detail');
     Route::get('/order-detail/{orderId}', [ViewController::class, 'showOrderDetail'])->name('order.detail');
+    Route::get('/order/done/{id}', [ViewController::class, 'doneOrder'])->name('order.done');
     Route::get('/order/cancel/{id}', [ViewController::class, 'cancelOrder'])->name('order.cancel');
     Route::post('/ulasan/{barang_id}', [UlasanController::class, 'store'])->name('ulasan.store');
     Route::post('/update-data/{id}', [DataController::class, 'updateData'])->name('update-data');

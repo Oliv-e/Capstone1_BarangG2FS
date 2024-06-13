@@ -401,4 +401,18 @@ class ViewController extends Controller
 
         return redirect()->route('order-status')->with('success', 'Pesanan berhasil dibatalkan.');
     }
+    public function doneOrder($id)
+    {
+        $transaksi = Transaksi::find($id);
+
+        if (!$transaksi) {
+            return redirect()->back()->with('error', 'Transaksi tidak ditemukan.');
+        }
+
+        DetailTransaksi::where('id_transaksi', $id)->update(['status' => 'selesai']);
+
+        $transaksi->save();
+
+        return redirect()->route('order-status')->with('success', 'Pesanan telah Selesai.');
+    }
 }

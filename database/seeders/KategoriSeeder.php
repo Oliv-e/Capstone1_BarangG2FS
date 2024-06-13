@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -16,15 +17,21 @@ class KategoriSeeder extends Seeder
         DB::table('kategori')->insert([
             [
                 'nama' => 'Kafe',
-                'diarsipkan' => 'false'
+                'diarsipkan' => 'false',
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'nama' => 'Kamar Mandi',
-                'diarsipkan' => 'false'
+                'diarsipkan' => 'false',
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'nama' => 'Ruang Tamu',
-                'diarsipkan' => 'false'
+                'diarsipkan' => 'false',
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],
         ]);
     }
