@@ -88,10 +88,13 @@
             </a>
           @else
             <a class="btn btn-coklat-gelap d-flex align-items-center" href="{{route('data-pribadi')}}">
-              <i class="bi bi-clipboard me-1"></i>Data Pribadi
+              <i class="bi bi-clipboard me-1"></i>Data
             </a>
             <a class="btn btn-coklat-gelap d-flex align-items-center" href="{{route('cart')}}">
-              <i class="bi bi-cart me-1"></i>Keranjang Saya
+              <i class="bi bi-cart me-1"></i>Keranjang
+            </a>
+            <a class="btn btn-coklat-gelap d-flex align-items-center" href="{{route('order-status')}}">
+              <i class="bi bi-cart me-1"></i>Pesanan
             </a>
           @endif
           <form action="{{route('logout')}}" method="POST">

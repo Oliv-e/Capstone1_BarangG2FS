@@ -13,10 +13,6 @@ class BarangController extends Controller
     {
         $barang = Barang::where('diarsipkan', 'false')->get();
         return view('admin.barang.home', compact('barang'));
-
-        $categories = Kategori::where('diarsipkan', 'false')->get();
-        $products = Barang::with('kategori')->paginate(9);
-        return view('list-produk', compact('categories', 'products'));
     }
 
     public function getProductsByCategory(Request $request)

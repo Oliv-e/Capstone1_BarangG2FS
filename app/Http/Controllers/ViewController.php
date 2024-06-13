@@ -284,66 +284,6 @@ class ViewController extends Controller
         return view('page.order.order-complete');
     }
 
-    // public function checkout(Request $request)
-    // {
-    //     $total = $request->total;
-    //     $products = $request->products;
-    //     $id_user = Auth::check() ? Auth::id() : null;
-
-    //     // Validasi input
-    //     $request->validate([
-    //         'nama' => 'required|string|max:255',
-    //         'alamat' => 'required|string',
-    //         'nomor_hp' => 'required|string|max:15',
-    //         'pengiriman' => 'required|string',
-    //         'total' => 'required|numeric',
-    //         'products' => 'required|array',
-    //         'products.*.id_barang' => 'required|integer',
-    //         'products.*.nama' => 'required|string',
-    //         'products.*.harga' => 'required|numeric',
-    //         'products.*.quantity' => 'required|integer',
-    //     ]);
-
-    //     $transaksi = Transaksi::create([
-    //         'id_user' => $id_user,
-    //         'nama_pembeli' => $request->nama,
-    //         'alamat' => $request->alamat,
-    //         'nomor_hp' => $request->nomor_hp,
-    //         'total_harga' => $total,
-    //     ]);
-
-    //     $produkTransaksi = [];
-    //     foreach ($products as $produk) {
-    //         if (!array_key_exists('id_barang', $produk)) {
-    //             continue;
-    //         }
-    //         $produkTransaksi[] = [
-    //             'id_barang' => $produk['id_barang'],
-    //             'nama' => $produk['nama'],
-    //             'harga' => $produk['harga'],
-    //             'total_harga' => $produk['harga'] * $produk['quantity'], 
-    //         ];
-
-
-    //         DetailTransaksi::create([
-    //             'id_transaksi' => $transaksi->id,
-    //             'id_barang' => $produk['id_barang'],
-    //             'jumlah' => $produk['quantity']
-    //         ]);
-    //     }
-
-
-    //     $whatsappUrl = $this->sendWhatsAppMessage($total, $produkTransaksi);
-
-
-    //     session()->forget('cart');
-
-    //     return Redirect::away($whatsappUrl);
-    // }
-
-
-
-
     public function sendWhatsAppMessage($total, $produkTransaksi)
     {
         $pesan = "Halo, saya ingin melakukan pembelian dengan total: $" . $total . "%0A%0A";

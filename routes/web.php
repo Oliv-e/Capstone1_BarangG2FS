@@ -28,13 +28,11 @@ Route::get('/detail-produk/{id}', [ViewController::class, 'detailProduk'])->name
 Route::get('/list-produk', [ViewController::class, 'listProduk'])->name('list-produk');
 route::get('/faq', [ViewController::class, 'faq'])->name('faq');
 route::get('/about-us', [ViewController::class, 'aboutUs'])->name('about-us');
+Route::get('/products-by-category', [BarangController::class, 'getProductsByCategory']);
 
-// Route::get('/products-by-category', [BarangController::class, 'getProductsByCategory']);
-// route::get('/order-form', [ViewController::class, 'order'])->name('order-form');
 Route::middleware('is_guest')->group(function() {
     route::get('/order-complete', [ViewController::class, 'orderComplete'])->name('order-complete');
     route::get('/data-pribadi', [ViewController::class, 'dataPribadi'])->name('data-pribadi');
-    // route::get('/cart', [ViewController::class, 'cart'])->name('cart');
     route::get('/order-status', [ViewController::class, 'orderStatus'])->name('order-status');
     Route::get('/order-detail/{id}', [ViewController::class, 'orderDetail'])->name('order-detail');
     Route::get('/order-detail/{orderId}', [ViewController::class, 'showOrderDetail'])->name('order.detail');
@@ -75,15 +73,11 @@ Route::middleware('is_superadmin')->group(function () {
     Route::post('/dashboard/kategori/edit/{id}', [KategoriController::class, 'update'])->name('kategori.update');
     Route::get('/dashboard/kategori/delete/{id}', [KategoriController::class, 'destroy'])->name('kategori.destroy');
 
-    // Route::get('/dashboard/transaksi', [OrderController::class, 'index'])->name('transaksi.index');
-    // Route::get('/dashboard/transaksi/{id}/detail', [OrderController::class, 'show'])->name('transaksi.detail');
-
     Route::get('/dashboard/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
     Route::get('/dashboard/transaksi/{id}', [TransaksiController::class, 'show'])->name('transaksi.detail');
     Route::get('/dashboard/transaksi/detail/{id}', [TransaksiController::class, 'detail'])->name('admin.transaksi.detail_transaksi');
     Route::put('/dashboard/transaksi/proses/{id}', [TransaksiController::class, 'proses'])->name('transaksi.proses');
 
-    // Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
     Route::post('/transaksi/{id}/edit-resi', [TransaksiController::class, 'editResi'])->name('transaksi.edit-resi');
     Route::post('/transaksi/{id}/tambah-resi', [TransaksiController::class, 'tambahResi'])->name('transaksi.tambah-resi');
 });

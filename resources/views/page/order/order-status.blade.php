@@ -39,7 +39,7 @@
         <a onclick="history.back()" class="btn btn-coklat-gelap mb-3">Kembali</a>
         <div class="row gap-y-4 mt-4">
             @foreach($formattedTransaksis as $index => $formattedTransaksi)
-                <div class="col-sm-12 col-md-6">
+                <div class="col-sm-12 my-2 col-md-6">
                     <div class="card border-none border-3 rounded-none border-coklat-gelap">
                         <div class="card-body">
                             <div class="d-flex flex-wrap">
@@ -52,7 +52,15 @@
                                     @endforeach
                                 </div>
                             </div>
-                            <p class="card-text">Total Di Bayar : Rp. {{ $formattedTransaksi['total_harga'] }}</p>
+                            <p class="card-text">Total Di Bayar : 
+                                <?php
+                                    $harga = (string) $formattedTransaksi['total_harga'];
+                                    $harga = strrev($harga);
+                                    $arr = str_split($harga, '3');
+                                        
+                                    $ganti_format_harga = implode('.', $arr);
+                                    $harga = strrev($ganti_format_harga);
+                                ?> {{ $harga }}</p>
                             <button class="text-capitalize btn btn-{{ $formattedTransaksi['status_button_color'] }}" disabled>{{ $formattedTransaksi['status'] }}</button>
                             <a href="{{ route('order-detail', ['id' => $formattedTransaksi['id_transaksi']]) }}" class="btn btn-outline-coklat-gelap ms-2">Detail Order</a>
                         </div>

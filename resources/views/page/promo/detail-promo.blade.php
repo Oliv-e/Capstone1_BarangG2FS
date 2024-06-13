@@ -19,7 +19,15 @@
             <div class="card-body">
                 <h3 class="card-title fw-bold fs-3">{{ $promo->nama }}</h3>
                 <p class="card-text my-2">{{ $promo->deskripsi }}</p>
-                <p class="card-text my-2">Potongan (Rp) : {{ $promo->pengurangan_harga }}</p>
+                <?php
+                    $harga = (string) $promo->pengurangan_harga;
+                    $harga = strrev($harga);
+                    $arr = str_split($harga, '3');
+                        
+                    $ganti_format_harga = implode('.', $arr);
+                    $harga = strrev($ganti_format_harga);
+                ?>
+                <p class="card-text my-2">Potongan (Rp) : {{ $harga }}</p>
             </div>
         </div>
         <h1 class="fw-bold fs-2 mt-4 text-coklat-gelap"><i class="bi bi-box2-fill text-sage"></i> BARANG YANG TERSEDIA</h1>
@@ -36,7 +44,15 @@
                                 <div class="card-body">
                                     <h2 class="card-title fs-2 fw-bold">{{ $barang->nama }}</h2>
                                     <p class="card-text">{!! $barang->deskripsi !!}</p>
-                                    <p class="card-text"><small class="text-body-secondary">Rp. {{ $barang->harga }}</small>
+                                    <?php
+                                        $harga = (string) $barang->harga;
+                                        $harga = strrev($harga);
+                                        $arr = str_split($harga, '3');
+                                            
+                                        $ganti_format_harga = implode('.', $arr);
+                                        $harga = strrev($ganti_format_harga);
+                                    ?>
+                                    <p class="card-text"><small class="text-body-secondary">Rp. {{ $harga }}</small>
                                     </p>
                                     <div>
                                         <a href="{{route('detail-produk',$barang->id)}}" class="btn btn-coklat-gelap mt-1"><i class="bi bi-eye"></i></a>

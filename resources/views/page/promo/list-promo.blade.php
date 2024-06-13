@@ -22,7 +22,15 @@
                     <div class="card-body">
                       <h3 class="card-title fw-bold text-coklat-gelap fs-3">{{$item->nama}}</h3>
                       <p class="card-text my-2">{{$item->deskripsi}}</p>
-                      <p class="card-text my-2">Potongan (Rp) : {{$item->pengurangan_harga}}</p>
+                        <?php
+                            $harga = (string) $item->pengurangan_harga;
+                            $harga = strrev($harga);
+                            $arr = str_split($harga, '3');
+                                
+                            $ganti_format_harga = implode('.', $arr);
+                            $harga = strrev($ganti_format_harga);
+                        ?>
+                      <p class="card-text my-2">Potongan (Rp) : {{$harga}}</p>
                       <a href="{{ route('detail-promo',$item->id)}}" class="btn btn-outline-coklat-gelap"><i class="bi bi-eye"></i></a>
                     </div>
                 </div>

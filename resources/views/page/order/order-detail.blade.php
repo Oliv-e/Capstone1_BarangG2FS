@@ -93,8 +93,16 @@
 
                 <div class="row mb-3">
                     <div class="col-md-6 text-end offset-md-6">
-                        <button class="btn btn-success" disabled>Selesai</button>
-                        <a onclick="confirmDelete(this)" data-url="{{ route('order.cancel', ['id' => $order->id]) }}" class="btn btn-danger" role="button"><i class="bi bi-x-circle"></i> Batalkan Pesanan</a>
+                        
+                        @foreach ($details as $dt)
+                            @if ($dt->status == 'dibatalkan')
+                                <button class="btn btn-coklat-gelap" disabled>Dibatalkan</button>
+                            @else
+                                <button class="btn btn-success" disabled>Selesai</button>
+                                <a onclick="confirmDelete(this)" data-url="{{ route('order.cancel', ['id' => $order->id]) }}" class="btn btn-danger" role="button"><i class="bi bi-x-circle"></i> Batalkan Pesanan</a>
+                            @endif
+                        @endforeach
+                        
                     </div>
                 </div>
             </div>
