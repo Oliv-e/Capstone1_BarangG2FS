@@ -59,18 +59,20 @@
                             <p class="fs-5">{{ $detail->status }}</p>
                         </div>
                     </div>
-                    <div class="col-md-3 d-flex align-items-center">
+                    {{-- <div class="col-md-3 d-flex align-items-center">
                         <div>
                             <strong>Status : </strong>
                             <p class="fs-5">Rp. {{ number_format($transaksi->total_harga, 2) }}</p>
                         </div>
-                    </div>
-                    <div class="col-md-3 d-flex align-items-center">
-                        <div>
-                            <strong>Resi : </strong>
-                            <p class="fs-5">{{ $detail->resi }}</p>
-                        </div>
-                    </div>
+                    </div> --}}
+                    @isset ($detail->resi)
+                        <div class="col-md-3 d-flex align-items-center">
+                            <div>
+                                <strong>Resi : </strong>
+                                <p class="fs-5">{{ $detail->resi }}</p>
+                            </div>
+                        </div> 
+                    @endif
                     @if ($detail->status == 'diproses')
                         <div class="col-md-3 d-flex align-items-center justify-content-end">
                             <form action="{{ route('transaksi.proses', $transaksi->id) }}" method="POST">
