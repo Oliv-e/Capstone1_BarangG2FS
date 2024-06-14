@@ -29,8 +29,18 @@
                         <p class="card-text my-2 text-coklat-gelap"><strong>Harga: Rp. {{ number_format($produk->harga, 0, ',', '.') }}</strong></p>
                         <div class="rating my-2">
                             <strong class="me-2">Rating:</strong>
-                            
-                            <span>({{ number_format($produk->rating, 1) }}/5 dari {{ $ulasan->count() }} ulasan)</span>
+                            <div class="stars">
+                                @for ($i = 1; $i <= 5; $i++)
+                                    @if ($i <= $rating)
+                                        <i class="bi bi-star-fill"></i>
+                                    @elseif ($i == ceil($rating) && ($rating - floor($rating)) >= 0.5)
+                                        <i class="bi bi-star-half"></i>
+                                    @else
+                                        <i class="bi bi-star"></i>
+                                    @endif
+                                @endfor
+                            </div>
+                            <span>({{ number_format($rating, 1) }}/5 dari {{ $ulasan->count() }} ulasan)</span>
                         </div>
                         <a onclick="confirmCart(this)" data-url="{{ route('add.to.cart', ['id' => $produk->id]) }}" class="btn btn-coklat-gelap my-3" role="button"><i class="bi bi-cart"></i> Add to Cart</a>
                     </div>
