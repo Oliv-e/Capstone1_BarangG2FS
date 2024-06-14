@@ -48,7 +48,8 @@ class ViewController extends Controller
     {
         $produk = Barang::where('diarsipkan', 'false')->findOrFail($id);
         $ulasan = Ulasan::where('diarsipkan', 'false')->get();
-        return view('page.produk.detail-produk', compact(['produk', 'ulasan']));
+        $rating = Ulasan::where('id_barang', $produk->id)->avg('rate');
+        return view('page.produk.detail-produk', compact(['produk', 'ulasan', 'rating']));
     }
     public function faq()
     {
