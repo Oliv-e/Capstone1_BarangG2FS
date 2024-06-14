@@ -106,7 +106,7 @@
         </div>
       @else
         <div class="me-1">
-          Silahkan Login Terlebih Dahulu
+          Silahkan <a href="{{route('login')}}">Login</a> Terlebih Dahulu
         </div>
       @endif
       <!-- Right elements -->

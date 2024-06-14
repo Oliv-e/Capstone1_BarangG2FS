@@ -48,9 +48,11 @@
                 </div>
                 <!-- Loop through order details and display product information -->
                 @foreach ($details as $detailTransaksi)
-                    <div>
-                        <h2 class="bg-coklat-gelap p-2 text-white rounded">Nomor Resi : {{$detailTransaksi->resi}}</h2>
-                    </div>
+                    @isset($detailTransaksi->resi)
+                        <div>
+                            <h2 class="bg-coklat-gelap p-2 text-white rounded">Nomor Resi : {{$detailTransaksi->resi}}</h2>
+                        </div>
+                    @endif
                     <div class="row mb-3">
                         <div class="col-md-3 d-flex align-items-center">
                             <img src="{{ asset('storage/gambar/barang/'.$detailTransaksi->image_url) }}" class="img-fluid product-image" alt="Gambar Produk" style="max-width: 100px;">
@@ -64,7 +66,15 @@
                         <div class="col-md-3 d-flex align-items-center">
                             <div>
                                 <strong>Harga Produk:</strong>
-                                <p class="fs-5">{{ $detailTransaksi->harga }}</p>
+                                <?php
+                                    $harga = (string) $detailTransaksi->harga;
+                                    $harga = strrev($harga);
+                                    $arr = str_split($harga, '3');
+                                        
+                                    $ganti_format_harga = implode('.', $arr);
+                                    $harga = strrev($ganti_format_harga);
+                                ?>
+                                <p class="fs-5">{{ $harga }}</p>
                             </div>
                         </div>
                         <div class="col-md-3 d-flex align-items-center">
