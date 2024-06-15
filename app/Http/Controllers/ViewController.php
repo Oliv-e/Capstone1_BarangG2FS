@@ -334,7 +334,7 @@ class ViewController extends Controller
             }
 
 
-            $formattedTransaksis[$transaksiId]['total_harga'] += $detailTransaksi->barang->harga * $detailTransaksi->jumlah;
+            $formattedTransaksis[$transaksiId]['total_harga'] += $detailTransaksi->transaksi->total_harga;
         }
 
 
