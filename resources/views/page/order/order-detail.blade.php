@@ -55,7 +55,7 @@
                     @endif
                     <div class="row mb-3">
                         <div class="col-md-3 d-flex align-items-center">
-                            <img src="{{ asset('storage/gambar/barang/'.$detailTransaksi->image_url) }}" class="img-fluid product-image" alt="Gambar Produk" style="max-width: 100px;">
+                            <img src="{{ asset('storage/'.$detailTransaksi->image_url) }}" class="img-fluid product-image" alt="Gambar Produk" style="max-width: 100px;">
                         </div>
                         <div class="col-md-3 d-flex align-items-center">
                             <div>

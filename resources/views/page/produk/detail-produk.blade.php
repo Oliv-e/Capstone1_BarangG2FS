@@ -19,7 +19,7 @@
         <div class="card mt-4 border-none border-5 border-start rounded-none border-coklat-gelap">
             <div class="row g-0">
                 <div class="col-md-4 product-image">
-                    <img src="{{ asset('storage/gambar/barang/' . $produk->gambar) }}" class="img-fluid rounded-start" alt="Gambar Produk">
+                    <img src="{{ asset('storage/' . $produk->gambar) }}" class="img-fluid rounded-start" alt="Gambar Produk">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">

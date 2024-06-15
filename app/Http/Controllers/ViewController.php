@@ -206,6 +206,7 @@ class ViewController extends Controller
 
     public function checkout(Request $request)
     {
+        dd($request);
         // Validate input
         $request->validate([
             'nama' => 'required|string|max:255',

@@ -50,7 +50,7 @@
                         @php $total += $details['harga'] * $details['quantity'] @endphp
                         <div class="d-flex justify-content-between align-items-center py-2" data-id="{{ $id }}">
                             <div class="w-100">
-                                <img src="{{ asset('storage/gambar/barang/' . $details['gambar']) }}"
+                                <img src="{{ asset('storage/' . $details['gambar']) }}"
                                     class="img-fluid product-image" alt="Gambar Produk">
                             </div>
                             <div class="text-center w-100">
@@ -99,7 +99,7 @@
                         <hr>
                     </div>
                     <div class="my-4">
-                        <p class="text-sage">* Sudah termasuk pajak 10% dan Pengurangan promo bila ada</p>
+                        <p class="text-coklat-gelap">* Sudah termasuk pajak 10% dan Pengurangan promo bila ada</p>
                     </div>
                     <div class="my-4 w-100">
                         <form action="{{ route('checkout') }}" method="POST">
@@ -112,7 +112,7 @@
                                     <input type="hidden" name="products[{{ $id }}][nama]"
                                         value="{{ $details['nama'] }}">
                                     <input type="hidden" name="products[{{ $id }}][harga]"
-                                        value="{{ $details['harga'] }}">
+                                        value="{{ $totalPajak }}">
                                     <input type="hidden" name="products[{{ $id }}][quantity]"
                                         value="{{ $details['quantity'] }}">
                                 @endforeach

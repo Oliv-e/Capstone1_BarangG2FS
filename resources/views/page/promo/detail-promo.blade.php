@@ -37,7 +37,7 @@
                     <div class="card text-sm-center text-md-start border-none border-2 rounded-none mb-3 border-coklat-gelap">
                         <div class="row g-0">
                             <div class="col-md-4">
-                                <img src="{{ asset('storage/gambar/barang/' . $barang->gambar) }}"
+                                <img src="{{ asset('storage/' . $barang->gambar) }}"
                                     class="mx-auto img-fluid rounded-start" width="200px">
                             </div>
                             <div class="col-md-8">

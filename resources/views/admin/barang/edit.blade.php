@@ -12,13 +12,13 @@
         <form action="{{route('barang.update', $selected_barang->id)}}" method="POST" enctype="multipart/form-data">
             @csrf
             {{-- Return 404 Error --}}
-            <img src="{{ asset('storage/gambar/barang/'.$selected_barang->gambar)}}" id="pre-img" alt="" width="250px" class="img-fluid border rounded bg-secondary">
+            <img src="{{ asset('storage/'.$selected_barang->gambar)}}" id="pre-img" alt="" width="250px" class="img-fluid border rounded bg-secondary">
             {{-- @if ($selected_barang != null)
                 <div id="no-image" class="text-center">
                     <small>No image available</small>
                 </div>
             @else
-                <img src="{{ asset('storage/gambar/barang/'.$selected_barang->gambar)}}" id="pre-img" alt="" width="250px" class="img-fluid border rounded bg-secondary">
+                <img src="{{ asset('storage/'.$selected_barang->gambar)}}" id="pre-img" alt="" width="250px" class="img-fluid border rounded bg-secondary">
             @endif --}}
             <div class="input-group input-group-outline my-3">
                 <input type="file" name="gambar" id="upGambar" class="form-control">

@@ -47,7 +47,7 @@
                                     <td>
                                         <div class="d-flex px-2">
                                             <div>
-                                                <img src="{{ asset('storage/gambar/barang/' . $item->gambar) }}"
+                                                <img src="{{ asset('storage/' . $item->gambar) }}"
                                                     class="avatar avatar-sm rounded-circle me-2">
                                             </div>
                                             <div class="my-auto">
@@ -103,7 +103,7 @@
                         <div class="card-body">
                             <div class="d-flex">
                                 <div>
-                                    <img src="{{ asset('storage/gambar/barang/' . $item->gambar) }}"
+                                    <img src="{{ asset('storage/' . $item->gambar) }}"
                                         class="avatar avatar-sm rounded-circle me-2">
                                 </div>
                                 <div>

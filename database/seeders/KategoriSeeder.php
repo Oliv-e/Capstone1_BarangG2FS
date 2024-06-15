@@ -16,7 +16,7 @@ class KategoriSeeder extends Seeder
     {
         DB::table('kategori')->insert([
             [
-                'nama' => 'Kafe',
+                'nama' => 'Kamar Tidur',
                 'diarsipkan' => 'false',
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
@@ -33,6 +33,24 @@ class KategoriSeeder extends Seeder
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],
+            [
+                'nama' => 'Kantor',
+                'diarsipkan' => 'false',
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+            ],
+            [
+                'nama' => 'Ruang Keluarga',
+                'diarsipkan' => 'false',
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+            ],
+            [
+                'nama' => 'Dapur',
+                'diarsipkan' => 'false',
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+            ]
         ]);
     }
 }

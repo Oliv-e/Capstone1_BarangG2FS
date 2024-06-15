@@ -45,7 +45,7 @@
                             <div class="d-flex flex-wrap">
                                 <div class="product-container">
                                     @foreach($formattedTransaksi['gambar_produk'] as $gambarProduk)
-                                        <img src="{{ asset('storage/gambar/barang/'. $gambarProduk ) }}" alt="Gambar Produk" class="img-fluid mb-3 product-image">
+                                        <img src="{{ asset('storage/'. $gambarProduk ) }}" alt="Gambar Produk" class="img-fluid mb-3 product-image">
                                     @endforeach
                                     @foreach($formattedTransaksi['nama_produk'] as $namaProduk)
                                         <h3 class="card-title fw-bold fs-5">{{ $namaProduk }}</h3>

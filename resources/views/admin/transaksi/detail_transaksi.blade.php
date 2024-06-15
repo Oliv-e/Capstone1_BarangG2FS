@@ -33,7 +33,7 @@
                 @foreach($transaksi->detailTransaksi as $detail)
                 <div class="row mb-3">
                     <div class="col-md-3 d-flex align-items-center">
-                        <img src="{{ asset('storage/gambar/barang/'.$detail->barang->gambar) }}" class="img-fluid product-image" alt="Gambar Produk">
+                        <img src="{{ asset('storage/'.$detail->barang->gambar) }}" class="img-fluid product-image" alt="Gambar Produk">
                     </div>
                     <div class="col-md-3 d-flex align-items-center">
                         <div>

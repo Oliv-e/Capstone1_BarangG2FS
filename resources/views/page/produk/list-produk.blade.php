@@ -44,7 +44,7 @@
                     <div class="col-md-4 mb-4">
                         <div class="card">
                             <div class="product-image">
-                                <img src="{{ asset('storage/gambar/barang/' . $product->gambar) }}" class="img-fluid rounded-start" alt="{{ $product->nama }}">
+                                <img src="{{ asset('storage/' . $product->gambar) }}" class="img-fluid rounded-start" alt="{{ $product->nama }}">
                                 <i class="bi bi-cart-fill bg-coklat-gelap cart-icon" onclick="confirmCart(this)" data-url="{{ route('add.to.cart', ['id' => $product->id]) }}"></i>
                             </div>
                             <div class="card-body">
@@ -111,7 +111,7 @@
                         <div class="col-md-4 mb-4">
                             <div class="card">
                                 <div class="product-image">
-                                    <img src="/storage/gambar/barang/${product.gambar}" class="img-fluid rounded-start" alt="${product.nama}">
+                                    <img src="/storage/${product.gambar}" class="img-fluid rounded-start" alt="${product.nama}">
                                     <i class="bi bi-cart-fill bg-coklat-gelap cart-icon" onclick="confirmCart(this)" data-url="/add-to-cart/${product.id}"></i>
                                 </div>
                                 <div class="card-body">
@@ -156,7 +156,7 @@
                             <div class="col-md-4 mb-4">
                                 <div class="card">
                                     <div class="product-image">
-                                        <img src="/storage/gambar/barang/${product.gambar}" class="img-fluid rounded-start" alt="${product.nama}">
+                                        <img src="/storage/${product.gambar}" class="img-fluid rounded-start" alt="${product.nama}">
                                         <i class="bi bi-cart-fill bg-coklat-gelap cart-icon" onclick="confirmCart(this)" data-url="/add-to-cart/${product.id}"></i>
                                     </div>
                                     <div class="card-body">

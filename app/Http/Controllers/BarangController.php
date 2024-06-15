@@ -38,7 +38,7 @@ class BarangController extends Controller
         ]);
 
         $gambar = $request->file('gambar');
-        $gambar->storeAs('public/gambar/barang', $gambar->hashName());
+        $gambar->storeAs($gambar->hashName());
 
         Barang::create([
             'id_kategori' => $request->id_kategori,
@@ -72,8 +72,8 @@ class BarangController extends Controller
 
         if ($request->hasFile('gambar')) {
             $gambar = $request->file('gambar');
-            $gambar->storeAs('public/gambar/barang', $gambar->hashName());
-            Storage::delete('public/gambar/barang/' . $barang->gambar);
+            $gambar->storeAs($gambar->hashName());
+            Storage::delete($barang->gambar);
             $barang->update([
                 'id_kategori' => $request->id_kategori,
                 'gambar' => $gambar->hashName(),
@@ -97,7 +97,7 @@ class BarangController extends Controller
     public function destroy(String $id)
     {
         $selected_barang = Barang::findOrFail($id);
-        Storage::delete('public/gambar/barang/' . $selected_barang->gambar);
+        Storage::delete($selected_barang->gambar);
 
         $selected_barang->diarsipkan = "true";
         $selected_barang->save();

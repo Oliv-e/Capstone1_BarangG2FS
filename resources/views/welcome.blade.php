@@ -30,7 +30,7 @@
                 @forelse ($promoItems as $promoItem)
                     @foreach ($promoItem->promoBarang as $items)
                         <div class="product-card">
-                            <img src="{{ asset('storage/gambar/barang/' . $items->gambar) }}" alt="Living Room Sofa"
+                            <img src="{{ asset('storage/' . $items->gambar) }}" alt="Living Room Sofa"
                                 class="product-image">
                             <h3>{{ $items->nama }}</h3>
                             <p class="normal-price">Rp {{ number_format($items->harga, 0, ',', '.') }}</p>
@@ -68,7 +68,7 @@
                 <div class="product-category">
                     @foreach ($kategori->barang as $barang)
                         <div class="product-card">
-                            <img src="{{ asset('storage/gambar/barang/' . $barang->gambar) }}" alt="Living Room Sofa" class="product-image">
+                            <img src="{{ asset('storage/' . $barang->gambar) }}" alt="Living Room Sofa" class="product-image">
                             <h3>{{ $barang->nama }}</h3>
                             {{-- format harga dari xxxxxxx to x.xxx.xxx --}}
                             <?php
