@@ -65,9 +65,10 @@
                         </div>
                         <div class="col-md-3 d-flex align-items-center">
                             <div>
-                                <strong>Harga Produk:</strong>
+                                <strong>Harga :</strong>
                                 <?php
-                                    $harga = (string) $detailTransaksi->harga;
+                                    $a = $order->total_harga;
+                                    $harga = (string) $a;
                                     $harga = strrev($harga);
                                     $arr = str_split($harga, '3');
                                         
@@ -93,13 +94,7 @@
                     <div class="col-md-6">
                         <strong>Total Harga:</strong>
                         <p class="text-coklat-gelap fs-3" id="totalPrice">
-                            @php
-                                $totalHarga = 0;
-                                foreach ($details as $detailTransaksi) {
-                                    $totalHarga += $detailTransaksi->harga * $detailTransaksi->jumlah;
-                                }
-                                echo 'Rp. ' . number_format($totalHarga, 0, ',', '.');
-                            @endphp
+                            {{$harga}}
                         </p>
                     </div>
                 </div>

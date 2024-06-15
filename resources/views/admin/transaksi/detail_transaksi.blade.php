@@ -43,8 +43,8 @@
                     </div>
                     <div class="col-md-3 d-flex align-items-center">
                         <div>
-                            <strong>Harga Produk :</strong>
-                            <p class="fs-5">Rp. {{ number_format($detail->barang->harga, 2) }}</p>
+                            <strong>Harga Dibayar :</strong>
+                            <p class="fs-5">Rp. {{ number_format($transaksi->total_harga, 2) }}</p>
                         </div>
                     </div>
                     <div class="col-md-3 d-flex align-items-center">

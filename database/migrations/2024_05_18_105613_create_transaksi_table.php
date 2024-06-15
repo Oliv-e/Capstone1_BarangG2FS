@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('nama_pembeli');
             $table->string('nomor_hp');
             $table->text('alamat');
-            $table->decimal('total_harga', 15, 2);
+            $table->integer('total_harga');
             $table->timestamps();
             $table->enum('diarsipkan', ['false', 'true'])->default('false');
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
