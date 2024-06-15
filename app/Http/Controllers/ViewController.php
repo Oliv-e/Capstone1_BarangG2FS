@@ -220,41 +220,22 @@ class ViewController extends Controller
             'products.*.quantity' => 'required|integer',
         ]);
 
-        $total = 0;
         $id_user = Auth::check() ? Auth::id() : null;
+
+        $totalHargaBarang = $request->total;
+        $total = 0;
         $discountedProducts = [];
 
         foreach ($request->products as $produk) {
-            if (!array_key_exists('id_barang', $produk)) {
-                continue;
-            }
-
-            $barang = Barang::find($produk['id_barang']);
-            if (!$barang) {
-                continue;
-            }
-
-            $promo = Promo::whereHas('promoBarang', function ($query) use ($barang) {
-                $query->where('id_barang', $barang->id);
-            })->first();
-
             $harga = $produk['harga'];
-            if ($promo) {
-                $harga -= $promo->pengurangan_harga;
-                if ($harga < 0) {
-                    $harga = 0;
-                }
-            }
-
-            $totalHarga = $harga * $produk['quantity'];
-            $total += $totalHarga;
+            $total += $harga * $produk['quantity'];
 
             $discountedProducts[] = [
                 'id_barang' => $produk['id_barang'],
                 'nama' => $produk['nama'],
                 'harga' => $harga,
                 'quantity' => $produk['quantity'],
-                'total_harga' => $totalHarga,
+                'total_harga' => $harga * $produk['quantity'],
             ];
         }
 
@@ -263,7 +244,7 @@ class ViewController extends Controller
             'nama_pembeli' => $request->nama,
             'alamat' => $request->alamat,
             'nomor_hp' => $request->nomor_hp,
-            'total_harga' => $total,
+            'total_harga' => $totalHargaBarang,
         ]);
 
         foreach ($discountedProducts as $produk) {
@@ -272,6 +253,7 @@ class ViewController extends Controller
                 'id_barang' => $produk['id_barang'],
                 'jumlah' => $produk['quantity'],
                 'harga' => $produk['harga'],
+                'harga_barang' => $produk['harga'],
                 'total_harga' => $produk['total_harga'],
             ]);
         }
@@ -280,6 +262,7 @@ class ViewController extends Controller
 
         return redirect()->route('order-complete');
     }
+
     public function orderComplete()
     {
         return view('page.order.order-complete');

@@ -2,7 +2,8 @@
 
 @section('title', 'Keranjang Saya')
 @section('css-style')
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('assets/css/page/welcome.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/components/master.css') }}">
 @endsection
@@ -50,8 +51,8 @@
                         @php $total += $details['harga'] * $details['quantity'] @endphp
                         <div class="d-flex justify-content-between align-items-center py-2" data-id="{{ $id }}">
                             <div class="w-100">
-                                <img src="{{ asset('storage/' . $details['gambar']) }}"
-                                    class="img-fluid product-image" alt="Gambar Produk">
+                                <img src="{{ asset('storage/' . $details['gambar']) }}" class="img-fluid product-image"
+                                    alt="Gambar Produk">
                             </div>
                             <div class="text-center w-100">
                                 Rp. {{ number_format($details['harga'], 0, ',', '.') }}
@@ -64,7 +65,8 @@
                                 Rp. {{ number_format($details['harga'] * $details['quantity'], 0, ',', '.') }}
                             </div>
                             <div class="text-center w-100">
-                                <form action="{{ route('remove.from.cart', $id) }}" method="POST" class="remove-from-cart">
+                                <form action="{{ route('remove.from.cart', $id) }}" method="POST"
+                                    class="remove-from-cart">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">Delete</button>
@@ -104,7 +106,7 @@
                     <div class="my-4 w-100">
                         <form action="{{ route('checkout') }}" method="POST">
                             @csrf
-                            <input type="hidden" name="total" value="{{ $totalPajak }}">
+                            <input type="hidden" id="total" name="total" value="{{ $totalPajak }}">
                             @if (session('cart'))
                                 @foreach (session('cart') as $id => $details)
                                     <input type="hidden" name="products[{{ $id }}][id_barang]"
@@ -112,7 +114,7 @@
                                     <input type="hidden" name="products[{{ $id }}][nama]"
                                         value="{{ $details['nama'] }}">
                                     <input type="hidden" name="products[{{ $id }}][harga]"
-                                        value="{{ $totalPajak }}">
+                                        value="{{ $details['harga'] }}">
                                     <input type="hidden" name="products[{{ $id }}][quantity]"
                                         value="{{ $details['quantity'] }}">
                                 @endforeach
@@ -122,34 +124,33 @@
                                 <label for="nama" class="form-label">Nama Pembeli:</label>
                                 <input type="text" class="form-control border rounded" name="nama" id="nama"
                                     @if (session('cart') == null) disabled placeholder="Tidak dapat mengisi form, keranjang anda kosong" @endif
-                                    value="{{Auth::user()->nama}}"
-                                    required>
+                                    value="{{ Auth::user()->nama }}" required>
                             </div>
                             <div class="mb-3">
                                 <label for="alamat" class="form-label">Alamat:</label>
                                 <textarea class="form-control border rounded" name="alamat" id="alamat" rows="3"
                                     @if (session('cart') == null) disabled placeholder="Tidak dapat mengisi form, keranjang anda kosong" @endif
-                                    required>{{Auth::user()->alamat}}</textarea>
+                                    required>{{ Auth::user()->alamat }}</textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="nomor_hp" class="form-label">Nomor HP:</label>
                                 <input type="text" class="form-control border rounded" name="nomor_hp" id="nomor_hp"
                                     @if (session('cart') == null) disabled placeholder="Tidak dapat mengisi form, keranjang anda kosong" @endif
-                                    value="{{Auth::user()->nomor_hp}}"
-                                    required>
+                                    value="{{ Auth::user()->nomor_hp }}" required>
                             </div>
                             <div class="mb-3">
                                 <label for="pengiriman" class="form-label">Pengiriman:</label>
-                                <select class="form-select border rounded @error('pengiriman') is-invalid @enderror" name="pengiriman" id="pengiriman"
-                                    @if (session('cart') == null) disabled @endif required>
+                                <select class="form-select border rounded @error('pengiriman') is-invalid @enderror"
+                                    name="pengiriman" id="pengiriman" @if (session('cart') == null) disabled @endif
+                                    required>
                                     <option selected disabled hidden>Pilih Pengiriman</option>
                                     <option value="ninja-express">Ninja Express</option>
                                     <option value="jnt-cargo">JNT Cargo</option>
                                     <option value="jne-cargo">JNE Cargo</option>
                                 </select>
                                 @error('pengiriman')
-                                    <div class="alert bg    -danger text-white mt-2">
-                                        {{$message}}
+                                    <div class="alert bg-danger text-white mt-2">
+                                        {{ $message }}
                                     </div>
                                 @enderror
                             </div>
@@ -169,6 +170,7 @@
         document.getElementById('hideSession').addEventListener('click', function() {
             document.getElementById('session').style.display = 'none';
         })
+
         $(document).on('input', '.update-cart', function(e) {
             e.preventDefault();
 
@@ -198,9 +200,13 @@
                     // Update total di bagian summary
                     $('#subtotal-display').text("Rp. " + response.total);
                     $('#total-display').text("Rp. " + response.totalPajak);
+
+                    // Update nilai quantity dan total secara langsung
+                    $('input[name="products[' + id + '][quantity]"]').val(quantity);
+                    $('#total').val(response.totalPajak);
                 }
             });
-        });
+        })
 
         $(".remove-from-cart").click(function(e) {
             e.preventDefault();
@@ -221,6 +227,6 @@
                     }
                 });
             }
-        });
+        })
     </script>
 @endsection

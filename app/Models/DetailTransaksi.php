@@ -10,14 +10,15 @@ use Illuminate\Database\Eloquent\Model;
 class DetailTransaksi extends Model
 {
     use HasFactory;
-    
+
     protected $table = 'detail_transaksi'; // Nama tabel dalam database
-    
+
     protected $fillable = [
         'resi',
         'id_transaksi',
         'id_barang',
         'status',
+        'harga_barang',
         'jumlah'
     ];
 
@@ -31,4 +32,3 @@ class DetailTransaksi extends Model
         return $this->belongsTo(Barang::class, 'id_barang');
     }
 }
-
