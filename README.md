@@ -17,7 +17,7 @@ Deskripsi
 -------------------------------------------------------
 Aplikasi Furniture Berbasis Website ini dibuat oleh
 Kelompok 1 Kelas Fullstack 2 Yang terdiri dari :
-- Oliver Dillon -> (Leader, Project Manajer, Fullstack)
+- <a href='https://linkedin.com/in/oliverkore'>Oliver Dillon</a> -> (Leader, Project Manajer, Fullstack)
 - Abdullah Ali -> (Backend)
 - Muhammad Farid -> (Frontend)
 - Habib Andriantito -> (Backend)
