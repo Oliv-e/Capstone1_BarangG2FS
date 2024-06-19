@@ -1,5 +1,7 @@
             APLIKASI FURNITURE BERBASIS WEBSITE
 ------------------------------------------------------
+    https://msib-6-penjualan-barang-03.educalab.id
+------------------------------------------------------
 Quick Use
 ------------------------------------------------------
 - composer update
