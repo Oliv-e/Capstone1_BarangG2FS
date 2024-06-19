@@ -206,61 +206,65 @@ class ViewController extends Controller
 
     public function checkout(Request $request)
     {
-        // Validate input
-        $request->validate([
-            'nama' => 'required|string|max:255',
-            'alamat' => 'required|string',
-            'nomor_hp' => 'required|string|max:15',
-            'pengiriman' => 'required|string',
-            'total' => 'required|numeric',
-            'products' => 'required|array',
-            'products.*.id_barang' => 'required|integer',
-            'products.*.nama' => 'required|string',
-            'products.*.harga' => 'required|numeric',
-            'products.*.quantity' => 'required|integer',
-        ]);
-
-        $id_user = Auth::check() ? Auth::id() : null;
-
-        $totalHargaBarang = $request->total;
-        $total = 0;
-        $discountedProducts = [];
-
-        foreach ($request->products as $produk) {
-            $harga = $produk['harga'];
-            $total += $harga * $produk['quantity'];
-
-            $discountedProducts[] = [
-                'id_barang' => $produk['id_barang'],
-                'nama' => $produk['nama'],
-                'harga' => $harga,
-                'quantity' => $produk['quantity'],
-                'total_harga' => $harga * $produk['quantity'],
-            ];
-        }
-
-        $transaksi = Transaksi::create([
-            'id_user' => $id_user,
-            'nama_pembeli' => $request->nama,
-            'alamat' => $request->alamat,
-            'nomor_hp' => $request->nomor_hp,
-            'total_harga' => $totalHargaBarang,
-        ]);
-
-        foreach ($discountedProducts as $produk) {
-            DetailTransaksi::create([
-                'id_transaksi' => $transaksi->id,
-                'id_barang' => $produk['id_barang'],
-                'jumlah' => $produk['quantity'],
-                'harga' => $produk['harga'],
-                'harga_barang' => $produk['harga'],
-                'total_harga' => $produk['total_harga'],
+        if(Auth::user()->email_verified_at != null) {
+            // Validate input
+            $request->validate([
+                'nama' => 'required|string|max:255',
+                'alamat' => 'required|string',
+                'nomor_hp' => 'required|string|max:15',
+                'pengiriman' => 'required|string',
+                'total' => 'required|numeric',
+                'products' => 'required|array',
+                'products.*.id_barang' => 'required|integer',
+                'products.*.nama' => 'required|string',
+                'products.*.harga' => 'required|numeric',
+                'products.*.quantity' => 'required|integer',
             ]);
+
+            $id_user = Auth::check() ? Auth::id() : null;
+
+            $totalHargaBarang = $request->total;
+            $total = 0;
+            $discountedProducts = [];
+
+            foreach ($request->products as $produk) {
+                $harga = $produk['harga'];
+                $total += $harga * $produk['quantity'];
+
+                $discountedProducts[] = [
+                    'id_barang' => $produk['id_barang'],
+                    'nama' => $produk['nama'],
+                    'harga' => $harga,
+                    'quantity' => $produk['quantity'],
+                    'total_harga' => $harga * $produk['quantity'],
+                ];
+            }
+
+            $transaksi = Transaksi::create([
+                'id_user' => $id_user,
+                'nama_pembeli' => $request->nama,
+                'alamat' => $request->alamat,
+                'nomor_hp' => $request->nomor_hp,
+                'total_harga' => $totalHargaBarang,
+            ]);
+
+            foreach ($discountedProducts as $produk) {
+                DetailTransaksi::create([
+                    'id_transaksi' => $transaksi->id,
+                    'id_barang' => $produk['id_barang'],
+                    'jumlah' => $produk['quantity'],
+                    'harga' => $produk['harga'],
+                    'harga_barang' => $produk['harga'],
+                    'total_harga' => $produk['total_harga'],
+                ]);
+            }
+
+            session()->forget('cart');
+
+            return redirect()->route('order-complete');
+        } else if (Auth::user()->email_verified_at == null) {
+            return redirect()->route('verification.notice');
         }
-
-        session()->forget('cart');
-
-        return redirect()->route('order-complete');
     }
 
     public function orderComplete()
