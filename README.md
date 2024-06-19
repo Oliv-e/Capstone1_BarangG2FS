@@ -1,8 +1,36 @@
+            APLIKASI FURNITURE BERBASIS WEBSITE
+------------------------------------------------------
+Quick Use
+------------------------------------------------------
 - composer update
 - cp .env.example .env
 - php artisan key:generate
 - php artisan migrate
 - npm install
 - npm run dev / npm run build && php artisan serve
-
-bagian kontak tarok footer
+-------------------------------------------------------
+Deskripsi
+-------------------------------------------------------
+Aplikasi Furniture Berbasis Website ini dibuat oleh
+Kelompok 1 Kelas Fullstack 2 Yang terdiri dari :
+- Oliver Dillon -> (Leader, Project Manajer, Fullstack)
+- Abdullah Ali -> (Backend)
+- Muhammad Farid -> (Frontend)
+- Habib Andriantito -> (Backend)
+- Dwi Ricky S -> (FrontEnd)
+Untuk Capstone Project dan presentasi di <a href='https://gamelab.id'>gamelab.id</a>
+Studi Independen batch 6 pada tanggal 19 Juni 2024
+--------------------------------------------------------
+Fitur
+--------------------------------------------------------
+1. Guest
+   - Melihat Landing Page, Produk, Promo, Tentang Kami
+     FAQ, Register, Login, Reset Password
+2. Pengguna (User)
+   - Melakukan Verifikasi Email, Melakukan Transaksi,
+     Mengupdate Data Profil, dan Melihat Detail Transaksi
+3. Admin
+   - Melihat Dashboard, Manajemen Produk dan Promo
+4. Super Admin
+   - Manajemen Kategori dan Memonitor Transaksi, Meng-
+     update status transaksi.
