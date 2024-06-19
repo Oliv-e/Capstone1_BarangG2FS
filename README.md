@@ -20,8 +20,8 @@ Kelompok 1 Kelas Fullstack 2 Yang terdiri dari :
 - Muhammad Farid -> (Frontend)
 - Habib Andriantito -> (Backend)
 - Dwi Ricky S -> (FrontEnd)
-Untuk Capstone Project dan presentasi di <a href='https://gamelab.id'>gamelab.id</a>
-Studi Independen batch 6 pada tanggal 19 Juni 2024
+  Untuk Capstone Project dan presentasi di <a href='https://gamelab.id'>gamelab.id</a>
+  Studi Independen batch 6 pada tanggal 19 Juni 2024
 --------------------------------------------------------
 Fitur
 --------------------------------------------------------
