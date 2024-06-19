@@ -4,10 +4,12 @@
 ------------------------------------------------------
 Quick Use
 ------------------------------------------------------
+- clone this repository
 - composer update
 - cp .env.example .env
 - php artisan key:generate
 - php artisan migrate
+- php artisan db:seed
 - npm install
 - npm run dev / npm run build && php artisan serve
 -------------------------------------------------------
