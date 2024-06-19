@@ -22,7 +22,7 @@ Kelompok 1 Kelas Fullstack 2 Yang terdiri dari :
 - Muhammad Farid -> (Frontend)
 - Habib Andriantito -> (Backend)
 - Dwi Ricky S -> (FrontEnd)
-  Untuk Capstone Project dan presentasi di <a href='https://gamelab.id'>gamelab.id</a>
+- Untuk Capstone Project dan presentasi di <a href='https://gamelab.id'>gamelab.id</a>
   Studi Independen batch 6 pada tanggal 19 Juni 2024
 --------------------------------------------------------
 Fitur
@@ -36,5 +36,4 @@ Fitur
 3. Admin
    - Melihat Dashboard, Manajemen Produk dan Promo
 4. Super Admin
-   - Manajemen Kategori dan Memonitor Transaksi, Meng-
-     update status transaksi.
+   - Manajemen Kategori dan Memonitor Transaksi, Mengupdate status transaksi.
