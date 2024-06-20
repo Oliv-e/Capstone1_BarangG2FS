@@ -62,6 +62,14 @@
                     {{$message}}
                 </div>
             @enderror
+            <div class="input-group input-group-outline mb-4">
+                <input type="number" name="stock" value="{{$selected_barang->Stock->stock}}" class="form-control @error('stock') is-invalid @enderror">
+            </div>
+            @error('stock')
+                <div class="alert alert-danger text-white mt-2">
+                    {{$message}}
+                </div>
+            @enderror
             <textarea name="deskripsi" id="textarea-deskripsi" class="form-control @error('deskripsi') is-invalid @enderror" cols="30" rows="10" placeholder="Deskripsi">{{$selected_barang->deskripsi}}</textarea>
             @error('deskripsi')
                 <div class="alert alert-danger text-white mt-2">

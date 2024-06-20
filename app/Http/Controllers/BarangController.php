@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Barang;
 use App\Models\Kategori;
+use App\Models\Stock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -34,13 +35,20 @@ class BarangController extends Controller
             'gambar' => 'required|image|max:2048|mimes:png,jpg,jpeg',
             'nama' => 'required|min:5',
             'deskripsi' => 'required|min:10',
-            'harga' => 'required'
+            'harga' => 'required',
+            'stock' => 'required|integer'
         ]);
+
+        if ($request->stock > 0) {
+            $status = 'Tersedia';
+        } else {
+            $status = 'Habis';
+        }
 
         $gambar = $request->file('gambar');
         $gambar->storeAs($gambar->hashName());
 
-        Barang::create([
+        $barang = Barang::create([
             'id_kategori' => $request->id_kategori,
             'gambar' => $gambar->hashName(),
             'nama' => $request->nama,
@@ -48,7 +56,11 @@ class BarangController extends Controller
             'harga' => $request->harga,
             'diarsipkan' => 'false',
         ]);
-
+        Stock::create([
+            'id_barang' => $barang->id,
+            'stock' => $request->stock,
+            'status' => $status,
+        ]);
         return redirect(route('barang.index'))->with('success', 'Barang Berhasil Dibuat!!!');
     }
     public function edit(String $id)
@@ -65,10 +77,23 @@ class BarangController extends Controller
             'gambar' => 'image|max:2048|mimes:png,jpg,jpeg',
             'nama' => 'required|min:5',
             'deskripsi' => 'required|min:10',
-            'harga' => 'required'
+            'harga' => 'required',
+            'stock' => 'required|integer'
         ]);
 
         $barang = Barang::findOrFail($id);
+
+        if ($request->stock > 0) {
+            $status = 'Tersedia';
+        } else {
+            $status = 'Habis';
+        }
+
+        $stock = Stock::where('id_barang', $id)->first();
+        $stock->update([
+            'stock' => $request->stock,
+            'status' => $status,
+        ]);
 
         if ($request->hasFile('gambar')) {
             $gambar = $request->file('gambar');

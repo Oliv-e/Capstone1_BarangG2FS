@@ -52,6 +52,15 @@
                     {{$message}}
                 </div>
             @enderror
+            <div class="input-group input-group-outline mb-4">
+                <label class="form-label">Stok</label>
+                <input type="number" name="stock" class="form-control @error('stock') is-invalid @enderror">
+            </div>
+            @error('stock')
+                <div class="alert alert-danger text-white mt-2">
+                    {{$message}}
+                </div>
+            @enderror
             <textarea name="deskripsi" class="form-control @error('deskripsi') is-invalid @enderror" cols="30" rows="10" placeholder="Deskripsi"></textarea>
             @error('deskripsi')
                 <div class="alert alert-danger text-white mt-2">

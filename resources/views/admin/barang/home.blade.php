@@ -38,6 +38,8 @@
                                 </th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                     Terakhir Diedit</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                    Stock</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -80,6 +82,11 @@
                                     <td class="align-middle text-center">
                                         <div class="d-flex align-items-center">
                                             <span class="me-2 text-xs">{{ $item->updated_at }}</span>
+                                        </div>
+                                    </td>
+                                    <td class="align-middle text-center">
+                                        <div class="d-flex align-items-center">
+                                            <span class="me-2 text-xs">{{ $item->stock->stock }}</span>
                                         </div>
                                     </td>
                                     <td class="d-flex gap-1 justify-content-center">

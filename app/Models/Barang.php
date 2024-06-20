@@ -17,6 +17,10 @@ class Barang extends Model
         'harga',
         'diarsipkan'
     ];
+    public function stock()
+    {
+        return $this->hasOne(Stock::class, 'id_barang', 'id');
+    }
     public function kategori()
     {
         return $this->belongsTo(Kategori::class, 'id_kategori');
