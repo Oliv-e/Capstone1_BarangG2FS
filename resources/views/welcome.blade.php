@@ -28,19 +28,23 @@
             <h2 class="brand-title py-5"><i class="bi bi-percent"></i> Promo</h2>
             <div class="promo-products">
                 @forelse ($promoItems as $promoItem)
-                    @foreach ($promoItem->promoBarang as $items)
-                        <div class="product-card">
-                            <img src="{{ asset('storage/' . $items->gambar) }}" alt="Living Room Sofa"
-                                class="product-image">
-                            <h3>{{ $items->nama }}</h3>
-                            <p class="normal-price">Rp {{ number_format($items->harga, 0, ',', '.') }}</p>
-                            @if ($harga_promo = $items->harga - $promoItem->pengurangan_harga)
-                                <p class="promo-price">Rp {{ number_format($harga_promo, 0, ',', '.') }}</p>
-                            @endif
-                            <button class="btn btn-coklat-gelap"><i class="bi bi-cart"></i></button>
-                            <button class="btn btn-coklat-gelap"><i class="bi bi-bag"></i></button>
-                        </div>
-                    @endforeach
+                    @if($promoItem->diarsipkan == "true")
+                    
+                    @else
+                        @foreach ($promoItem->promoBarang as $items)
+                            <div class="product-card">
+                                <img src="{{ asset('storage/' . $items->gambar) }}" alt="Living Room Sofa"
+                                    class="product-image">
+                                <h3>{{ $items->nama }}</h3>
+                                <p class="normal-price">Rp {{ number_format($items->harga, 0, ',', '.') }}</p>
+                                @if ($harga_promo = $items->harga - $promoItem->pengurangan_harga)
+                                    <p class="promo-price">Rp {{ number_format($harga_promo, 0, ',', '.') }}</p>
+                                @endif
+                                <a onclick="confirmCart(this)" data-url="{{ route('add.to.cart', ['id' => $items->id]) }}" class="btn btn-coklat-gelap my-3" role="button"><i class="bi bi-cart"></i></a>
+                                <a href="{{route('detail-produk', $items->id)}}" class="btn btn-outline-coklat-gelap"><i class="bi bi-bag"></i></a>
+                            </div>
+                        @endforeach
+                    @endif
                 @empty
                     <p>Tidak ada promo saat ini.</p>
                 @endforelse
@@ -67,22 +71,26 @@
                 <h3>Kategori {{$kategori->nama}}</h3>
                 <div class="product-category">
                     @foreach ($kategori->barang as $barang)
-                        <div class="product-card">
-                            <img src="{{ asset('storage/' . $barang->gambar) }}" alt="Living Room Sofa" class="product-image">
-                            <h3>{{ $barang->nama }}</h3>
-                            {{-- format harga dari xxxxxxx to x.xxx.xxx --}}
-                            <?php
-                                $harga = (string) $barang->harga;
-                                $harga = strrev($harga);
-                                $arr = str_split($harga, '3');
-                                
-                                $ganti_format_harga = implode('.', $arr);
-                                $ganti_format_harga = strrev($ganti_format_harga);
-                            ?>
-                            <p class="price">Rp {{ $ganti_format_harga }}</p>
-                            <span>{{ $barang->kategori->nama }}</span> <br>
-                            <a onclick="confirmCart(this)" data-url="{{ route('add.to.cart', ['id' => $barang->id]) }}" class="btn btn-coklat-gelap my-3" role="button"><i class="bi bi-cart"></i> Add to Cart</a>
-                        </div>
+                        @if($barang->diarsipkan == "true")
+
+                        @else
+                            <div class="product-card">
+                                <img src="{{ asset('storage/' . $barang->gambar) }}" alt="Living Room Sofa" class="product-image">
+                                <h3>{{ $barang->nama }}</h3>
+                                {{-- format harga dari xxxxxxx to x.xxx.xxx --}}
+                                <?php
+                                    $harga = (string) $barang->harga;
+                                    $harga = strrev($harga);
+                                    $arr = str_split($harga, '3');
+                                    
+                                    $ganti_format_harga = implode('.', $arr);
+                                    $ganti_format_harga = strrev($ganti_format_harga);
+                                ?>
+                                <p class="price">Rp {{ $ganti_format_harga }}</p>
+                                <span>{{ $barang->kategori->nama }}</span> <br>
+                                <a onclick="confirmCart(this)" data-url="{{ route('add.to.cart', ['id' => $barang->id]) }}" class="btn btn-coklat-gelap my-3" role="button"><i class="bi bi-cart"></i> Add to Cart</a>
+                            </div>
+                        @endif
                     @endforeach
                 </div>
             </div>

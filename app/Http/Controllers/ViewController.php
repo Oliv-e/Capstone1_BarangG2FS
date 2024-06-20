@@ -24,7 +24,6 @@ class ViewController extends Controller
             }])
             ->limit($limit)
             ->where('diarsipkan', 'false')->get();
-
         // limiter display
         // $barang = Barang::all()->take(1);
         $barang = Barang::limit(10)->where('diarsipkan', 'false')->get();

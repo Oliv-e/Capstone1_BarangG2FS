@@ -39,7 +39,15 @@
                     </div>
                     <div class="card mb-3">
                         <div class="card-body text-center p-3">
-                            <h4>Rp. {{$today}}</h4>
+                            <?php
+                                $harga = (string) $today;
+                                $harga = strrev($harga);
+                                $arr = str_split($harga, '3');
+                                        
+                                $ganti_format_harga = implode('.', $arr);
+                                $harga = strrev($ganti_format_harga);    
+                            ?>
+                            <h4>Rp. {{$harga}}</h4>
                         </div>
                     </div>
                 </div>
@@ -49,7 +57,15 @@
                     </div>
                     <div class="card mb-3">
                         <div class="card-body text-center p-3">
-                            <h4>Rp. {{$this_month}}</h4>
+                            <?php
+                                $harga = (string) $this_month;
+                                $harga = strrev($harga);
+                                $arr = str_split($harga, '3');
+                                        
+                                $ganti_format_harga = implode('.', $arr);
+                                $harga = strrev($ganti_format_harga);    
+                            ?>
+                            <h4>Rp. {{$harga}}</h4>
                         </div>
                     </div>
                 </div>
@@ -59,7 +75,15 @@
                     </div>
                     <div class="card mb-3">
                         <div class="card-body text-center p-3">
-                            <h4>Rp. {{$this_year}}</h4>
+                            <?php
+                                $harga = (string) $this_year;
+                                $harga = strrev($harga);
+                                $arr = str_split($harga, '3');
+                                        
+                                $ganti_format_harga = implode('.', $arr);
+                                $harga = strrev($ganti_format_harga);    
+                            ?>
+                            <h4>Rp. {{$harga}}</h4>
                         </div>
                     </div>
                 </div>
