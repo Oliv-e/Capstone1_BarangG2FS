@@ -1,6 +1,6 @@
     APLIKASI FURNITURE BERBASIS WEBSITE
 ------------------------------------------------------
-    https://msib-6-penjualan-barang-03.educalab.id
+<a href="https://msib-6-penjualan-barang-03.educalab.id"> Demo Website </a>
 ------------------------------------------------------
 Quick Use
 ------------------------------------------------------
