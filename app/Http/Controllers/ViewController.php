@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -15,8 +16,20 @@ use App\Models\Transaksi;
 
 class ViewController extends Controller
 {
+    //dd(date('Y-m-d H:i:s', $tglDimasukkan));
     public function index(int $limit = 4)
     {
+        // $session = session()->get('cart');
+        // $tglDimasukkan = [];
+        // foreach ($session as $item) {
+        //     $tglDimasukkan = Carbon::createFromTimestamp($item['tgl_dimasukkan']->getTimestamp());
+        //     $now = Carbon::now();
+        //     if ($now->diffInHours($tglDimasukkan) > 12) {
+        //         session()->forget('cart');
+        //     } else {
+        //         dd('belum 12 jam');
+        //     }
+        // }
         // Nampilin Barang Yang Sedang Ada Promo Secara Random di Landing
         $promoItems = Promo::whereHas('promoBarang')
             ->with(['promoBarang' => function ($query) {
@@ -146,7 +159,8 @@ class ViewController extends Controller
                     "id_barang" => $barang->id,
                     "quantity" => 1,
                     "harga" => $barang->harga, // Use discounted price if applicable
-                    "gambar" => $barang->gambar
+                    "gambar" => $barang->gambar,
+                    "tgl_dimasukkan" => Carbon::now(),
                 ];
             }
 
