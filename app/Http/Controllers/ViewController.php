@@ -181,39 +181,6 @@ class ViewController extends Controller
      *
      * @return response()
      */
-    // public function update(Request $request)
-    // {
-    //     if ($request->id && $request->quantity !== null) {
-    //         $cart = session()->get('cart');
-
-    //         if (isset($cart[$request->id])) {
-    //             if ($request->quantity == 0) {
-    //                 unset($cart[$request->id]);
-    //             } else {
-    //                 $cart[$request->id]["quantity"] = $request->quantity;
-    //             }
-    //             session()->put('cart', $cart);
-
-    //             $subtotal = $cart[$request->id]["quantity"] * $cart[$request->id]["harga"];
-    //             $total = array_reduce($cart, function ($sum, $item) {
-    //                 return $sum + ($item["harga"] * $item["quantity"]);
-    //             }, 0);
-
-    //             $totalPajak = $total + ($total * 0.1);
-
-    //             return response()->json([
-    //                 'subtotal' => number_format($subtotal, 0, ',', '.'),
-    //                 'total' => number_format($total, 0, ',', '.'),
-    //                 'totalPajak' => number_format($totalPajak, 0, ',', '.'),
-    //                 'success' => 'Cart updated successfully'
-    //             ]);
-    //         } else {
-    //             return response()->json(['error' => 'Product not found in cart']);
-    //         }
-    //     } else {
-    //         return response()->json(['error' => 'Invalid request']);
-    //     }
-    // }
     public function update(Request $request)
     {
         if ($request->id && $request->quantity !== null) {
@@ -230,6 +197,12 @@ class ViewController extends Controller
                 $stock->update([
                     'stock' => $stock->stock - ($request->quantity - $previousQuantity),
                 ]);
+                
+                if ($stock->stock <= 0) {
+                    $stock->update([
+                        'status' => 'Habis',
+                    ]);
+                }
 
                 session()->put('cart', $cart);
 

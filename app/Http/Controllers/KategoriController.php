@@ -12,7 +12,7 @@ class KategoriController extends Controller
 {
     public function index()
     {
-        $kategori = Kategori::where('diarsipkan', 'false')->get();
+        $kategori = Kategori::where('diarsipkan', 'false')->paginate(10);
         return view('admin.kategori.home', compact('kategori'));
     }
     public function create()

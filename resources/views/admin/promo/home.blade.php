@@ -72,6 +72,9 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="px-3">
+                        {{ $promo->links() }}
+                    </div>
                 </div>
             </div>
 
@@ -100,6 +103,9 @@
                         <p class="card-text">Data Kosong</p>
                     </div>
                 @endforelse
+                <div class="px-3">
+                    {{ $promo->links() }}
+                </div>
             </div>
 
         </div>

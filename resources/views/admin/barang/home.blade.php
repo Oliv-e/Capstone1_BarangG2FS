@@ -101,6 +101,9 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="px-3">
+                        {{ $barang->links() }}
+                    </div>
                 </div>
             </div>
 
@@ -135,6 +138,9 @@
                         </div>
                     </div>
                 @endforeach
+                <div class="pt-3">
+                    {{ $barang->links() }}
+                </div>
             </div>
 
         </div>

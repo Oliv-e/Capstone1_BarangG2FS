@@ -62,6 +62,9 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="px-3">
+                        {{ $kategori->links() }}
+                    </div>
                 </div>
             </div>
 
@@ -85,6 +88,9 @@
                         </div>
                     </div>
                 @endforeach
+                <div class="px-3">
+                    {{ $kategori->links() }}
+                </div>
             </div>
 
         </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Stock;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -17,19 +18,29 @@ class is_expired
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $session = session()->get('cart');
-
-        if ($session === null) {
-            return $next($request);
+        if ($request->isMethod('destroy') && $request->session()->isStarted()) {
+            $this->restoreStockQuantities();
         }
-        $tglDimasukkan = [];
-        foreach ($session as $item) {
-            $tglDimasukkan = Carbon::createFromTimestamp($item['tgl_dimasukkan']->getTimestamp());
-            $now = Carbon::now();
-            if ($now->diffInHours($tglDimasukkan) > 6) {
-                session()->forget('cart');
+
+        return $next($request);
+    }
+    protected function restoreStockQuantities()
+    {
+        // Get the cart items from the session
+        $cart = Session::get('cart', []);
+
+        // Group the cart items by id_barang
+        $groupedCart = array_reduce($cart, function ($result, $item) {
+            $result[$item['id_barang']] = ($result[$item['id_barang']] ?? 0) + $item['quantity'];
+            return $result;
+        }, []);
+
+        // Loop through the grouped cart items and restore the stock quantities
+        foreach ($groupedCart as $id_barang => $quantity) {
+            $stock = Stock::where('id_barang', $id_barang)->first();
+            if ($stock) {
+                $stock->increment('stock', $quantity);
             }
         }
-        return $next($request);
     }
 }

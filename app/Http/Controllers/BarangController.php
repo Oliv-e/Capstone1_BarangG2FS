@@ -12,7 +12,7 @@ class BarangController extends Controller
 {
     public function index()
     {
-        $barang = Barang::where('diarsipkan', 'false')->get();
+        $barang = Barang::where('diarsipkan', 'false')->paginate(10);
         return view('admin.barang.home', compact('barang'));
     }
 

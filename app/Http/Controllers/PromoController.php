@@ -10,7 +10,7 @@ class PromoController extends Controller
 {
     public function index()
     {
-        $promo = Promo::with('promoBarang')->where('diarsipkan', 'false')->get();
+        $promo = Promo::with('promoBarang')->where('diarsipkan', 'false')->paginate(10);
         return view('admin.promo.home', compact('promo'));
     }
     public function create()
