@@ -54,13 +54,16 @@
                                 <img src="{{ asset('storage/' . $details['gambar']) }}" class="img-fluid product-image"
                                     alt="Gambar Produk">
                             </div>
+                            {{-- harga --}}
                             <div class="text-center w-100">
                                 Rp. {{ number_format($details['harga'], 0, ',', '.') }}
                             </div>
+                            {{-- quan --}}
                             <div class="text-center w-100">
-                                <input type="number" value="{{ $details['quantity'] }}"
+                                <input type="number" value="{{ $details['quantity'] }}" min="1"
                                     class="form-control quantity update-cart" data-id="{{ $id }}" />
                             </div>
+                            {{-- harga*quan --}}
                             <div class="text-center w-100 subtotal" id="subtotal_{{ $id }}">
                                 Rp. {{ number_format($details['harga'] * $details['quantity'], 0, ',', '.') }}
                             </div>
@@ -215,6 +218,7 @@
 
             var ele = $(this);
             var id = ele.closest("div[data-id]").data("id");
+            var quantity = $(".quantity").val();
 
             if (confirm("Are you sure want to remove?")) {
                 $.ajax({
@@ -222,7 +226,8 @@
                     method: "DELETE",
                     data: {
                         _token: '{{ csrf_token() }}',
-                        id: id
+                        id: id,
+                        quantity: quantity
                     },
                     success: function(response) {
                         window.location.reload();

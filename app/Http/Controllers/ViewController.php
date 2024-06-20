@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Stock;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
@@ -130,14 +131,29 @@ class ViewController extends Controller
         $barang = Barang::where('diarsipkan', 'false')->findOrFail($id);
         $cart = session()->get('cart', []);
 
-        if (isset($barang->id)) {
+        if (isset($barang->id) && $barang->stock->stock > 1) {
             $promotions = Promo::where('diarsipkan', "false")->get();
             foreach ($promotions as $promotion) {
                 if ($promotion->promoBarang->contains($barang)) {
                     $barang->harga -= $promotion->pengurangan_harga;
                 }
             }
-
+            $stock = Stock::where('id_barang', $barang->id)->first();       
+            if ($stock->stock >= 1) {
+                $stock_update = $stock->stock - 1;
+                if ($stock_update == 0) {
+                    $stock->update([
+                        'stock' => $stock_update,
+                        'status' => 'Habis',
+                    ]);
+                } else {
+                    $stock->update([
+                        'stock' => $stock_update,
+                    ]);
+                }
+            } else if ($stock->stock == 0) {
+                return redirect()->back()->with('error', 'Product Habis');
+            }
             if (isset($cart[$id])) {
                 $cart[$id]['quantity']++;
             } else {
@@ -164,17 +180,56 @@ class ViewController extends Controller
      *
      * @return response()
      */
+    // public function update(Request $request)
+    // {
+    //     if ($request->id && $request->quantity !== null) {
+    //         $cart = session()->get('cart');
+
+    //         if (isset($cart[$request->id])) {
+    //             if ($request->quantity == 0) {
+    //                 unset($cart[$request->id]);
+    //             } else {
+    //                 $cart[$request->id]["quantity"] = $request->quantity;
+    //             }
+    //             session()->put('cart', $cart);
+
+    //             $subtotal = $cart[$request->id]["quantity"] * $cart[$request->id]["harga"];
+    //             $total = array_reduce($cart, function ($sum, $item) {
+    //                 return $sum + ($item["harga"] * $item["quantity"]);
+    //             }, 0);
+
+    //             $totalPajak = $total + ($total * 0.1);
+
+    //             return response()->json([
+    //                 'subtotal' => number_format($subtotal, 0, ',', '.'),
+    //                 'total' => number_format($total, 0, ',', '.'),
+    //                 'totalPajak' => number_format($totalPajak, 0, ',', '.'),
+    //                 'success' => 'Cart updated successfully'
+    //             ]);
+    //         } else {
+    //             return response()->json(['error' => 'Product not found in cart']);
+    //         }
+    //     } else {
+    //         return response()->json(['error' => 'Invalid request']);
+    //     }
+    // }
     public function update(Request $request)
     {
         if ($request->id && $request->quantity !== null) {
             $cart = session()->get('cart');
 
             if (isset($cart[$request->id])) {
-                if ($request->quantity == 0) {
-                    unset($cart[$request->id]);
-                } else {
-                    $cart[$request->id]["quantity"] = $request->quantity;
-                }
+                $barang = Barang::findOrFail($request->id);
+                $stock = Stock::where('id_barang', $barang->id)->first();
+
+                $previousQuantity = $cart[$request->id]["quantity"];
+                $cart[$request->id]["quantity"] = $request->quantity;
+
+                // Update stock by the difference between new and old quantities
+                $stock->update([
+                    'stock' => $stock->stock - ($request->quantity - $previousQuantity),
+                ]);
+
                 session()->put('cart', $cart);
 
                 $subtotal = $cart[$request->id]["quantity"] * $cart[$request->id]["harga"];
@@ -290,10 +345,17 @@ class ViewController extends Controller
     public function remove(Request $request)
     {
         if ($request->id) {
-            dd($cart = session()->get('cart'));
+            $cart = session()->get('cart');
             if (isset($cart[$request->id])) {
                 unset($cart[$request->id]);
                 session()->put('cart', $cart);
+
+                // Increase the stock of the removed product
+                $barang = Barang::findOrFail($request->id);
+                $stock = Stock::where('id_barang', $barang->id)->first();
+                $stock->update([
+                    'stock' => $stock->stock + $request->quantity,
+                ]);
             }
             session()->flash('success', 'Product removed successfully');
         }
