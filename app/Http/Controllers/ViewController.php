@@ -142,11 +142,9 @@ class ViewController extends Controller
         $cart = session()->get('cart', []);
 
         if (isset($barang->id)) {
-            // Check if the item qualifies for any promotions
-            $promotions = Promo::all();
+            $promotions = Promo::where('diarsipkan', "false")->get();
             foreach ($promotions as $promotion) {
                 if ($promotion->promoBarang->contains($barang)) {
-                    // Apply promotion discount
                     $barang->harga -= $promotion->pengurangan_harga;
                 }
             }
@@ -219,7 +217,7 @@ class ViewController extends Controller
 
     public function checkout(Request $request)
     {
-        if(Auth::user()->email_verified_at != null) {
+        if (Auth::user()->email_verified_at != null) {
             // Validate input
             $request->validate([
                 'nama' => 'required|string|max:255',
