@@ -45,7 +45,11 @@
                         <div class="card">
                             <div class="product-image">
                                 <img src="{{ asset('storage/' . $product->gambar) }}" class="img-fluid rounded-start" alt="{{ $product->nama }}">
-                                <i class="bi bi-cart-fill bg-coklat-gelap cart-icon" onclick="confirmCart(this)" data-url="{{ route('add.to.cart', ['id' => $product->id]) }}"></i>
+                                @if ($product->stock->status == 'Habis')
+                                    <p class="bg-danger cart-icon">HABIS</p>
+                                @else
+                                    <i class="bi bi-cart-fill bg-coklat-gelap cart-icon" onclick="confirmCart(this)" data-url="{{ route('add.to.cart', ['id' => $product->id]) }}"></i>
+                                @endif
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title fw-bold fs-3">{{ $product->nama }}</h5>
@@ -108,33 +112,63 @@
             if (data.length > 0) {
                 data.forEach(product => {
                     if (product.diarsipkan !== "true") {
-                        const productCard = `
-                            <div class="col-md-4 mb-4">
-                                <div class="card">
-                                    <div class="product-image">
-                                        <img src="/storage/${product.gambar}" class="img-fluid rounded-start" alt="${product.nama}">
-                                        <i class="bi bi-cart-fill bg-coklat-gelap cart-icon" onclick="confirmCart(this)" data-url="/add-to-cart/${product.id}"></i>
-                                    </div>
-                                    <div class="card-body">
-                                        <h5 class="card-title fw-bold fs-3">${product.nama}</h5>
-                                        <p class="kategori"><span class="fw-bold">Kategori:</span> ${product.kategori.nama}</p>
-                                        <p class="card-text my-2">${product.deskripsi}</p>
-                                        <p class="card-text my-2 text-coklat-gelap"><strong>Harga: Rp. ${new Intl.NumberFormat('id-ID').format(product.harga)}</strong></p>
-                                        <div class="rating my-2">
-                                            <div class="stars">
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-half"></i>
-                                            </div>
-                                            <span>(4.5/5 dari 2 ulasan)</span>
+                        if (product.stock.status !== "Habis") {
+                            const productCard = `
+                                <div class="col-md-4 mb-4">
+                                    <div class="card">
+                                        <div class="product-image">
+                                            <img src="/storage/${product.gambar}" class="img-fluid rounded-start" alt="${product.nama}">
+                                            <i class="bi bi-cart-fill bg-coklat-gelap cart-icon" onclick="confirmCart(this)" data-url="/add-to-cart/${product.id}"></i>
                                         </div>
-                                        <a href="/detail-produk/${product.id}" class="btn btn-outline-coklat-gelap">Detail Produk</a>
+                                        <div class="card-body">
+                                            <h5 class="card-title fw-bold fs-3">${product.nama}</h5>
+                                            <p class="kategori"><span class="fw-bold">Kategori:</span> ${product.kategori.nama}</p>
+                                            <p class="card-text my-2">${product.deskripsi}</p>
+                                            <p class="card-text my-2 text-coklat-gelap"><strong>Harga: Rp. ${new Intl.NumberFormat('id-ID').format(product.harga)}</strong></p>
+                                            <div class="rating my-2">
+                                                <div class="stars">
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-half"></i>
+                                                </div>
+                                                <span>(4.5/5 dari 2 ulasan)</span>
+                                            </div>
+                                            <a href="/detail-produk/${product.id}" class="btn btn-outline-coklat-gelap">Detail Produk</a>
+                                        </div>
                                     </div>
-                                </div>
-                            </div> `;
-                        productList.innerHTML += productCard;
+                                </div> `;
+                            productList.innerHTML += productCard;
+                        } else {
+                            const productCard = `
+                                <div class="col-md-4 mb-4">
+                                    <div class="card">
+                                        <div class="product-image">
+                                            <img src="/storage/${product.gambar}" class="img-fluid rounded-start" alt="${product.nama}">
+                                            <p class="bg-danger cart-icon">HABIS</p>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title fw-bold fs-3">${product.nama}</h5>
+                                            <p class="kategori"><span class="fw-bold">Kategori:</span> ${product.kategori.nama}</p>
+                                            <p class="card-text my-2">${product.deskripsi}</p>
+                                            <p class="card-text my-2 text-coklat-gelap"><strong>Harga: Rp. ${new Intl.NumberFormat('id-ID').format(product.harga)}</strong></p>
+                                            <div class="rating my-2">
+                                                <div class="stars">
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-half"></i>
+                                                </div>
+                                                <span>(4.5/5 dari 2 ulasan)</span>
+                                            </div>
+                                            <a href="/detail-produk/${product.id}" class="btn btn-outline-coklat-gelap">Detail Produk</a>
+                                        </div>
+                                    </div>
+                                </div> `;
+                            productList.innerHTML += productCard;
+                        }
                     }
                 });
             } else {
@@ -153,34 +187,63 @@
             if (data.length > 0) {
                 data.forEach(product => {
                     if (product.nama.toLowerCase().includes(search) && product.diarsipkan !== "true") {
-                        const productCard = `
-                            <div class="col-md-4 mb-4">
-                                <div class="card">
-                                    <div class="product-image">
-                                        <img src="/storage/${product.gambar}" class="img-fluid rounded-start" alt="${product.nama}">
-                                        <i class="bi bi-cart-fill bg-coklat-gelap cart-icon" onclick="confirmCart(this)" data-url="/add-to-cart/${product.id}"></i>
-                                    </div>
-                                    <div class="card-body">
-                                        <h5 class="card-title fw-bold fs-3">${product.nama}</h5>
-                                        <p class="kategori"><span class="fw-bold">Kategori:</span> ${product.kategori.nama}</p>
-                                        <p class="card-text my-2">${product.deskripsi}</p>
-                                        <p class="card-text my-2 text-coklat-gelap"><strong>Harga: Rp. ${new Intl.NumberFormat('id-ID').format(product.harga)}</strong></p>
-                                        <div class="rating my-2">
-                                            <div class="stars">
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-half"></i>
-                                            </div>
-                                            <span>(4.5/5 dari 2 ulasan)</span>
+                        if (product.stock.status !== "Habis") {
+                            const productCard = `
+                                <div class="col-md-4 mb-4">
+                                    <div class="card">
+                                        <div class="product-image">
+                                            <img src="/storage/${product.gambar}" class="img-fluid rounded-start" alt="${product.nama}">
+                                            <i class="bi bi-cart-fill bg-coklat-gelap cart-icon" onclick="confirmCart(this)" data-url="/add-to-cart/${product.id}"></i>
                                         </div>
-                                        <a href="/detail-produk/${product.id}" class="btn btn-outline-coklat-gelap">Detail Produk</a>
+                                        <div class="card-body">
+                                            <h5 class="card-title fw-bold fs-3">${product.nama}</h5>
+                                            <p class="kategori"><span class="fw-bold">Kategori:</span> ${product.kategori.nama}</p>
+                                            <p class="card-text my-2">${product.deskripsi}</p>
+                                            <p class="card-text my-2 text-coklat-gelap"><strong>Harga: Rp. ${new Intl.NumberFormat('id-ID').format(product.harga)}</strong></p>
+                                            <div class="rating my-2">
+                                                <div class="stars">
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-half"></i>
+                                                </div>
+                                                <span>(4.5/5 dari 2 ulasan)</span>
+                                            </div>
+                                            <a href="/detail-produk/${product.id}" class="btn btn-outline-coklat-gelap">Detail Produk</a>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        `;
-                        productList.innerHTML += productCard;
+                                </div> `;
+                            productList.innerHTML += productCard;
+                        } else {
+                            const productCard = `
+                                <div class="col-md-4 mb-4">
+                                    <div class="card">
+                                        <div class="product-image">
+                                            <img src="/storage/${product.gambar}" class="img-fluid rounded-start" alt="${product.nama}">
+                                            <p class="bg-danger cart-icon">HABIS</p>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title fw-bold fs-3">${product.nama}</h5>
+                                            <p class="kategori"><span class="fw-bold">Kategori:</span> ${product.kategori.nama}</p>
+                                            <p class="card-text my-2">${product.deskripsi}</p>
+                                            <p class="card-text my-2 text-coklat-gelap"><strong>Harga: Rp. ${new Intl.NumberFormat('id-ID').format(product.harga)}</strong></p>
+                                            <div class="rating my-2">
+                                                <div class="stars">
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-half"></i>
+                                                </div>
+                                                <span>(4.5/5 dari 2 ulasan)</span>
+                                            </div>
+                                            <a href="/detail-produk/${product.id}" class="btn btn-outline-coklat-gelap">Detail Produk</a>
+                                        </div>
+                                    </div>
+                                </div> `;
+                            productList.innerHTML += productCard;
+                        }
                     }
                 });
             } else {

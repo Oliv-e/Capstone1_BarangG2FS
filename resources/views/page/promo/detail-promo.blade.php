@@ -54,9 +54,13 @@
                                     ?>
                                     <p class="card-text"><small class="text-body-secondary">Rp. {{ $harga }}</small>
                                     </p>
-                                    <div>
-                                        <a href="{{route('detail-produk',$barang->id)}}" class="btn btn-coklat-gelap mt-1"><i class="bi bi-eye"></i></a>
-                                        <a onclick="confirmCart(this)" data-url="{{ route('add.to.cart', ['id' => $barang->id]) }}" class="btn btn-coklat-gelap mt-1" role="button"><i class="bi bi-cart"></i></a>
+                                    <div class="d-flex align-items-center justify-items-center gap-2">
+                                        <a href="{{route('detail-produk',$barang->id)}}" class="btn btn-coklat-gelap my-3"><i class="bi bi-eye"></i></a>
+                                        @if ($barang->stock->status == "Habis")
+                                            Maaf, Produk saat ini sedang Kosong / Habis.
+                                        @else
+                                            <a onclick="confirmCart(this)" data-url="{{ route('add.to.cart', ['id' => $barang->id]) }}" class="btn btn-coklat-gelap my-3" role="button"><i class="bi bi-cart"></i></a>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

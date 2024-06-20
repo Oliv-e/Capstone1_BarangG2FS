@@ -42,7 +42,11 @@
                             </div>
                             <span>({{ number_format($rating, 1) }}/5 dari {{ $ulasan->count() }} ulasan)</span>
                         </div>
-                        <a onclick="confirmCart(this)" data-url="{{ route('add.to.cart', ['id' => $produk->id]) }}" class="btn btn-coklat-gelap my-3" role="button"><i class="bi bi-cart"></i> Add to Cart</a>
+                        @if ($produk->stock->status == "Habis")
+                            <p>Maaf, Produk saat ini sedang Kosong / Habis.</p>
+                        @else
+                            <a onclick="confirmCart(this)" data-url="{{ route('add.to.cart', ['id' => $produk->id]) }}" class="btn btn-coklat-gelap my-3" role="button"><i class="bi bi-cart"></i> Add to Cart</a>
+                        @endif
                     </div>
                 </div>
             </div>

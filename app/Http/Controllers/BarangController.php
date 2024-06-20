@@ -19,7 +19,7 @@ class BarangController extends Controller
     public function getProductsByCategory(Request $request)
     {
         $categoryId = $request->input('category_id');
-        $products = Barang::where('id_kategori', $categoryId)->with('kategori')->get();
+        $products = Barang::where('id_kategori', $categoryId)->with(['kategori','stock'])->get();
         return response()->json($products);
     }
 

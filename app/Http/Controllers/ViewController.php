@@ -131,15 +131,16 @@ class ViewController extends Controller
         $barang = Barang::where('diarsipkan', 'false')->findOrFail($id);
         $cart = session()->get('cart', []);
 
-        if (isset($barang->id) && $barang->stock->stock > 1) {
+        if (isset($barang->id) && $barang->stock->stock >= 1) {
             $promotions = Promo::where('diarsipkan', "false")->get();
             foreach ($promotions as $promotion) {
                 if ($promotion->promoBarang->contains($barang)) {
                     $barang->harga -= $promotion->pengurangan_harga;
                 }
             }
-            $stock = Stock::where('id_barang', $barang->id)->first();       
-            if ($stock->stock >= 1) {
+            $stock = Stock::where('id_barang', $barang->id)->first();
+
+            if ($stock->stock > 0) {
                 $stock_update = $stock->stock - 1;
                 if ($stock_update == 0) {
                     $stock->update([

@@ -40,7 +40,11 @@
                                 @if ($harga_promo = $items->harga - $promoItem->pengurangan_harga)
                                     <p class="promo-price">Rp {{ number_format($harga_promo, 0, ',', '.') }}</p>
                                 @endif
-                                <a onclick="confirmCart(this)" data-url="{{ route('add.to.cart', ['id' => $items->id]) }}" class="btn btn-coklat-gelap my-3" role="button"><i class="bi bi-cart"></i></a>
+                                @if ($items->stock->status == "Habis")
+                                    <p>Maaf, Produk saat ini sedang Kosong / Habis.</p>
+                                @else
+                                    <a onclick="confirmCart(this)" data-url="{{ route('add.to.cart', ['id' => $items->id]) }}" class="btn btn-coklat-gelap my-3" role="button"><i class="bi bi-cart"></i></a>
+                                @endif
                                 <a href="{{route('detail-produk', $items->id)}}" class="btn btn-outline-coklat-gelap"><i class="bi bi-bag"></i></a>
                             </div>
                         @endforeach
@@ -88,7 +92,11 @@
                                 ?>
                                 <p class="price">Rp {{ $ganti_format_harga }}</p>
                                 <span>{{ $barang->kategori->nama }}</span> <br>
-                                <a onclick="confirmCart(this)" data-url="{{ route('add.to.cart', ['id' => $barang->id]) }}" class="btn btn-coklat-gelap my-3" role="button"><i class="bi bi-cart"></i> Add to Cart</a>
+                                @if ($barang->stock->status == "Habis")
+                                    <p>Maaf, Produk saat ini sedang Kosong / Habis.</p>
+                                @else
+                                    <a onclick="confirmCart(this)" data-url="{{ route('add.to.cart', ['id' => $barang->id]) }}" class="btn btn-coklat-gelap my-3" role="button"><i class="bi bi-cart"></i> Add to Cart</a>
+                                @endif
                             </div>
                         @endif
                     @endforeach
