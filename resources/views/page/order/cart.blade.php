@@ -167,9 +167,11 @@
 @section('footer', true)
 @section('js-scripts')
     <script type="text/javascript">
-        document.getElementById('hideSession').addEventListener('click', function() {
-            document.getElementById('session').style.display = 'none';
-        })
+        $(document).ready(function() {
+            document.getElementById('hideSession').addEventListener('click', function() {
+                document.getElementById('session').style.display = 'none';
+            });
+        });
 
         $(document).on('input', '.update-cart', function(e) {
             e.preventDefault();
