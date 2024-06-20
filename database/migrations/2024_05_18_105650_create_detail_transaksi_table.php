@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('resi')->nullable();
             $table->unsignedBigInteger('id_transaksi');
             $table->unsignedBigInteger('id_barang');
+            $table->integer('harga_barang');
             $table->integer('jumlah');
             $table->enum('status', ['pending' , 'diproses' , 'dikirim' , 'selesai' , 'dibatalkan'])->default('pending');
             $table->timestamps();
