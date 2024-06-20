@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('id_user');
             $table->integer('id_barang');
-            $table->integer('rate');
+            $table->decimal('rate', 3, 1);
             $table->string('komentar');
             $table->timestamps();
             $table->enum('diarsipkan', ['false','true'])->default('false');

@@ -1,6 +1,5 @@
 <x-guest-layout>
     <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
     <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-sm">
         <img class="mx-auto h-10 w-auto" src="{{asset('assets/img/LOGOFM2.png')}}" alt="Furniture Max">
@@ -8,6 +7,7 @@
         </div>
     
         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+        <x-auth-session-status class="mb-4 text-center" :status="session('status')" />
         <form class="space-y-6" action="{{ route('login') }}" method="POST">
             @csrf
             <div>

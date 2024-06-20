@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -15,6 +16,7 @@ use App\Models\Transaksi;
 
 class ViewController extends Controller
 {
+    //dd(date('Y-m-d H:i:s', $tglDimasukkan));
     public function index(int $limit = 4)
     {
         // Nampilin Barang Yang Sedang Ada Promo Secara Random di Landing
@@ -144,7 +146,8 @@ class ViewController extends Controller
                     "id_barang" => $barang->id,
                     "quantity" => 1,
                     "harga" => $barang->harga, // Use discounted price if applicable
-                    "gambar" => $barang->gambar
+                    "gambar" => $barang->gambar,
+                    "tgl_dimasukkan" => Carbon::now(),
                 ];
             }
 
@@ -287,7 +290,7 @@ class ViewController extends Controller
     public function remove(Request $request)
     {
         if ($request->id) {
-            $cart = session()->get('cart');
+            dd($cart = session()->get('cart'));
             if (isset($cart[$request->id])) {
                 unset($cart[$request->id]);
                 session()->put('cart', $cart);
