@@ -36,4 +36,18 @@ Fitur
 3. Admin
    - Melihat Dashboard, Manajemen Produk dan Promo
 4. Super Admin
-   - Manajemen Kategori dan Memonitor Transaksi, Mengupdate status transaksi.
+   - Manajemen Kategori dan Memonitor Transaksi, Mengupdate status transaksi
+--------------------------------------------------------
+Revisi
+--------------------------------------------------------
+1. Jika stock barang tinggal 1 dan terdapat user yang memasukkan ke keranjang, maka stock akan berkurang dan status akan berganti
+2. Jika dalam 2 jam setelah user menambahkan ke keranjang tidak kunjung checkout, keranjang akan kosong dan jumlah produk akan direstock
+--------------------------------------------------------
+Bugs
+--------------------------------------------------------
+- No Bugs found
+--------------------------------------------------------
+Testing
+--------------------------------------------------------
+- Belum test multiple acc / session untuk keranjang
+--------------------------------------------------------
