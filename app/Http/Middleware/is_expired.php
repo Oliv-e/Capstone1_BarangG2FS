@@ -2,9 +2,11 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Barang;
 use App\Models\Stock;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpFoundation\Response;
 use Carbon\Carbon;
@@ -18,29 +20,47 @@ class is_expired
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->isMethod('destroy') && $request->session()->isStarted()) {
-            $this->restoreStockQuantities();
-        }
+        if (Auth::check()) {
+            $cart = session()->get('cart');
+            $exp = 120;
 
-        return $next($request);
-    }
-    protected function restoreStockQuantities()
-    {
-        // Get the cart items from the session
-        $cart = Session::get('cart', []);
+            if ($cart) {
+                foreach ($cart as $key => $item) {
+                    $last = $item['last_updated'];
+                    $exp_time = Carbon::parse($last)->addMinutes($exp);
 
-        // Group the cart items by id_barang
-        $groupedCart = array_reduce($cart, function ($result, $item) {
-            $result[$item['id_barang']] = ($result[$item['id_barang']] ?? 0) + $item['quantity'];
-            return $result;
-        }, []);
+                    if (now()->greaterThan($exp_time)) {
+                        $id_barang = $item["id_barang"];
+                        $cart_stock = $item["quantity"];
 
-        // Loop through the grouped cart items and restore the stock quantities
-        foreach ($groupedCart as $id_barang => $quantity) {
-            $stock = Stock::where('id_barang', $id_barang)->first();
-            if ($stock) {
-                $stock->increment('stock', $quantity);
+                        // Fetch the 'Barang' instance and its related 'Stock' instance
+                        $barang = Barang::findOrFail($id_barang);
+                        $stock = $barang->stock;
+
+                        $update_stock = $stock->stock + $cart_stock;
+
+                        // Update the status based on the updated stock value
+                        if ($update_stock > 0) {
+                            $status = 'Tersedia';
+                        } else {
+                            $status = 'Habis';
+                        }
+
+                        // Update the stock and status in the database
+                        $stock->update([
+                            'stock' => $update_stock,
+                            'status' => $status,
+                        ]);
+
+                        // Remove the expired item from the cart
+                        unset($cart[$key]);
+                    }
+                }
+
+                // Save the updated cart back to the session
+                session()->put('cart', $cart);
             }
         }
+        return $next($request);
     }
 }

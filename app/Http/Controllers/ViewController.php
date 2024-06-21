@@ -164,7 +164,7 @@ class ViewController extends Controller
                     "quantity" => 1,
                     "harga" => $barang->harga, // Use discounted price if applicable
                     "gambar" => $barang->gambar,
-                    "tgl_dimasukkan" => Carbon::now(),
+                    "last_updated" => Carbon::now(),
                 ];
             }
 
