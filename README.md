@@ -2,7 +2,7 @@
 ------------------------------------------------------
 <a href="https://msib-6-penjualan-barang-03.educalab.id"> Demo Website </a>
 ------------------------------------------------------
-Quick Use
+Quick Use (PHP > 8.2)
 ------------------------------------------------------
 - clone this repository
 - composer update
