@@ -22,7 +22,7 @@ class is_expired
     {
         if (Auth::check()) {
             $cart = session()->get('cart');
-            $exp = 1;
+            $exp = 60; //interval waktu penambahan barang ke keranjang
 
             if ($cart) {
                 foreach ($cart as $key => $item) {
