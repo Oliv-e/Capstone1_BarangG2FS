@@ -22,7 +22,7 @@ class is_expired
     {
         if (Auth::check()) {
             $cart = session()->get('cart');
-            $exp = 120;
+            $exp = 1;
 
             if ($cart) {
                 foreach ($cart as $key => $item) {
