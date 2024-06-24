@@ -79,7 +79,7 @@ Route::middleware('is_superadmin')->group(function () {
     Route::get('/dashboard/transaksi/detail/{id}', [TransaksiController::class, 'detail'])->name('admin.transaksi.detail_transaksi');
     Route::put('/dashboard/transaksi/proses/{id}', [TransaksiController::class, 'proses'])->name('transaksi.proses');
 });
-Route::get('/bliaecvhrdfu', function () {
+Route::get('/check-cart-session', function () {
     dd(session()->get('cart'));
 });
 require __DIR__ . '/auth.php';
